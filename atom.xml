@@ -6,7 +6,7 @@
   <link href="http://www.pangtouyu77.fun/atom.xml" rel="self"/>
   
   <link href="http://www.pangtouyu77.fun/"/>
-  <updated>2022-01-01T14:57:28.861Z</updated>
+  <updated>2022-01-02T07:53:26.048Z</updated>
   <id>http://www.pangtouyu77.fun/</id>
   
   <author>
@@ -17,11 +17,92 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>博客上传报错汇总</title>
+    <link href="http://www.pangtouyu77.fun/2022/01/02/%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E6%8A%A5%E9%94%99/"/>
+    <id>http://www.pangtouyu77.fun/2022/01/02/%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E6%8A%A5%E9%94%99/</id>
+    <published>2022-01-02T07:34:15.790Z</published>
+    <updated>2022-01-02T07:53:26.048Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="hexo-d报错"><a href="#hexo-d报错" class="headerlink" title="hexo d报错"></a>hexo d报错</h3><p>原因：<br>问题大多是因为git进行push或者hexo d的时候改变了一些.deploy_git文件下的内容。</p><p>解决办法：<br>删除.deploy_git文件夹;</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入git config --global core.autocrlf false</span><br></pre></td></tr></table></figure><p>然后，依次执行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;hexo-d报错&quot;&gt;&lt;a href=&quot;#hexo-d报错&quot; class=&quot;headerlink&quot; title=&quot;hexo d报错&quot;&gt;&lt;/a&gt;hexo d报错&lt;/h3&gt;&lt;p&gt;原因：&lt;br&gt;问题大多是因为git进行push或者hexo d的时候改变了一些.deploy</summary>
+      
+    
+    
+    
+    <category term="计算机" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="博客" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="博客" scheme="http://www.pangtouyu77.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+    <category term="随笔" scheme="http://www.pangtouyu77.fun/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown语法</title>
+    <link href="http://www.pangtouyu77.fun/2022/01/02/markdown%E8%AF%AD%E6%B3%95/"/>
+    <id>http://www.pangtouyu77.fun/2022/01/02/markdown%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-01-02T06:44:58.569Z</published>
+    <updated>2022-01-02T07:38:46.432Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="markdown的语法"><a href="#markdown的语法" class="headerlink" title="markdown的语法"></a>markdown的语法</h2><h3 id="斜体和粗体"><a href="#斜体和粗体" class="headerlink" title="斜体和粗体"></a>斜体和粗体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*斜体*或_斜体_</span><br><span class="line">**粗体**</span><br><span class="line">***加粗斜体***</span><br><span class="line">~~删除线~~</span><br></pre></td></tr></table></figure><h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><h3 id="超链接（同时可以插入图像）"><a href="#超链接（同时可以插入图像）" class="headerlink" title="超链接（同时可以插入图像）"></a>超链接（同时可以插入图像）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接]</span><br></pre></td></tr></table></figure><h3 id="代码行"><a href="#代码行" class="headerlink" title="代码行"></a>代码行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用```</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello world\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">结尾```</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;markdown的语法&quot;&gt;&lt;a href=&quot;#markdown的语法&quot; class=&quot;headerlink&quot; title=&quot;markdown的语法&quot;&gt;&lt;/a&gt;markdown的语法&lt;/h2&gt;&lt;h3 id=&quot;斜体和粗体&quot;&gt;&lt;a href=&quot;#斜体和粗体&quot; class</summary>
+      
+    
+    
+    
+    <category term="计算机" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="博客" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="markdown" scheme="http://www.pangtouyu77.fun/tags/markdown/"/>
+    
+    <category term="博客" scheme="http://www.pangtouyu77.fun/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opencv图像特效</title>
+    <link href="http://www.pangtouyu77.fun/2022/01/02/%E5%9B%BE%E5%83%8F%E7%89%B9%E6%95%88/"/>
+    <id>http://www.pangtouyu77.fun/2022/01/02/%E5%9B%BE%E5%83%8F%E7%89%B9%E6%95%88/</id>
+    <published>2022-01-02T00:49:14.544Z</published>
+    <updated>2022-01-02T07:53:00.377Z</updated>
+    
+    
+    
+    
+    <category term="计算机" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="深度学习" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="opencv" scheme="http://www.pangtouyu77.fun/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/opencv/"/>
+    
+    
+    <category term="opencv" scheme="http://www.pangtouyu77.fun/tags/opencv/"/>
+    
+    <category term="计算机视觉" scheme="http://www.pangtouyu77.fun/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="深度学习" scheme="http://www.pangtouyu77.fun/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>My first blog</title>
     <link href="http://www.pangtouyu77.fun/2022/01/01/My%20first%20blog/"/>
     <id>http://www.pangtouyu77.fun/2022/01/01/My%20first%20blog/</id>
     <published>2022-01-01T14:24:53.263Z</published>
-    <updated>2022-01-01T14:57:28.861Z</updated>
+    <updated>2022-01-02T07:00:14.819Z</updated>
     
     <content type="html"><![CDATA[<h4 id="今天是2022年元旦节，我开心的发布了第一篇文章，希望给自己一个新的开始。"><a href="#今天是2022年元旦节，我开心的发布了第一篇文章，希望给自己一个新的开始。" class="headerlink" title="今天是2022年元旦节，我开心的发布了第一篇文章，希望给自己一个新的开始。"></a>今天是2022年元旦节，我开心的发布了第一篇文章，希望给自己一个新的开始。</h4><h3 id="新的一年，祝你心情好，身体好，一切顺心！"><a href="#新的一年，祝你心情好，身体好，一切顺心！" class="headerlink" title="新的一年，祝你心情好，身体好，一切顺心！"></a>新的一年，祝你心情好，身体好，一切顺心！</h3>]]></content>
     
@@ -37,8 +118,6 @@
     
     
     <category term="生活" scheme="http://www.pangtouyu77.fun/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="美妙" scheme="http://www.pangtouyu77.fun/tags/%E7%BE%8E%E5%A6%99/"/>
     
   </entry>
   
