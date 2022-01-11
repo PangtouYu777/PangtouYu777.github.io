@@ -9,7 +9,7 @@
     
     <title>
         
-            markdown语法 |
+            opencv图像灰度处理 |
         
         Mr.Zhang&#39;s Blog
     </title>
@@ -138,7 +138,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">markdown语法</span>
+            <span class="title-hover-animation">opencv图像灰度处理</span>
         </div>
 
         
@@ -157,8 +157,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-02 14:44:58</span>
-        <span class="mobile">2022-01-02 14:44</span>
+        <span class="pc">2022-01-02 08:49:14</span>
+        <span class="mobile">2022-01-02 08:49</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -170,7 +170,11 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/opencv/">opencv</a>&nbsp;
                     </li>
                 
             </ul>
@@ -182,11 +186,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/markdown/">markdown</a>&nbsp;
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
+                        | <a href="/tags/opencv/">opencv</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>&nbsp;
                     </li>
                 
             </ul>
@@ -205,13 +213,17 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="markdown的语法"><a href="#markdown的语法" class="headerlink" title="markdown的语法"></a>markdown的语法</h2><h3 id="斜体和粗体"><a href="#斜体和粗体" class="headerlink" title="斜体和粗体"></a>斜体和粗体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*斜体*或_斜体_</span><br><span class="line">**粗体**</span><br><span class="line">***加粗斜体***</span><br><span class="line">~~删除线~~</span><br></pre></td></tr></table></figure>
-<h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+            <h3 id="灰度处理"><a href="#灰度处理" class="headerlink" title="灰度处理"></a>灰度处理</h3><h4 id="imread-函数"><a href="#imread-函数" class="headerlink" title="imread()函数"></a>imread()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img0=cv2.imread(&#x27;image0.jpg&#x27;,0)</span><br><span class="line">img1=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">print(img0.shape)</span><br><span class="line">print(img1.shape)</span><br></pre></td></tr></table></figure>
 
-<h3 id="超链接（同时可以插入图像）"><a href="#超链接（同时可以插入图像）" class="headerlink" title="超链接（同时可以插入图像）"></a>超链接（同时可以插入图像）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接]</span><br></pre></td></tr></table></figure>
+<h4 id="cvtColor-函数"><a href="#cvtColor-函数" class="headerlink" title="cvtColor()函数"></a>cvtColor()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">dst=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)  #颜色空间转换    1 data   2BGR gra</span><br></pre></td></tr></table></figure>
 
-<h3 id="代码行"><a href="#代码行" class="headerlink" title="代码行"></a>代码行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用```</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello world\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">结尾```</span><br></pre></td></tr></table></figure>
+<h4 id="R-G-B-grey-取平均值"><a href="#R-G-B-grey-取平均值" class="headerlink" title="R=G=B=grey 取平均值"></a>R=G=B=grey 取平均值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        gray=(int(b)+int(g)+int(r))/3             #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br><span class="line">cv2.imshow(&#x27;dst&#x27;,dst)</span><br><span class="line">cv2.waitKey(0)</span><br></pre></td></tr></table></figure>
 
+<h4 id="神奇的心理学公式"><a href="#神奇的心理学公式" class="headerlink" title="神奇的心理学公式"></a>神奇的心理学公式</h4><p>gray=r<em>0.299+g</em>0.587+b*0.114</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        b=int(b)</span><br><span class="line">        g=int(g)</span><br><span class="line">        r=int(r)</span><br><span class="line">        gray=r*0.299+g*0.587+b*0.114            #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br></pre></td></tr></table></figure>
+
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>定点运算&gt;浮点运算&gt;移位运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#gray=r*0.299+g*0.587+b*0.114</span><br><span class="line">#gray=(r*1+g*2+b*1)/4      #浮点转换为定点运算</span><br><span class="line">gray=(r+(g&lt;&lt;1)+b)&gt;&gt;2       #定点运算转换为移位运算</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -221,11 +233,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/markdown/">#markdown</a>&nbsp;
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>&nbsp;
+                        <a href="/tags/opencv/">#opencv</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">#计算机视觉</a>&nbsp;
                     </li>
                 
             </ul>
@@ -253,10 +269,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/02/%E5%9B%BE%E5%83%8F%E7%89%B9%E6%95%88/"
+                           href="/2022/01/01/My%20first%20blog/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">opencv图像特效</span>
+                                <span class="post-nav-title-item">My first blog</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -459,7 +475,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">markdown的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%9C%E4%BD%93%E5%92%8C%E7%B2%97%E4%BD%93"><span class="nav-number">1.1.</span> <span class="nav-text">斜体和粗体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">分级标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5%EF%BC%88%E5%90%8C%E6%97%B6%E5%8F%AF%E4%BB%A5%E6%8F%92%E5%85%A5%E5%9B%BE%E5%83%8F%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">超链接（同时可以插入图像）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">代码行</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">灰度处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#imread-%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">imread()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvtColor-%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">cvtColor()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-G-B-grey-%E5%8F%96%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="nav-number">1.3.</span> <span class="nav-text">R&#x3D;G&#x3D;B&#x3D;grey 取平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84%E5%BF%83%E7%90%86%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的心理学公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">算法优化</span></a></li></ol>
     </div>
 </div>
         </aside>
