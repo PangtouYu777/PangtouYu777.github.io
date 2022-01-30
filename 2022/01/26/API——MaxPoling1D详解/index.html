@@ -9,7 +9,7 @@
     
     <title>
         
-            opencv图像灰度处理 |
+            API--MaxPoling1D |
         
         Mr.Zhang&#39;s Blog
     </title>
@@ -138,7 +138,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">opencv图像灰度处理</span>
+            <span class="title-hover-animation">API--MaxPoling1D</span>
         </div>
 
         
@@ -157,8 +157,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-02 08:49:14</span>
-        <span class="mobile">2022-01-02 08:49</span>
+        <span class="pc">2022-01-26 12:31:23</span>
+        <span class="mobile">2022-01-26 12:31</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -174,7 +174,11 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/opencv/">opencv</a>&nbsp;
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
                     </li>
                 
             </ul>
@@ -186,15 +190,19 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
+                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/opencv/">opencv</a>&nbsp;
+                        | <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>&nbsp;
+                        | <a href="/tags/layers/">layers</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">池化层</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,18 +221,19 @@
         
 
         <div class="article-content markdown-body">
-            <h3 id="灰度处理"><a href="#灰度处理" class="headerlink" title="灰度处理"></a>灰度处理</h3><h4 id="imread-函数"><a href="#imread-函数" class="headerlink" title="imread()函数"></a>imread()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img0=cv2.imread(&#x27;image0.jpg&#x27;,0)</span><br><span class="line">img1=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">print(img0.shape)</span><br><span class="line">print(img1.shape)</span><br></pre></td></tr></table></figure>
+            <p>官方文档：[<a class="link" target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool1D]">https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool1D]<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="API–MaxPoling1D"><a href="#API–MaxPoling1D" class="headerlink" title="API–MaxPoling1D"></a>API–MaxPoling1D</h2><h3 id="API说明"><a href="#API说明" class="headerlink" title="API说明"></a>API说明</h3><p>该函数会创建一层池化层，通过在大小为pool_size的空间窗口上取最大值，对输入进行处理。窗口每次的移动步数为strides。</p>
+<p>使用“valid”padding选项时，结果输出的形状为：output_shape=（input_shape-pool_size+1）/strips<br>使用“SAME”填充选项时得到的输出形状是：output_shape = input_shape / strides</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.layers.MaxPool1D(</span><br><span class="line">    pool_size=2, strides=None, padding=&#x27;valid&#x27;,</span><br><span class="line">    data_format=&#x27;channels_last&#x27;, **kwargs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="pool-size-空间窗口大小"><a href="#pool-size-空间窗口大小" class="headerlink" title="pool_size  :空间窗口大小"></a>pool_size  :空间窗口大小</h4><h4 id="strides-窗口移动步长"><a href="#strides-窗口移动步长" class="headerlink" title="strides    :窗口移动步长"></a>strides    :窗口移动步长</h4><h4 id="padding-窗口覆盖模式"><a href="#padding-窗口覆盖模式" class="headerlink" title="padding    :窗口覆盖模式"></a>padding    :窗口覆盖模式</h4><p>当使用“valid”padding时：   不会对矩阵外部填充</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1., 2., 3., 4., 5.])</span><br><span class="line">x = tf.reshape(x, [1, 5, 1])</span><br><span class="line">max_pool_1d = tf.keras.layers.MaxPooling1D(pool_size=2,</span><br><span class="line">   strides=1, padding=&#x27;valid&#x27;)</span><br><span class="line">max_pool_1d(x)</span><br></pre></td></tr></table></figure>
+<p>当使用“SAME”padding时：   对矩阵外部填充0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1., 2., 3., 4., 5.])</span><br><span class="line">x = tf.reshape(x, [1, 5, 1])</span><br><span class="line">max_pool_1d = tf.keras.layers.MaxPooling1D(pool_size=2,</span><br><span class="line">   strides=1, padding=&#x27;same&#x27;)</span><br><span class="line">max_pool_1d(x)</span><br></pre></td></tr></table></figure>
+<h4 id="data-format-数据形式"><a href="#data-format-数据形式" class="headerlink" title="data_format  :数据形式"></a>data_format  :数据形式</h4><p>Input shape:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">If data_format=&#x27;channels_last&#x27;: 3D tensor with shape (batch_size, steps, features).</span><br><span class="line">If data_format=&#x27;channels_first&#x27;: 3D tensor with shape (batch_size, features, steps).</span><br></pre></td></tr></table></figure>
 
-<h4 id="cvtColor-函数"><a href="#cvtColor-函数" class="headerlink" title="cvtColor()函数"></a>cvtColor()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">dst=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)  #颜色空间转换    1 data   2BGR gra</span><br></pre></td></tr></table></figure>
-
-<h4 id="R-G-B-grey-取平均值"><a href="#R-G-B-grey-取平均值" class="headerlink" title="R=G=B=grey 取平均值"></a>R=G=B=grey 取平均值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        gray=(int(b)+int(g)+int(r))/3             #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br><span class="line">cv2.imshow(&#x27;dst&#x27;,dst)</span><br><span class="line">cv2.waitKey(0)</span><br></pre></td></tr></table></figure>
-
-<h4 id="神奇的心理学公式"><a href="#神奇的心理学公式" class="headerlink" title="神奇的心理学公式"></a>神奇的心理学公式</h4><p>gray=r<em>0.299+g</em>0.587+b*0.114</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        b=int(b)</span><br><span class="line">        g=int(g)</span><br><span class="line">        r=int(r)</span><br><span class="line">        gray=r*0.299+g*0.587+b*0.114            #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br></pre></td></tr></table></figure>
-
-<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>定点运算&gt;浮点运算&gt;移位运算</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#gray=r*0.299+g*0.587+b*0.114</span><br><span class="line">#gray=(r*1+g*2+b*1)/4      #浮点转换为定点运算</span><br><span class="line">gray=(r+(g&lt;&lt;1)+b)&gt;&gt;2       #定点运算转换为移位运算</span><br></pre></td></tr></table></figure>
-
+<p>Output shape:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">If data_format=&#x27;channels_last&#x27;: 3D tensor with shape (batch_size, downsampled_steps, features).</span><br><span class="line">If data_format=&#x27;channels_first&#x27;: 3D tensor with shape (batch_size, features, downsampled_steps).</span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -233,15 +242,19 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>&nbsp;
+                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/opencv/">#opencv</a>&nbsp;
+                        <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">#卷积神经网络</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">#计算机视觉</a>&nbsp;
+                        <a href="/tags/layers/">#layers</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">#池化层</a>&nbsp;
                     </li>
                 
             </ul>
@@ -250,29 +263,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/02/%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E6%8A%A5%E9%94%99/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">博客上传报错汇总</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/01/My%20first%20blog/"
+                           href="/2022/01/19/%E5%BD%92%E4%B8%80%E5%8C%96%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">My first blog</span>
+                                <span class="post-nav-title-item"></span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -475,7 +473,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">灰度处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#imread-%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">imread()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvtColor-%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">cvtColor()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-G-B-grey-%E5%8F%96%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="nav-number">1.3.</span> <span class="nav-text">R&#x3D;G&#x3D;B&#x3D;grey 取平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84%E5%BF%83%E7%90%86%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的心理学公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">算法优化</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API%E2%80%93MaxPoling1D"><span class="nav-number">1.</span> <span class="nav-text">API–MaxPoling1D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">API说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">参数说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pool-size-%E7%A9%BA%E9%97%B4%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">pool_size  :空间窗口大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strides-%E7%AA%97%E5%8F%A3%E7%A7%BB%E5%8A%A8%E6%AD%A5%E9%95%BF"><span class="nav-number">1.2.2.</span> <span class="nav-text">strides    :窗口移动步长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#padding-%E7%AA%97%E5%8F%A3%E8%A6%86%E7%9B%96%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">padding    :窗口覆盖模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-format-%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">data_format  :数据形式</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

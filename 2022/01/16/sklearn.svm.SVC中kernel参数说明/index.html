@@ -9,7 +9,7 @@
     
     <title>
         
-            opencv图像灰度处理 |
+            sklearn.svm.SVC中kernel参数说明 |
         
         Mr.Zhang&#39;s Blog
     </title>
@@ -138,7 +138,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">opencv图像灰度处理</span>
+            <span class="title-hover-animation">sklearn.svm.SVC中kernel参数说明</span>
         </div>
 
         
@@ -157,8 +157,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-02 08:49:14</span>
-        <span class="mobile">2022-01-02 08:49</span>
+        <span class="pc">2022-01-16 09:42:10</span>
+        <span class="mobile">2022-01-16 09:42</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -174,7 +174,11 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/opencv/">opencv</a>&nbsp;
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/scikit-learn/">scikit-learn</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/scikit-learn/SVM/">SVM</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,11 +194,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/opencv/">opencv</a>&nbsp;
+                        | <a href="/tags/scikit-learn/">scikit-learn</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>&nbsp;
+                        | <a href="/tags/SVC/">SVC</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,17 +217,10 @@
         
 
         <div class="article-content markdown-body">
-            <h3 id="灰度处理"><a href="#灰度处理" class="headerlink" title="灰度处理"></a>灰度处理</h3><h4 id="imread-函数"><a href="#imread-函数" class="headerlink" title="imread()函数"></a>imread()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img0=cv2.imread(&#x27;image0.jpg&#x27;,0)</span><br><span class="line">img1=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">print(img0.shape)</span><br><span class="line">print(img1.shape)</span><br></pre></td></tr></table></figure>
-
-<h4 id="cvtColor-函数"><a href="#cvtColor-函数" class="headerlink" title="cvtColor()函数"></a>cvtColor()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">dst=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)  #颜色空间转换    1 data   2BGR gra</span><br></pre></td></tr></table></figure>
-
-<h4 id="R-G-B-grey-取平均值"><a href="#R-G-B-grey-取平均值" class="headerlink" title="R=G=B=grey 取平均值"></a>R=G=B=grey 取平均值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        gray=(int(b)+int(g)+int(r))/3             #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br><span class="line">cv2.imshow(&#x27;dst&#x27;,dst)</span><br><span class="line">cv2.waitKey(0)</span><br></pre></td></tr></table></figure>
-
-<h4 id="神奇的心理学公式"><a href="#神奇的心理学公式" class="headerlink" title="神奇的心理学公式"></a>神奇的心理学公式</h4><p>gray=r<em>0.299+g</em>0.587+b*0.114</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img=cv2.imread(&#x27;image0.jpg&#x27;,1)</span><br><span class="line">imgInfo=img.shape</span><br><span class="line">height=imgInfo[0]</span><br><span class="line">width=imgInfo[1]</span><br><span class="line">#RGB  R=G=B=gray--------------取平均值</span><br><span class="line">dst=np.zeros((height,width,3),np.uint8)</span><br><span class="line">for i in range(0,height):</span><br><span class="line">    for j in range(0,width):</span><br><span class="line">        (b,g,r)=img[i,j]</span><br><span class="line">        b=int(b)</span><br><span class="line">        g=int(g)</span><br><span class="line">        r=int(r)</span><br><span class="line">        gray=r*0.299+g*0.587+b*0.114            #uint进行相加时容易溢出，所以先取整数再转换回来</span><br><span class="line">        dst[i,j]=np.uint8(gray)</span><br></pre></td></tr></table></figure>
-
-<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>定点运算&gt;浮点运算&gt;移位运算</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#gray=r*0.299+g*0.587+b*0.114</span><br><span class="line">#gray=(r*1+g*2+b*1)/4      #浮点转换为定点运算</span><br><span class="line">gray=(r+(g&lt;&lt;1)+b)&gt;&gt;2       #定点运算转换为移位运算</span><br></pre></td></tr></table></figure>
+            <h2 id="sklearn-svm-SVC中kernel参数说明"><a href="#sklearn-svm-SVC中kernel参数说明" class="headerlink" title="sklearn.svm.SVC中kernel参数说明"></a>sklearn.svm.SVC中kernel参数说明</h2><h3 id="线性核函数kernel-‘linear’"><a href="#线性核函数kernel-‘linear’" class="headerlink" title="线性核函数kernel=‘linear’"></a>线性核函数kernel=‘linear’</h3><p>采用线性核kernel=’linear’的效果和使用sklearn.svm.LinearSVC实现的效果一样，但采用线性核时速度较慢，特别是对于大数据集，推荐使用线性核时使用LinearSVC</p>
+<h3 id="多项式核函数kernel-‘poly’"><a href="#多项式核函数kernel-‘poly’" class="headerlink" title="多项式核函数kernel=‘poly’"></a>多项式核函数kernel=‘poly’</h3><p>degree代表d，表示多项式的次数<br>gamma为多项式的系数，coef0代表r，表示多项式的偏置<br>注：coef0是sklearn.svm.SVC中的参数</p>
+<h3 id="径向基核函数kernel-‘rbf’"><a href="#径向基核函数kernel-‘rbf’" class="headerlink" title="径向基核函数kernel=‘rbf’"></a>径向基核函数kernel=‘rbf’</h3><p>可以将gamma理解为支持向量影响区域半径的倒数，gamma越大，支持向量影响区域越小，决策边界倾向于只包含支持向量，模型复杂度高，容易过拟合；gamma越小，支持向量影响区域越大，决策边界倾向于光滑，模型复杂度低，容易欠拟合；<br>gamma的取值非常重要，即不能过小，也不能过大</p>
+<h3 id="sigmod核函数kernel-‘sigmod’"><a href="#sigmod核函数kernel-‘sigmod’" class="headerlink" title="sigmod核函数kernel=‘sigmod’"></a>sigmod核函数kernel=‘sigmod’</h3><p>coef0控制r,sigmod核函数是线性核函数经过tanh函数映射变化</p>
 
         </div>
 
@@ -237,11 +234,11 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/opencv/">#opencv</a>&nbsp;
+                        <a href="/tags/scikit-learn/">#scikit-learn</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">#计算机视觉</a>&nbsp;
+                        <a href="/tags/SVC/">#SVC</a>&nbsp;
                     </li>
                 
             </ul>
@@ -253,13 +250,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/01/02/%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E6%8A%A5%E9%94%99/"
+                           href="/2022/01/16/%E8%B4%B7%E6%AC%BE%E8%BF%9D%E7%BA%A6%E8%A1%8C%E4%B8%BA%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E4%BE%8B/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">博客上传报错汇总</span>
+                                <span class="post-nav-title-item"></span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -269,10 +266,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/01/My%20first%20blog/"
+                           href="/2022/01/11/opencv%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">My first blog</span>
+                                <span class="post-nav-title-item">opencv图像变换</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -475,7 +472,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">灰度处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#imread-%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">imread()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvtColor-%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">cvtColor()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-G-B-grey-%E5%8F%96%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="nav-number">1.3.</span> <span class="nav-text">R&#x3D;G&#x3D;B&#x3D;grey 取平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84%E5%BF%83%E7%90%86%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的心理学公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">算法优化</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sklearn-svm-SVC%E4%B8%ADkernel%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">sklearn.svm.SVC中kernel参数说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A0%B8%E5%87%BD%E6%95%B0kernel-%E2%80%98linear%E2%80%99"><span class="nav-number">1.1.</span> <span class="nav-text">线性核函数kernel&#x3D;‘linear’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%A0%B8%E5%87%BD%E6%95%B0kernel-%E2%80%98poly%E2%80%99"><span class="nav-number">1.2.</span> <span class="nav-text">多项式核函数kernel&#x3D;‘poly’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%84%E5%90%91%E5%9F%BA%E6%A0%B8%E5%87%BD%E6%95%B0kernel-%E2%80%98rbf%E2%80%99"><span class="nav-number">1.3.</span> <span class="nav-text">径向基核函数kernel&#x3D;‘rbf’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sigmod%E6%A0%B8%E5%87%BD%E6%95%B0kernel-%E2%80%98sigmod%E2%80%99"><span class="nav-number">1.4.</span> <span class="nav-text">sigmod核函数kernel&#x3D;‘sigmod’</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
