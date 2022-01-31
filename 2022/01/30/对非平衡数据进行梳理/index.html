@@ -9,7 +9,7 @@
     
     <title>
         
-            API--MaxPoling1D |
+            对非平衡数据进行处理 |
         
         Mr.Zhang&#39;s Blog
     </title>
@@ -138,7 +138,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">API--MaxPoling1D</span>
+            <span class="title-hover-animation">对非平衡数据进行处理</span>
         </div>
 
         
@@ -157,8 +157,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-26 12:31:23</span>
-        <span class="mobile">2022-01-26 12:31</span>
+        <span class="pc">2022-01-30 22:57:00</span>
+        <span class="mobile">2022-01-30 22:57</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -166,19 +166,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>&nbsp;
+                        <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
+                        &gt; <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,19 +182,19 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
+                        | <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/layers/">layers</a>&nbsp;
+                        | <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">池化层</a>&nbsp;
+                        | <a href="/tags/%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">非平衡数据处理</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,19 +213,10 @@
         
 
         <div class="article-content markdown-body">
-            <p>官方文档：[<a class="link" target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool1D]">https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool1D]<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="API–MaxPoling1D"><a href="#API–MaxPoling1D" class="headerlink" title="API–MaxPoling1D"></a>API–MaxPoling1D</h2><h3 id="API说明"><a href="#API说明" class="headerlink" title="API说明"></a>API说明</h3><p>该函数会创建一层池化层，通过在大小为pool_size的空间窗口上取最大值，对输入进行处理。窗口每次的移动步数为strides。</p>
-<p>使用“valid”padding选项时，结果输出的形状为：output_shape=（input_shape-pool_size+1）/strips<br>使用“SAME”填充选项时得到的输出形状是：output_shape = input_shape / strides</p>
-<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.layers.MaxPool1D(</span><br><span class="line">    pool_size=2, strides=None, padding=&#x27;valid&#x27;,</span><br><span class="line">    data_format=&#x27;channels_last&#x27;, **kwargs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h4 id="pool-size-空间窗口大小"><a href="#pool-size-空间窗口大小" class="headerlink" title="pool_size  :空间窗口大小"></a>pool_size  :空间窗口大小</h4><h4 id="strides-窗口移动步长"><a href="#strides-窗口移动步长" class="headerlink" title="strides    :窗口移动步长"></a>strides    :窗口移动步长</h4><h4 id="padding-窗口覆盖模式"><a href="#padding-窗口覆盖模式" class="headerlink" title="padding    :窗口覆盖模式"></a>padding    :窗口覆盖模式</h4><p>当使用“valid”padding时：   不会对矩阵外部填充</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1., 2., 3., 4., 5.])</span><br><span class="line">x = tf.reshape(x, [1, 5, 1])</span><br><span class="line">max_pool_1d = tf.keras.layers.MaxPooling1D(pool_size=2,</span><br><span class="line">   strides=1, padding=&#x27;valid&#x27;)</span><br><span class="line">max_pool_1d(x)</span><br></pre></td></tr></table></figure>
-<p>当使用“SAME”padding时：   对矩阵外部填充0</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1., 2., 3., 4., 5.])</span><br><span class="line">x = tf.reshape(x, [1, 5, 1])</span><br><span class="line">max_pool_1d = tf.keras.layers.MaxPooling1D(pool_size=2,</span><br><span class="line">   strides=1, padding=&#x27;same&#x27;)</span><br><span class="line">max_pool_1d(x)</span><br></pre></td></tr></table></figure>
-<h4 id="data-format-数据形式"><a href="#data-format-数据形式" class="headerlink" title="data_format  :数据形式"></a>data_format  :数据形式</h4><p>Input shape:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">If data_format=&#x27;channels_last&#x27;: 3D tensor with shape (batch_size, steps, features).</span><br><span class="line">If data_format=&#x27;channels_first&#x27;: 3D tensor with shape (batch_size, features, steps).</span><br></pre></td></tr></table></figure>
-
-<p>Output shape:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">If data_format=&#x27;channels_last&#x27;: 3D tensor with shape (batch_size, downsampled_steps, features).</span><br><span class="line">If data_format=&#x27;channels_first&#x27;: 3D tensor with shape (batch_size, features, downsampled_steps).</span><br></pre></td></tr></table></figure>
+            <h2 id="对非平衡数据进行处理"><a href="#对非平衡数据进行处理" class="headerlink" title="对非平衡数据进行处理"></a>对非平衡数据进行处理</h2><p>详解[<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43329700/article/details/107325026]">https://blog.csdn.net/weixin_43329700/article/details/107325026]<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="非平衡数据定义"><a href="#非平衡数据定义" class="headerlink" title="非平衡数据定义"></a>非平衡数据定义</h3><p>数据比例差距过大，多数类远远大于少数类。<br>比如预测癌症患者模型中，健康比例远大于百分之99，使模型训练机器不精准。</p>
+<h3 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from imblearn.combine import SMOTETomek</span><br><span class="line">st=SMOTETomek()</span><br><span class="line">x_train_st,y_train_st=st.fit_resample(X_train,y_train)</span><br><span class="line">print(X_train.shape)</span><br><span class="line">print(x_train_st.shape)            #增加了少数类样本</span><br></pre></td></tr></table></figure>
+<h4 id="新增少数类样本"><a href="#新增少数类样本" class="headerlink" title="新增少数类样本"></a>新增少数类样本</h4><h5 id="SMOTE函数过采样"><a href="#SMOTE函数过采样" class="headerlink" title="SMOTE函数过采样"></a>SMOTE函数过采样</h5><h4 id="删除不符合要求的多数类样本"><a href="#删除不符合要求的多数类样本" class="headerlink" title="删除不符合要求的多数类样本"></a>删除不符合要求的多数类样本</h4><h5 id="TOMEK"><a href="#TOMEK" class="headerlink" title="TOMEK"></a>TOMEK</h5>
         </div>
 
         
@@ -242,19 +225,19 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
                         <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">#卷积神经网络</a>&nbsp;
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">#数据处理</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/layers/">#layers</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">#池化层</a>&nbsp;
+                        <a href="/tags/%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">#非平衡数据处理</a>&nbsp;
                     </li>
                 
             </ul>
@@ -263,29 +246,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/30/%E5%AF%B9%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E6%A2%B3%E7%90%86/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">对非平衡数据进行处理</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/19/%E5%BD%92%E4%B8%80%E5%8C%96%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96/"
+                           href="/2022/01/26/API%E2%80%94%E2%80%94MaxPoling1D%E8%AF%A6%E8%A7%A3/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">归一化与标准化</span>
+                                <span class="post-nav-title-item">API--MaxPoling1D</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -488,7 +456,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API%E2%80%93MaxPoling1D"><span class="nav-number">1.</span> <span class="nav-text">API–MaxPoling1D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">API说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">参数说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pool-size-%E7%A9%BA%E9%97%B4%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">pool_size  :空间窗口大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strides-%E7%AA%97%E5%8F%A3%E7%A7%BB%E5%8A%A8%E6%AD%A5%E9%95%BF"><span class="nav-number">1.2.2.</span> <span class="nav-text">strides    :窗口移动步长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#padding-%E7%AA%97%E5%8F%A3%E8%A6%86%E7%9B%96%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">padding    :窗口覆盖模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-format-%E6%95%B0%E6%8D%AE%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">data_format  :数据形式</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">对非平衡数据进行处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">非平衡数据定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E5%B0%91%E6%95%B0%E7%B1%BB%E6%A0%B7%E6%9C%AC"><span class="nav-number">1.2.1.</span> <span class="nav-text">新增少数类样本</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SMOTE%E5%87%BD%E6%95%B0%E8%BF%87%E9%87%87%E6%A0%B7"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">SMOTE函数过采样</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E4%B8%8D%E7%AC%A6%E5%90%88%E8%A6%81%E6%B1%82%E7%9A%84%E5%A4%9A%E6%95%B0%E7%B1%BB%E6%A0%B7%E6%9C%AC"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除不符合要求的多数类样本</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TOMEK"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">TOMEK</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
