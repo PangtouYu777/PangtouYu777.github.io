@@ -166,19 +166,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>&nbsp;
+                        <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
+                        &gt; <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,7 +182,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
                     </li>
                 
                     <li>
@@ -202,7 +198,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">池化层</a>&nbsp;
+                        | <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82-%E8%AE%A1%E7%AE%97%E6%9C%BA/">池化层- 计算机</a>&nbsp;
                     </li>
                 
             </ul>
@@ -242,6 +238,10 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
                         <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
                     </li>
                 
@@ -254,7 +254,7 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82/">#池化层</a>&nbsp;
+                        <a href="/tags/%E6%B1%A0%E5%8C%96%E5%B1%82-%E8%AE%A1%E7%AE%97%E6%9C%BA/">#池化层- 计算机</a>&nbsp;
                     </li>
                 
             </ul>
@@ -307,68 +307,143 @@
     
 
         
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
-                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '尽情吐槽吧',
-                    lang: 'en'.toLowerCase()
-                });
+            .valine-container {
 
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
+  #vcomments {
 
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = 'pangtouyu777';
+    .vwrap {
 
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+      border: 1px solid var(--third-text-color);
+
+      .vheader {
+
+        .vinput {
+
+          color: var(--default-text-color);
+          border-color: var(--third-text-color);
+
+          &:focus {
+            border-bottom: 1px dashed var(--primary-color) !important;
+          }
+        }
+      }
+
+
+      .vedit {
+
+        .veditor {
+          color: var(--default-text-color);
+        }
+
+        .vctrl {
+
+          .vicon {
+
+            fill: var(--default-text-color);
+
+            &.actived {
+              fill: var(--primary-color);
             }
+          }
+        }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+      }
 
+
+      button.vsubmit {
+
+        background: transparent !important;
+        color: var(--default-text-color) !important;
+        border: 1px solid var(--default-text-color) !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+          border: 1px solid var(--primary-color) !important;
+        }
+      }
+
+
+    }
+
+
+    .vcount {
+      color: var(--default-text-color);
+
+      .vnum {
+        color: var(--second-text-color);
+      }
+    }
+
+
+    .vcard {
+
+      .vnick {
+        .author {
+          font-weight: 450;
+          font-size: 12px;
+          padding: 2px;
+          background: -webkit-linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          background: linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          color: #fff;
+          margin-left: 2px;
+          border-radius: 2px;
+        }
+      }
+
+
+      .vhead {
+
+        .vnick {
+          color: var(--primary-color);
+        }
+
+        .vsys {
+          color: var(--default-text-color);
+          background: var(--fourth-text-color) !important;
+        }
+      }
+
+
+      .vcontent {
+        P {
+          color: var(--default-text-color);
+
+          code {
+            color: var(--code-foreground);
+            background: var(--code-background);
+          }
+        }
+      }
+
+
+      .vh {
+        border-bottom-color: var(--border-color);
+      }
+
+      .vquote {
+        border-left-color: var(--border-color);
+      }
+    }
+
+
+    .vcopy {
+      color: var(--third-text-color);
+    }
+
+
+    .vpage {
+
+      .vmore {
+        border: 1px solid var(--border-color);
+        color: var(--second-text-color);
+      }
+    }
+
+
+  }
+
+
+}
 
 
         
