@@ -6,7 +6,7 @@
   <link href="http://www.pangtouyu77.fun/atom.xml" rel="self"/>
   
   <link href="http://www.pangtouyu77.fun/"/>
-  <updated>2022-03-14T11:55:33.063Z</updated>
+  <updated>2022-03-21T07:39:17.026Z</updated>
   <id>http://www.pangtouyu77.fun/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kneighborsclassifier中参数说明</title>
+    <link href="http://www.pangtouyu77.fun/2022/03/21/Kneighborsclassifier%E4%B8%AD%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"/>
+    <id>http://www.pangtouyu77.fun/2022/03/21/Kneighborsclassifier%E4%B8%AD%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</id>
+    <published>2022-03-21T06:55:22.026Z</published>
+    <updated>2022-03-21T07:39:17.026Z</updated>
+    
+    <content type="html"><![CDATA[<p>官方文档：[<a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html?highlight=kneighborsclassifier#sklearn.neighbors.KNeighborsClassifier]">https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html?highlight=kneighborsclassifier#sklearn.neighbors.KNeighborsClassifier]<i class="fas fa-external-link-alt"></i></a></p><h3 id="API–sklearn-neighbors-KNeighborsClassifie"><a href="#API–sklearn-neighbors-KNeighborsClassifie" class="headerlink" title="API–sklearn.neighbors.KNeighborsClassifie"></a>API–sklearn.neighbors.KNeighborsClassifie</h3><h4 id="参数如下"><a href="#参数如下" class="headerlink" title="参数如下"></a>参数如下</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, *, weights=&#x27;uniform&#x27;, algorithm=&#x27;auto&#x27;, leaf_size=30, p=2, metric=&#x27;minkowski&#x27;, metric_params=None, n_jobs=None)[source]</span><br></pre></td></tr></table></figure><h4 id="n-neighborsint-default-5"><a href="#n-neighborsint-default-5" class="headerlink" title="n_neighborsint, default=5:"></a>n_neighborsint, default=5:</h4><p>临近参数所搜寻数量，默认为5。</p><h4 id="weights-‘uniform’-‘distance’-or-callable-default-’uniform’"><a href="#weights-‘uniform’-‘distance’-or-callable-default-’uniform’" class="headerlink" title="weights{‘uniform’, ‘distance’} or callable, default=’uniform’:"></a>weights{‘uniform’, ‘distance’} or callable, default=’uniform’:</h4><h5 id="‘uniform’"><a href="#‘uniform’" class="headerlink" title="‘uniform’ :"></a>‘uniform’ :</h5><p>默认每个neighborhood权重相等，一般默认为此设置。</p><h5 id="‘distance’"><a href="#‘distance’" class="headerlink" title="‘distance’:"></a>‘distance’:</h5><p>以距离为指标</p><h5 id="callable"><a href="#callable" class="headerlink" title="[callable] :"></a>[callable] :</h5><p>由用户定义，可以接受数组的功能，返回一个包含相同形状的权重数组。</p><h4 id="algorithm-‘auto’-‘ball-tree’-‘kd-tree’-‘brute’-default-’auto’："><a href="#algorithm-‘auto’-‘ball-tree’-‘kd-tree’-‘brute’-default-’auto’：" class="headerlink" title="algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’："></a>algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’：</h4><h5 id="ball-tree-："><a href="#ball-tree-：" class="headerlink" title="ball_tree ："></a>ball_tree ：</h5><p>使用ball_tree算法</p><h5 id="kd-tree-："><a href="#kd-tree-：" class="headerlink" title="kd_tree   ："></a>kd_tree   ：</h5><p>使用kd_tree算法</p><h5 id="brute-："><a href="#brute-：" class="headerlink" title="brute     ："></a>brute     ：</h5><p>使用brute-force搜索</p><h5 id="auto-："><a href="#auto-：" class="headerlink" title="auto      ："></a>auto      ：</h5><p>根据传递给fit的值，自动尝试最合适的算法。</p><h4 id="leaf-sizeint-default-30："><a href="#leaf-sizeint-default-30：" class="headerlink" title="leaf_sizeint, default=30："></a>leaf_sizeint, default=30：</h4><p>传给BallTree或者KDTree算法，将影响构造和查询的速度以及存储的内存。最佳值取决于问题性质(一般默认是30，可以在其值不大的范围内调试看看效果。)</p><h4 id="p-int-default-2"><a href="#p-int-default-2" class="headerlink" title="p: int, default=2"></a>p: int, default=2</h4><p>对于Minkowski metric很重要的参数。</p><h5 id="p-1-manhattan-distance-l1"><a href="#p-1-manhattan-distance-l1" class="headerlink" title="p=1:manhattan_distance (l1)"></a>p=1:manhattan_distance (l1)</h5><h5 id="p-2-euclidean-distance-l2"><a href="#p-2-euclidean-distance-l2" class="headerlink" title="p=2:euclidean_distance (l2)"></a>p=2:euclidean_distance (l2)</h5><h4 id="metric-str-or-callable-default-’minkowski’"><a href="#metric-str-or-callable-default-’minkowski’" class="headerlink" title="metric: str or callable, default=’minkowski’"></a>metric: str or callable, default=’minkowski’</h4><p>The distance metric to use for the tree. The default metric is minkowski, and with p=2 is equivalent to the standard Euclidean metric. For a list of available metrics, see the documentation of DistanceMetric. If metric is “precomputed”, X is assumed to be a distance matrix and must be square during fit. X may be a sparse graph, in which case only “nonzero” elements may be considered neighbors.</p><h4 id="metric-params-dict-default-None"><a href="#metric-params-dict-default-None" class="headerlink" title="metric_params:dict, default=None"></a>metric_params:dict, default=None</h4><p>Additional keyword arguments for the metric function.</p><h4 id="n-jobs-int-default-None"><a href="#n-jobs-int-default-None" class="headerlink" title="n_jobs:int, default=None"></a>n_jobs:int, default=None</h4><p>n_jobsint, default=None</p><h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><h4 id="fit-X-y-："><a href="#fit-X-y-：" class="headerlink" title="fit(X, y)："></a>fit(X, y)：</h4><p>拟合训练数据集</p><h4 id="predict-X-，predict-proba-X-："><a href="#predict-X-，predict-proba-X-：" class="headerlink" title="predict(X)，predict_proba(X)："></a>predict(X)，predict_proba(X)：</h4><p>输出预测，输出预测为每个类的概率</p><h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; X = [[0], [1], [2], [3]]</span><br><span class="line">&gt;&gt;&gt; y = [0, 0, 1, 1]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">&gt;&gt;&gt; neigh = KNeighborsClassifier(n_neighbors=3)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(X, y)</span><br><span class="line">KNeighborsClassifier(...)</span><br><span class="line">&gt;&gt;&gt; print(neigh.predict([[1.1]]))                #输出预测</span><br><span class="line">[0]</span><br><span class="line">&gt;&gt;&gt; print(neigh.predict_proba([[0.9]]))          #输出预测为每个类的概率</span><br><span class="line">[[0.666... 0.333...]]</span><br></pre></td></tr></table></figure><h4 id="kneighbors-X-n-neighbors-return-distance"><a href="#kneighbors-X-n-neighbors-return-distance" class="headerlink" title="kneighbors([X, n_neighbors, return_distance])"></a>kneighbors([X, n_neighbors, return_distance])</h4><h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; samples = [[0., 0., 0.], [0., .5, 0.], [1., 1., .5]]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import NearestNeighbors</span><br><span class="line">&gt;&gt;&gt; neigh = NearestNeighbors(n_neighbors=1)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(samples)</span><br><span class="line"></span><br><span class="line">NearestNeighbors(n_neighbors=1)</span><br><span class="line">&gt;&gt;&gt; print(neigh.kneighbors([[1., 1., 1.]]))</span><br><span class="line"></span><br><span class="line">array([[0.5]]), array([[2]])</span><br></pre></td></tr></table></figure><h4 id="kneighbors-graph-X-n-neighbors-mode"><a href="#kneighbors-graph-X-n-neighbors-mode" class="headerlink" title="kneighbors_graph([X, n_neighbors, mode])"></a>kneighbors_graph([X, n_neighbors, mode])</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; X = [[0], [3], [1]]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import NearestNeighbors</span><br><span class="line">&gt;&gt;&gt; neigh = NearestNeighbors(n_neighbors=2)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(X)</span><br><span class="line"></span><br><span class="line">NearestNeighbors(n_neighbors=2)</span><br><span class="line">&gt;&gt;&gt; A = neigh.kneighbors_graph(X)</span><br><span class="line">&gt;&gt;&gt; A.toarray()</span><br><span class="line"></span><br><span class="line">array([[1., 0., 1.],</span><br><span class="line">       [0., 1., 1.],</span><br><span class="line">       [1., 0., 1.]])</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;官方文档：[&lt;a class=&quot;link&quot; href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html?highlight=kneig</summary>
+      
+    
+    
+    
+    <category term="机器学习" scheme="http://www.pangtouyu77.fun/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="KNN" scheme="http://www.pangtouyu77.fun/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/KNN/"/>
+    
+    
+    <category term="机器学习" scheme="http://www.pangtouyu77.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="KNN" scheme="http://www.pangtouyu77.fun/tags/KNN/"/>
+    
+    <category term="参数说明" scheme="http://www.pangtouyu77.fun/tags/%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"/>
+    
+    <category term="sklearn" scheme="http://www.pangtouyu77.fun/tags/sklearn/"/>
+    
+  </entry>
   
   <entry>
     <title>Flutter-界面报错-No-MediaQuery-widget-ancestor-found</title>
@@ -189,9 +221,9 @@
     
     <category term="机器学习" scheme="http://www.pangtouyu77.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="数据处理" scheme="http://www.pangtouyu77.fun/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
-    
     <category term="sklearn" scheme="http://www.pangtouyu77.fun/tags/sklearn/"/>
+    
+    <category term="数据处理" scheme="http://www.pangtouyu77.fun/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
@@ -214,9 +246,9 @@
     
     <category term="机器学习" scheme="http://www.pangtouyu77.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="数据处理" scheme="http://www.pangtouyu77.fun/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
-    
     <category term="sklearn" scheme="http://www.pangtouyu77.fun/tags/sklearn/"/>
+    
+    <category term="数据处理" scheme="http://www.pangtouyu77.fun/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
