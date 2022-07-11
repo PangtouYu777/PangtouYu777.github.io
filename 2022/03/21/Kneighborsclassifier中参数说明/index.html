@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            Kneighborsclassifier中参数说明 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Kneighborsclassifier中参数说明</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-21 14:55:22</span>
+        <span class="mobile">2022-03-21 14:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/KNN/">KNN</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/KNN/">KNN</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/">参数说明</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/sklearn/">sklearn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>官方文档：[<a class="link" target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html?highlight=kneighborsclassifier#sklearn.neighbors.KNeighborsClassifier]">https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html?highlight=kneighborsclassifier#sklearn.neighbors.KNeighborsClassifier]<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="API–sklearn-neighbors-KNeighborsClassifie"><a href="#API–sklearn-neighbors-KNeighborsClassifie" class="headerlink" title="API–sklearn.neighbors.KNeighborsClassifie"></a>API–sklearn.neighbors.KNeighborsClassifie</h3><h4 id="参数如下"><a href="#参数如下" class="headerlink" title="参数如下"></a>参数如下</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, *, weights=&#x27;uniform&#x27;, algorithm=&#x27;auto&#x27;, leaf_size=30, p=2, metric=&#x27;minkowski&#x27;, metric_params=None, n_jobs=None)[source]</span><br></pre></td></tr></table></figure>
+<h4 id="n-neighborsint-default-5"><a href="#n-neighborsint-default-5" class="headerlink" title="n_neighborsint, default=5:"></a>n_neighborsint, default=5:</h4><p>临近参数所搜寻数量，默认为5。</p>
+<h4 id="weights-‘uniform’-‘distance’-or-callable-default-’uniform’"><a href="#weights-‘uniform’-‘distance’-or-callable-default-’uniform’" class="headerlink" title="weights{‘uniform’, ‘distance’} or callable, default=’uniform’:"></a>weights{‘uniform’, ‘distance’} or callable, default=’uniform’:</h4><h5 id="‘uniform’"><a href="#‘uniform’" class="headerlink" title="‘uniform’ :"></a>‘uniform’ :</h5><p>默认每个neighborhood权重相等，一般默认为此设置。</p>
+<h5 id="‘distance’"><a href="#‘distance’" class="headerlink" title="‘distance’:"></a>‘distance’:</h5><p>以距离为指标</p>
+<h5 id="callable"><a href="#callable" class="headerlink" title="[callable] :"></a>[callable] :</h5><p>由用户定义，可以接受数组的功能，返回一个包含相同形状的权重数组。</p>
+<h4 id="algorithm-‘auto’-‘ball-tree’-‘kd-tree’-‘brute’-default-’auto’："><a href="#algorithm-‘auto’-‘ball-tree’-‘kd-tree’-‘brute’-default-’auto’：" class="headerlink" title="algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’："></a>algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’：</h4><p>快速搜索算法，默认是auto</p>
+<h5 id="ball-tree-："><a href="#ball-tree-：" class="headerlink" title="ball_tree ："></a>ball_tree ：</h5><p>使用ball_tree算法</p>
+<h5 id="kd-tree-："><a href="#kd-tree-：" class="headerlink" title="kd_tree   ："></a>kd_tree   ：</h5><p>使用kd_tree算法</p>
+<h5 id="brute-："><a href="#brute-：" class="headerlink" title="brute     ："></a>brute     ：</h5><p>使用brute-force搜索</p>
+<h5 id="auto-："><a href="#auto-：" class="headerlink" title="auto      ："></a>auto      ：</h5><p>根据传递给fit的值，自动尝试最合适的算法。</p>
+<h4 id="leaf-sizeint-default-30："><a href="#leaf-sizeint-default-30：" class="headerlink" title="leaf_sizeint, default=30："></a>leaf_sizeint, default=30：</h4><p>树的大小，传给BallTree或者KDTree算法，将影响构造和查询的速度以及存储的内存。最佳值取决于问题性质(一般默认是30，可以在其值不大的范围内调试看看效果。)</p>
+<h4 id="p-int-default-2"><a href="#p-int-default-2" class="headerlink" title="p: int, default=2"></a>p: int, default=2</h4><p>对于Minkowski metric很重要的参数。</p>
+<h5 id="p-1-manhattan-distance-l1"><a href="#p-1-manhattan-distance-l1" class="headerlink" title="p=1:manhattan_distance (l1)"></a>p=1:manhattan_distance (l1)</h5><h5 id="p-2-euclidean-distance-l2"><a href="#p-2-euclidean-distance-l2" class="headerlink" title="p=2:euclidean_distance (l2)"></a>p=2:euclidean_distance (l2)</h5><h4 id="metric-str-or-callable-default-’minkowski’"><a href="#metric-str-or-callable-default-’minkowski’" class="headerlink" title="metric: str or callable, default=’minkowski’"></a>metric: str or callable, default=’minkowski’</h4><p>p：p=1是曼哈顿距离，p=2的欧氏距离。</p>
+<h4 id="metric-params-dict-default-None"><a href="#metric-params-dict-default-None" class="headerlink" title="metric_params:dict, default=None"></a>metric_params:dict, default=None</h4><p>距离公式的其他关键参数，默认为None。</p>
+<h4 id="n-jobs-int-default-None：n-jobsint-default-None"><a href="#n-jobs-int-default-None：n-jobsint-default-None" class="headerlink" title="n_jobs:int, default=None：n_jobsint, default=None"></a>n_jobs:int, default=None：n_jobsint, default=None</h4><p>并行处理。默认为1，临近点搜索。如果为-1，表示CPU的所有cores都并行工作。</p>
+<h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><h4 id="fit-X-y-："><a href="#fit-X-y-：" class="headerlink" title="fit(X, y)："></a>fit(X, y)：</h4><p>拟合训练数据集</p>
+<h4 id="predict-X-，predict-proba-X-："><a href="#predict-X-，predict-proba-X-：" class="headerlink" title="predict(X)，predict_proba(X)："></a>predict(X)，predict_proba(X)：</h4><p>输出预测，输出预测为每个类的概率</p>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; X = [[0], [1], [2], [3]]</span><br><span class="line">&gt;&gt;&gt; y = [0, 0, 1, 1]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">&gt;&gt;&gt; neigh = KNeighborsClassifier(n_neighbors=3)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(X, y)</span><br><span class="line">KNeighborsClassifier(...)</span><br><span class="line">&gt;&gt;&gt; print(neigh.predict([[1.1]]))                #输出预测</span><br><span class="line">[0]</span><br><span class="line">&gt;&gt;&gt; print(neigh.predict_proba([[0.9]]))          #输出预测为每个类的概率</span><br><span class="line">[[0.666... 0.333...]]</span><br></pre></td></tr></table></figure>
+<h4 id="kneighbors-X-n-neighbors-return-distance"><a href="#kneighbors-X-n-neighbors-return-distance" class="headerlink" title="kneighbors([X, n_neighbors, return_distance])"></a>kneighbors([X, n_neighbors, return_distance])</h4><h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; samples = [[0., 0., 0.], [0., .5, 0.], [1., 1., .5]]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import NearestNeighbors</span><br><span class="line">&gt;&gt;&gt; neigh = NearestNeighbors(n_neighbors=1)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(samples)</span><br><span class="line"></span><br><span class="line">NearestNeighbors(n_neighbors=1)</span><br><span class="line">&gt;&gt;&gt; print(neigh.kneighbors([[1., 1., 1.]]))</span><br><span class="line"></span><br><span class="line">array([[0.5]]), array([[2]])</span><br></pre></td></tr></table></figure>
+
+<h4 id="kneighbors-graph-X-n-neighbors-mode"><a href="#kneighbors-graph-X-n-neighbors-mode" class="headerlink" title="kneighbors_graph([X, n_neighbors, mode])"></a>kneighbors_graph([X, n_neighbors, mode])</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; X = [[0], [3], [1]]</span><br><span class="line">&gt;&gt;&gt; from sklearn.neighbors import NearestNeighbors</span><br><span class="line">&gt;&gt;&gt; neigh = NearestNeighbors(n_neighbors=2)</span><br><span class="line">&gt;&gt;&gt; neigh.fit(X)</span><br><span class="line"></span><br><span class="line">NearestNeighbors(n_neighbors=2)</span><br><span class="line">&gt;&gt;&gt; A = neigh.kneighbors_graph(X)</span><br><span class="line">&gt;&gt;&gt; A.toarray()</span><br><span class="line"></span><br><span class="line">array([[1., 0., 1.],</span><br><span class="line">       [0., 1., 1.],</span><br><span class="line">       [1., 0., 1.]])</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/KNN/">#KNN</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/">#参数说明</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/sklearn/">#sklearn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/28/docker%E5%85%A5%E9%97%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">docker入门(centos)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/14/Flutter-%E7%95%8C%E9%9D%A2%E6%8A%A5%E9%94%99-No-MediaQuery-widget-ancestor-found/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Flutter-界面报错-No-MediaQuery-widget-ancestor-found</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E2%80%93sklearn-neighbors-KNeighborsClassifie"><span class="nav-number">1.</span> <span class="nav-text">API–sklearn.neighbors.KNeighborsClassifie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">参数如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#n-neighborsint-default-5"><span class="nav-number">1.2.</span> <span class="nav-text">n_neighborsint, default&#x3D;5:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#weights-%E2%80%98uniform%E2%80%99-%E2%80%98distance%E2%80%99-or-callable-default-%E2%80%99uniform%E2%80%99"><span class="nav-number">1.3.</span> <span class="nav-text">weights{‘uniform’, ‘distance’} or callable, default&#x3D;’uniform’:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%98uniform%E2%80%99"><span class="nav-number">1.3.1.</span> <span class="nav-text">‘uniform’ :</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%98distance%E2%80%99"><span class="nav-number">1.3.2.</span> <span class="nav-text">‘distance’:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#callable"><span class="nav-number">1.3.3.</span> <span class="nav-text">[callable] :</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#algorithm-%E2%80%98auto%E2%80%99-%E2%80%98ball-tree%E2%80%99-%E2%80%98kd-tree%E2%80%99-%E2%80%98brute%E2%80%99-default-%E2%80%99auto%E2%80%99%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default&#x3D;’auto’：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ball-tree-%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">ball_tree ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kd-tree-%EF%BC%9A"><span class="nav-number">1.4.2.</span> <span class="nav-text">kd_tree   ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#brute-%EF%BC%9A"><span class="nav-number">1.4.3.</span> <span class="nav-text">brute     ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#auto-%EF%BC%9A"><span class="nav-number">1.4.4.</span> <span class="nav-text">auto      ：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leaf-sizeint-default-30%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">leaf_sizeint, default&#x3D;30：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#p-int-default-2"><span class="nav-number">1.6.</span> <span class="nav-text">p: int, default&#x3D;2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#p-1-manhattan-distance-l1"><span class="nav-number">1.6.1.</span> <span class="nav-text">p&#x3D;1:manhattan_distance (l1)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-2-euclidean-distance-l2"><span class="nav-number">1.6.2.</span> <span class="nav-text">p&#x3D;2:euclidean_distance (l2)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metric-str-or-callable-default-%E2%80%99minkowski%E2%80%99"><span class="nav-number">1.7.</span> <span class="nav-text">metric: str or callable, default&#x3D;’minkowski’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metric-params-dict-default-None"><span class="nav-number">1.8.</span> <span class="nav-text">metric_params:dict, default&#x3D;None</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#n-jobs-int-default-None%EF%BC%9An-jobsint-default-None"><span class="nav-number">1.9.</span> <span class="nav-text">n_jobs:int, default&#x3D;None：n_jobsint, default&#x3D;None</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fit-X-y-%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">fit(X, y)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#predict-X-%EF%BC%8Cpredict-proba-X-%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">predict(X)，predict_proba(X)：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kneighbors-X-n-neighbors-return-distance"><span class="nav-number">2.3.</span> <span class="nav-text">kneighbors([X, n_neighbors, return_distance])</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kneighbors-graph-X-n-neighbors-mode"><span class="nav-number">2.4.</span> <span class="nav-text">kneighbors_graph([X, n_neighbors, mode])</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
