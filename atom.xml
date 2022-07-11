@@ -6,7 +6,7 @@
   <link href="http://www.pangtouyu77.fun/atom.xml" rel="self"/>
   
   <link href="http://www.pangtouyu77.fun/"/>
-  <updated>2022-07-11T03:10:32.164Z</updated>
+  <updated>2022-07-11T23:36:11.257Z</updated>
   <id>http://www.pangtouyu77.fun/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue第一篇_语法</title>
+    <link href="http://www.pangtouyu77.fun/2022/07/12/vue%E7%AC%AC%E4%B8%80%E7%AF%87-%E8%AF%AD%E6%B3%95/"/>
+    <id>http://www.pangtouyu77.fun/2022/07/12/vue%E7%AC%AC%E4%B8%80%E7%AF%87-%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-07-11T23:36:11.000Z</published>
+    <updated>2022-07-11T23:36:11.257Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Thymeleaf模板引擎</title>
@@ -364,34 +377,6 @@
     <category term="zut" scheme="http://www.pangtouyu77.fun/tags/zut/"/>
     
     <category term="毕设" scheme="http://www.pangtouyu77.fun/tags/%E6%AF%95%E8%AE%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库连接池</title>
-    <link href="http://www.pangtouyu77.fun/2022/05/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"/>
-    <id>http://www.pangtouyu77.fun/2022/05/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</id>
-    <published>2022-05-20T00:46:07.000Z</published>
-    <updated>2022-05-20T01:02:55.414Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>可以存储数据库连接对象的池子，就说了就是一个容器，里面装了几个数据库连接对象<br><strong>连接池</strong>：提供了一种池子思想，数据库连接池，线程池…</p><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>使用数据库连接池，避免了重复的来回创建Connection对象，然后等着它消亡，然后再用，再重新创建，用完了<br>再消亡。因为数据库连接池提供一个池子，里面已经提前准备好了一些连接对象，如果我们用直接从池子中取，<br>用完再归还即可。<br>节省时间，节约资源。</p><h3 id="自定义数据库连接池"><a href="#自定义数据库连接池" class="headerlink" title="自定义数据库连接池"></a>自定义数据库连接池</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class MySimpleConnectionPool &#123;</span><br><span class="line">private static LinkedList&lt;Connection&gt; pool = new LinkedList&lt;&gt;(); </span><br><span class="line"></span><br><span class="line">static &#123;</span><br><span class="line">try &#123;</span><br><span class="line">for(int i = 1; i &lt;= 5; i++) &#123;</span><br><span class="line">//获取数据库连接对象</span><br><span class="line">Connection conn = JdbcUtils.getConnection();</span><br><span class="line">//将连接对象放入到pool里</span><br><span class="line">pool.add(conn);</span><br><span class="line">&#125;</span><br><span class="line">&#125; catch(Exception e) &#123;</span><br><span class="line">System.out.println(&quot;数据库连接池初始化失败~&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//2.提供获取数据库连接对象的方法</span><br><span class="line">public static synchronized Connection getConnection() &#123;</span><br><span class="line">if(pool.size() &gt; 0) &#123;</span><br><span class="line">return pool.removeFirst();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">throw new RuntimeException(&quot;对不起，池子中啥都没有了~&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//3.提供归还数据库连接对象的方法</span><br><span class="line">public static void close(Connection conn) &#123;</span><br><span class="line">pool.addLast(conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="第三方数据库连接池"><a href="#第三方数据库连接池" class="headerlink" title="第三方数据库连接池"></a>第三方数据库连接池</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>SUN公司提供了一个数据库连接池的接口：DataSource<br>获取数据库连接对象：getConnection()<br>归还数据库连接对象：close()<br>    注意：如果Connection对象是通过DriverManager.getConnection()获取到的话，调用close()就是释源<br>          如果Connection对象是通过数据库连接池获取到的话，调用close()就是归还</p><h4 id="C3P0"><a href="#C3P0" class="headerlink" title="C3P0"></a>C3P0</h4><h5 id="1-使用配置文件的版本："><a href="#1-使用配置文件的版本：" class="headerlink" title="1.使用配置文件的版本："></a>1.使用配置文件的版本：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">使用步骤：</span><br><span class="line">1.导入jar包</span><br><span class="line">c3p0-0.9.5.2.jar</span><br><span class="line">mchange-commons-java-0.2.12.jar</span><br><span class="line"></span><br><span class="line">2.拷贝配置文件</span><br><span class="line">c3p0-config.xml</span><br><span class="line"></span><br><span class="line">3.创建数据库连接池对象</span><br><span class="line">DataSource dataSource = new ComboPooledDataSource();</span><br><span class="line"></span><br><span class="line">4.获取数据库连接对象</span><br><span class="line">Connection conn = dataSource.getConnection();</span><br><span class="line"></span><br><span class="line">5.归还数据库连接对象</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure><h5 id="2-不使用配置文件的版本："><a href="#2-不使用配置文件的版本：" class="headerlink" title="2.不使用配置文件的版本："></a>2.不使用配置文件的版本：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">使用步骤：</span><br><span class="line">1.导入jar包</span><br><span class="line">c3p0-0.9.5.2.jar</span><br><span class="line">mchange-commons-java-0.2.12.jar</span><br><span class="line"></span><br><span class="line">2.创建数据库连接池对象</span><br><span class="line">ComboPooledDataSource dataSource = new ComboPooledDataSource();</span><br><span class="line"></span><br><span class="line">3.配置各个参数</span><br><span class="line">dataSource.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">dataSource.setJdbcUrl(&quot;jdbc:mysql://localhost:3306/db6&quot;);</span><br><span class="line">dataSource.setUser(&quot;root&quot;);</span><br><span class="line">dataSource.setPassword(&quot;123&quot;);</span><br><span class="line"></span><br><span class="line">4.获取数据库连接对象</span><br><span class="line">Connection conn = dataSource.getConnection();</span><br><span class="line"></span><br><span class="line">5.归还数据库连接对象</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure><h4 id="Druid-德鲁伊"><a href="#Druid-德鲁伊" class="headerlink" title="Druid(德鲁伊)"></a>Druid(德鲁伊)</h4><h5 id="1-使用配置文件的版本：-1"><a href="#1-使用配置文件的版本：-1" class="headerlink" title="1.使用配置文件的版本："></a>1.使用配置文件的版本：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.导入jar包</span><br><span class="line">druid-1.0.9.jar</span><br><span class="line"></span><br><span class="line">2.拷贝配置文件</span><br><span class="line">druid.properties</span><br><span class="line"></span><br><span class="line">3.创建数据库连接池对象</span><br><span class="line">Properties p = new Properties();</span><br><span class="line">p.load(Demo01.class.getClassLoader().getResourceAsStream(&quot;druid.properties&quot;));</span><br><span class="line">DataSource dataSource = DruidDataSourceFactory.createDataSource(p);</span><br><span class="line"></span><br><span class="line">4.获取数据库连接对象</span><br><span class="line">Connection conn = dataSource.getConnection();</span><br><span class="line"></span><br><span class="line">5.归还数据库连接对象</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure><h5 id="2-不使用配置文件的版本：-1"><a href="#2-不使用配置文件的版本：-1" class="headerlink" title="2.不使用配置文件的版本："></a>2.不使用配置文件的版本：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.导入jar包</span><br><span class="line">druid-1.0.9.jar</span><br><span class="line"></span><br><span class="line">2.创建数据库连接池对象</span><br><span class="line">DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line"></span><br><span class="line">3.配置参数信息</span><br><span class="line">dataSource.setDriverClassName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/db6&quot;);</span><br><span class="line">dataSource.setUsername(&quot;root&quot;);</span><br><span class="line">dataSource.setPassword(&quot;123&quot;);</span><br><span class="line"></span><br><span class="line">4.获取数据库连接对象</span><br><span class="line">Connection conn = dataSource.getConnection();</span><br><span class="line"></span><br><span class="line">5.归还数据库连接对象</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;可以存储数据库连接对象的池子，就说了就是一个容器，里面装了几个数据库连接对象&lt;br&gt;&lt;strong&gt;连接池&lt;/strong&gt;：提供了一种池子</summary>
-      
-    
-    
-    
-    
-    <category term="蜗牛学院笔记" scheme="http://www.pangtouyu77.fun/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="数据库连接池" scheme="http://www.pangtouyu77.fun/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"/>
-    
-    <category term="C3P0" scheme="http://www.pangtouyu77.fun/tags/C3P0/"/>
-    
-    <category term="Druid" scheme="http://www.pangtouyu77.fun/tags/Druid/"/>
     
   </entry>
   
