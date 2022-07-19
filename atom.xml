@@ -6,7 +6,7 @@
   <link href="http://www.pangtouyu77.fun/atom.xml" rel="self"/>
   
   <link href="http://www.pangtouyu77.fun/"/>
-  <updated>2022-07-11T23:36:11.257Z</updated>
+  <updated>2022-07-14T00:38:26.064Z</updated>
   <id>http://www.pangtouyu77.fun/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue第三篇_补充</title>
+    <link href="http://www.pangtouyu77.fun/2022/07/14/vue%E7%AC%AC%E4%B8%89%E7%AF%87-%E8%A1%A5%E5%85%85/"/>
+    <id>http://www.pangtouyu77.fun/2022/07/14/vue%E7%AC%AC%E4%B8%89%E7%AF%87-%E8%A1%A5%E5%85%85/</id>
+    <published>2022-07-14T00:38:26.000Z</published>
+    <updated>2022-07-14T00:38:26.064Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>vue第一篇_语法</title>
@@ -353,30 +366,6 @@
     <category term="JDBC" scheme="http://www.pangtouyu77.fun/tags/JDBC/"/>
     
     <category term="JdbcTemplate" scheme="http://www.pangtouyu77.fun/tags/JdbcTemplate/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zut毕设部署保姆级教程</title>
-    <link href="http://www.pangtouyu77.fun/2022/05/22/zut%E6%AF%95%E8%AE%BE%E9%83%A8%E7%BD%B2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/"/>
-    <id>http://www.pangtouyu77.fun/2022/05/22/zut%E6%AF%95%E8%AE%BE%E9%83%A8%E7%BD%B2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</id>
-    <published>2022-05-22T09:32:28.000Z</published>
-    <updated>2022-05-22T09:37:28.049Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="服务器部署准备"><a href="#服务器部署准备" class="headerlink" title="服务器部署准备"></a>服务器部署准备</h3><h4 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h4><p>我的是这样的一个虚拟机<br><img src="/2022/05/22/zut%E6%AF%95%E8%AE%BE%E9%83%A8%E7%BD%B2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/1.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#终端输入命令连接</span><br><span class="line">ssh -Y root@10.36.31.165 </span><br><span class="line">#然后输入密码:</span><br><span class="line">ieat8</span><br></pre></td></tr></table></figure><h4 id="文件上传到虚拟机上"><a href="#文件上传到虚拟机上" class="headerlink" title="文件上传到虚拟机上"></a>文件上传到虚拟机上</h4>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;服务器部署准备&quot;&gt;&lt;a href=&quot;#服务器部署准备&quot; class=&quot;headerlink&quot; title=&quot;服务器部署准备&quot;&gt;&lt;/a&gt;服务器部署准备&lt;/h3&gt;&lt;h4 id=&quot;连接服务器&quot;&gt;&lt;a href=&quot;#连接服务器&quot; class=&quot;headerlink&quot; ti</summary>
-      
-    
-    
-    
-    
-    <category term="zut" scheme="http://www.pangtouyu77.fun/tags/zut/"/>
-    
-    <category term="毕设" scheme="http://www.pangtouyu77.fun/tags/%E6%AF%95%E8%AE%BE/"/>
     
   </entry>
   
