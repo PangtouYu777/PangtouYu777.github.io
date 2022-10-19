@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            redis6配置以及新数据类型 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">redis6配置以及新数据类型</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-25 14:56:00</span>
+        <span class="mobile">2022-09-25 14:56</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/redis6/">redis6</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="1-redis配置"><a href="#1-redis配置" class="headerlink" title="1.redis配置"></a>1.redis配置</h1><h2 id="1-1-Units单位"><a href="#1-1-Units单位" class="headerlink" title="1.1 Units单位"></a>1.1 Units单位</h2><p>配置大小单位,开头定义了一些基本的度量单位，只支持bytes，不支持bit。大小写不敏感</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925150254075.png" alt="image-20220925150254075"></p>
+<h2 id="1-2-INCLUDES包含"><a href="#1-2-INCLUDES包含" class="headerlink" title="1.2  ###INCLUDES包含###"></a>1.2  ###INCLUDES包含###</h2><p>类似jsp中的include，多实例的情况可以把公用的配置文件提取出来。</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925150428914.png" alt="image-20220925150428914"></p>
+<h2 id="1-3-网络相关配置"><a href="#1-3-网络相关配置" class="headerlink" title="1.3 网络相关配置"></a>1.3 网络相关配置</h2><h3 id="1-bind"><a href="#1-bind" class="headerlink" title="1. bind"></a>1. bind</h3><ul>
+<li><p>默认情况bind=127.0.0.1只能接受本机的访问请求</p>
+</li>
+<li><p>不写的情况下，无限制接受任何ip地址的访问</p>
+</li>
+<li><p>生产环境肯定要写你应用服务器的地址；服务器是需要远程访问的，所以需要将其注释掉</p>
+</li>
+<li><p>如果开启了<strong>protected-mode</strong>，那么在没有设定bind ip且没有设密码的情况下，Redis只允许接受本机的响应</p>
+</li>
+</ul>
+<h3 id="2-protected-mode"><a href="#2-protected-mode" class="headerlink" title="2. protected-mode"></a>2. protected-mode</h3><p>将本机访问保护模式设置no</p>
+<h3 id="3-port"><a href="#3-port" class="headerlink" title="3.port"></a>3.port</h3><p>端口号，默认6379</p>
+<h3 id="4-tcp-backlog"><a href="#4-tcp-backlog" class="headerlink" title="4.tcp-backlog"></a>4.tcp-backlog</h3><ul>
+<li><p>设置tcp的backlog，backlog其实是一个连接队列，backlog队列总和=未完成三次握手队列 + 已经完成三次握手队列。</p>
+</li>
+<li><p>在高并发环境下你需要一个高backlog值来避免慢客户端连接问题。</p>
+</li>
+<li><p>注意Linux内核会将这个值减小到/proc/sys/net/core/somaxconn的值（128），所以需要确认增大/proc/sys/net/core/somaxconn和/proc/sys/net/ipv4/tcp_max_syn_backlog（128）两个值来达到想要的效果</p>
+</li>
+</ul>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925151115682.png" alt="image-20220925151115682"></p>
+<h3 id="5-timeout"><a href="#5-timeout" class="headerlink" title="5.timeout"></a>5.timeout</h3><p>一个空闲的客户端维持多少秒会关闭，0表示关闭该功能。即永不关闭。</p>
+<h3 id="6-tcp-keepalive"><a href="#6-tcp-keepalive" class="headerlink" title="6. tcp-keepalive"></a>6. tcp-keepalive</h3><ul>
+<li><p>对访问客户端的一种心跳检测，每个n秒检测一次。</p>
+</li>
+<li><p>单位为秒，如果设置为0，则不会进行Keepalive检测，建议设置成60 </p>
+</li>
+</ul>
+<h2 id="1-4-GENERAL通用"><a href="#1-4-GENERAL通用" class="headerlink" title="1.4 GENERAL通用"></a>1.4 GENERAL通用</h2><h3 id="1-daemonize"><a href="#1-daemonize" class="headerlink" title="1. daemonize"></a>1. daemonize</h3><ul>
+<li><p>是否为后台进程，设置为yes</p>
+</li>
+<li><p>守护进程，后台启动</p>
+</li>
+</ul>
+<h3 id="2-pidfile"><a href="#2-pidfile" class="headerlink" title="2. pidfile"></a>2. pidfile</h3><ul>
+<li>存放pid文件的位置，每个实例会产生一个不同的pid文件</li>
+</ul>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925151502292.png" alt="image-20220925151502292"></p>
+<h3 id="3-loglevel"><a href="#3-loglevel" class="headerlink" title="3.loglevel"></a>3.loglevel</h3><ul>
+<li><p>指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为<strong>notice</strong></p>
+</li>
+<li><p>四个级别根据使用阶段来选择，生产环境选择notice 或者warning</p>
+</li>
+</ul>
+<h3 id="4-logfile"><a href="#4-logfile" class="headerlink" title="4.logfile"></a>4.logfile</h3><p>日志文件名称</p>
+<h3 id="5-database-16"><a href="#5-database-16" class="headerlink" title="5.database 16"></a>5.database 16</h3><p>设定库的数量 默认16，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id</dbid></p>
+<h2 id="1-5-SECURITY-安全"><a href="#1-5-SECURITY-安全" class="headerlink" title="1.5 SECURITY 安全"></a>1.5 SECURITY 安全</h2><ul>
+<li>临时密码：在命令中设置密码，只是临时的。重启redis服务器，密码就还原了。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">config get requirepass</span><br><span class="line"></span><br><span class="line">config set requirepass &quot;123456&quot;</span><br><span class="line"></span><br><span class="line">auth 123456</span><br><span class="line"># true</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>永久密码：需要再配置文件中进行设置。</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925152252087.png" alt="image-20220925152252087"></p>
+</li>
+</ul>
+<h2 id="1-6-LIMITS限制"><a href="#1-6-LIMITS限制" class="headerlink" title="1.6 LIMITS限制"></a>1.6 LIMITS限制</h2><h3 id="1-maxclients"><a href="#1-maxclients" class="headerlink" title="1. maxclients"></a>1. maxclients</h3><ul>
+<li>设置redis同时可以与多少个客户端进行连接。</li>
+<li> 默认情况下为10000个客户端。</li>
+<li>如果达到了此限制，redis则会拒绝新的连接请求，并且向这些连接请求方发出“max number of clients reached”以作回应。</li>
+</ul>
+<h3 id="2-maxmemory"><a href="#2-maxmemory" class="headerlink" title="2.maxmemory"></a>2.maxmemory</h3><ul>
+<li>建议****必须设置****，否则，将内存占满，造成服务器宕机</li>
+<li>设置redis可以使用的内存量。一旦到达内存使用上限，redis将会试图移除内部数据，移除规则可以通过maxmemory-policy来指定。</li>
+<li> 如果redis无法根据移除规则来移除内存中的数据，或者设置了“不允许移除”，那么redis则会针对那些需要申请内存的指令返回错误信息，比如SET、LPUSH等。</li>
+<li>但是对于无内存申请的指令，仍然会正常响应，比如GET等。如果你的redis是主redis（说明你的redis有从redis），那么在设置内存使用上限时，需要在系统中留出一些内存空间给同步队列缓存，只有在你设置的是“不移除”的情况下，才不用考虑这个因素。</li>
+</ul>
+<h3 id="3-maxmemory-policy"><a href="#3-maxmemory-policy" class="headerlink" title="3.maxmemory-policy"></a>3.maxmemory-policy</h3><ul>
+<li>volatile-lru：使用LRU算法移除key，只对设置了过期时间的键；（最近最少使用）</li>
+<li>allkeys-lru：在所有集合key中，使用LRU算法移除key</li>
+<li>volatile-random：在过期集合中移除随机的key，只对设置了过期时间的键 </li>
+<li>allkeys-random：在所有集合key中，移除随机的key </li>
+<li>volatile-ttl：移除那些TTL值最小的key，即那些最近要过期的key</li>
+<li>noeviction：不进行移除。针对写操作，只是返回错误信息</li>
+</ul>
+<h3 id="4-maxmemory-samples"><a href="#4-maxmemory-samples" class="headerlink" title="4. maxmemory-samples"></a>4. maxmemory-samples</h3><ul>
+<li>设置样本数量，LRU算法和最小TTL算法都并非是精确的算法，而是估算值，所以你可以设置样本的大小，redis默认会检查这么多个key并选择其中LRU的那个。</li>
+<li>一般设置3到7的数字，数值越小样本越不准确，但性能消耗越小。</li>
+</ul>
+<h1 id="2-发布和订阅"><a href="#2-发布和订阅" class="headerlink" title="2.发布和订阅"></a>2.发布和订阅</h1><ul>
+<li><p>Redis 发布订阅 (pub/sub) 是一种消息通信模式：发送者 (pub) 发送消息，订阅者 (sub) 接收消息。</p>
+</li>
+<li><p>Redis 客户端可以订阅任意数量的频道。</p>
+</li>
+</ul>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925154407498.png" alt="image-20220925154407498"></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cimage-20220925154412698.png" alt="image-20220925154412698"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 打开一个客户端订阅channel1</span><br><span class="line">SUBSCRIBE channel1</span><br><span class="line"># 打卡另一个客户端</span><br><span class="line">publish channel1 hello</span><br><span class="line"></span><br><span class="line"># 第一个客户端就可以看到消息</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="3-redis6的新增数据类型"><a href="#3-redis6的新增数据类型" class="headerlink" title="3.redis6的新增数据类型"></a>3.redis6的新增数据类型</h1><h2 id="1-Bitmaps"><a href="#1-Bitmaps" class="headerlink" title="1.Bitmaps"></a>1.Bitmaps</h2><p>现代计算机用二进制（位） 作为信息的基础单位， 1个字节等于8位， 例如“abc”字符串是由3个字节组成， 但实际在计算机存储时将其用二进制表示， “abc”分别对应的ASCII码分别是97、 98、 99， 对应的二进制分别是01100001、 01100010和01100011，如下图</p>
+<p><img src alt="img"> </p>
+<p>合理地使用操作位能够有效地提高内存使用率和开发效率。</p>
+<p>​    Redis提供了Bitmaps这个“数据类型”可以实现对位的操作：</p>
+<p>（1） Bitmaps本身不是一种数据类型， 实际上它就是字符串（key-value） ， 但是它可以对字符串的位进行操作。</p>
+<p>（2） Bitmaps单独提供了一套命令， 所以在Redis中使用Bitmaps和使用字符串的方法不太相同。 可以把Bitmaps想象成一个以位为单位的数组， 数组的每个单元只能存储0和1， 数组的下标在Bitmaps中叫做偏移量。</p>
+<p><img src alt="img"> </p>
+<h2 id="2-HypertLogLog"><a href="#2-HypertLogLog" class="headerlink" title="2. HypertLogLog"></a>2. HypertLogLog</h2><p>在工作当中，我们经常会遇到与统计相关的功能需求，比如统计网站PV（PageView页面访问量）,可以使用Redis的incr、incrby轻松实现。</p>
+<p>但像UV（UniqueVisitor，独立访客）、独立IP数、搜索记录数等需要去重和计数的问题如何解决？这种求集合中不重复元素个数的问题称为基数问题。</p>
+<p>解决基数问题有很多种方案：</p>
+<p>（1）数据存储在MySQL表中，使用distinct count计算不重复个数</p>
+<p>（2）使用Redis提供的hash、set、bitmaps等数据结构来处理</p>
+<p>以上的方案结果精确，但随着数据不断增加，导致占用空间越来越大，对于非常大的数据集是不切实际的。</p>
+<p>能否能够降低一定的精度来平衡存储空间？Redis推出了HyperLogLog</p>
+<p>Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的、并且是很小的。</p>
+<p>在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。</p>
+<p>但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</p>
+<p>什么是基数?</p>
+<p>比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。 基数估计就是在误差可接受的范围内，快速计算基数。</p>
+<p><em><strong>*命令*</strong></em></p>
+<p>1、pfadd </p>
+<p>（1）格式</p>
+<p>pfadd <key>&lt; element&gt; [element …]  添加指定元素到 HyperLogLog 中</key></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps14.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps15.jpg" alt="img"> </p>
+<p>​    将所有元素添加到指定HyperLogLog数据结构中。如果执行命令后HLL估计的近似基数发生变化，则返回1，否则返回0。</p>
+<p>2、pfcount</p>
+<p>（1）格式</p>
+<p>pfcount<key> [key …] 计算HLL的近似基数，可以计算多个HLL，比如用HLL存储每天的UV，计算一周的UV可以使用7天的UV合并计算即可</key></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps16.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps17.jpg" alt="img"> </p>
+<p>3、pfmerge</p>
+<p>（1）格式</p>
+<p>pfmerge<destkey><sourcekey> [sourcekey …]  将一个或多个HLL合并后的结果存储在另一个HLL中，比如每月活跃用户可以使用每天的活跃用户来合并计算可得</sourcekey></destkey></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps18.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps19.jpg" alt="img"> </p>
+<h2 id="3-Geospatial"><a href="#3-Geospatial" class="headerlink" title="3. Geospatial"></a>3. Geospatial</h2><p><em><strong>*简介*</strong></em></p>
+<p>Redis 3.2 中增加了对GEO类型的支持。GEO，Geographic，地理信息的缩写。该类型，就是元素的2维坐标，在地图上就是经纬度。redis基于该类型，提供了经纬度设置，查询，范围查询，距离查询，经纬度Hash等常见操作。</p>
+<p><em><strong>*命令*</strong></em></p>
+<p>1、geoadd</p>
+<p>（1）格式</p>
+<p>geoadd<key>&lt; longitude&gt;<latitude><member> [longitude latitude member…]  添加地理位置（经度，纬度，名称）</member></latitude></key></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps20.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p>geoadd china:city 121.47 31.23 shanghai</p>
+<p>geoadd china:city 106.50 29.53 chongqing 114.05 22.52 shenzhen 116.38 39.90 beijing</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps21.jpg" alt="img"> </p>
+<p>两极无法直接添加，一般会下载城市数据，直接通过 Java 程序一次性导入。</p>
+<p>有效的经度从 -180 度到 180 度。有效的纬度从 -85.05112878 度到 85.05112878 度。</p>
+<p>当坐标位置超出指定范围时，该命令将会返回一个错误。</p>
+<p>已经添加的数据，是无法再次往里面添加的。</p>
+<p>2、geopos  </p>
+<p>（1）格式</p>
+<p>geopos  <key><member> [member…]  获得指定地区的坐标值</member></key></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps22.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps23.jpg" alt="img"> </p>
+<p>3、geodist</p>
+<p>（1）格式</p>
+<p>geodist<key><member1><member2>  [m|km|ft|mi ]  获取两个位置之间的直线距离</member2></member1></key></p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps24.jpg" alt="img"> </p>
+<p>（2）实例</p>
+<p>获取两个位置之间的直线距离</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps25.jpg" alt="img"> </p>
+<p>单位：</p>
+<p>m 表示单位为米[默认值]。</p>
+<p>km 表示单位为千米。</p>
+<p>mi 表示单位为英里。</p>
+<p>ft 表示单位为英尺。</p>
+<p>如果用户没有显式地指定单位参数， 那么 GEODIST 默认使用米作为单位</p>
+<p>4、georadius</p>
+<p>（1）格式</p>
+<p>georadius<key>&lt; longitude&gt;<latitude>radius m|km|ft|mi  以给定的经纬度为中心，找出某一半径内的元素</latitude></key></p>
+<p>经度 纬度 距离 单位</p>
+<p>（2）实例</p>
+<p><img src="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5Cwps27.jpg" alt="img"> </p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/redis6/">#redis6</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/13/%E5%B0%86%E8%99%9A%E6%8B%9F%E6%9C%BAip%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%98%A0%E5%B0%84%E5%88%B0%E4%B8%BB%E6%9C%BA/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">将虚拟机ip端口号映射到主机</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">redis主从复制以及集群</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-redis%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">1.redis配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Units%E5%8D%95%E4%BD%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Units单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-INCLUDES%E5%8C%85%E5%90%AB"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  ###INCLUDES包含###</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 网络相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-bind"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-protected-mode"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. protected-mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-port"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.port</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-tcp-backlog"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.tcp-backlog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-timeout"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-tcp-keepalive"><span class="nav-number">1.3.6.</span> <span class="nav-text">6. tcp-keepalive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-GENERAL%E9%80%9A%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 GENERAL通用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-daemonize"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. daemonize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pidfile"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. pidfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-loglevel"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.loglevel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-logfile"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.logfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-database-16"><span class="nav-number">1.4.5.</span> <span class="nav-text">5.database 16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-SECURITY-%E5%AE%89%E5%85%A8"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 SECURITY 安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-LIMITS%E9%99%90%E5%88%B6"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 LIMITS限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-maxclients"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. maxclients</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-maxmemory"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.maxmemory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-maxmemory-policy"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.maxmemory-policy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-maxmemory-samples"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. maxmemory-samples</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%8F%91%E5%B8%83%E5%92%8C%E8%AE%A2%E9%98%85"><span class="nav-number">2.</span> <span class="nav-text">2.发布和订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-redis6%E7%9A%84%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">3.redis6的新增数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Bitmaps"><span class="nav-number">3.1.</span> <span class="nav-text">1.Bitmaps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HypertLogLog"><span class="nav-number">3.2.</span> <span class="nav-text">2. HypertLogLog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Geospatial"><span class="nav-number">3.3.</span> <span class="nav-text">3. Geospatial</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

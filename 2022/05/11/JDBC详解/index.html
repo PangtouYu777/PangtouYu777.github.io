@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            JDBC详解 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">JDBC详解</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-11 10:24:32</span>
+        <span class="mobile">2022-05-11 10:24</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/javaEE/">javaEE</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/JDBC/">JDBC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="JDBC介绍"><a href="#JDBC介绍" class="headerlink" title="JDBC介绍"></a>JDBC介绍</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><pre><code>什么是JDBC
+    Java数据库连接（Java DataBase Connectivity）
+    
+JDBC作用
+    能够帮助我们实现用java代码操作数据库
+    
+JDBC的本质
+    JDBC是JavaEE技术之一
+    
+    JavaEE是13种技术的统称
+    
+    JDBC就是SUN公司提供的一套规范，一套接口
+</code></pre>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">0.导入jar包</span><br><span class="line"></span><br><span class="line">1.注册驱动</span><br><span class="line">Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line"></span><br><span class="line">2.获取数据库连接对象</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/db6&quot;, &quot;root&quot;, &quot;123&quot;);</span><br><span class="line"></span><br><span class="line">3.获取执行sql语句的对象</span><br><span class="line">Statement stat = conn.createStatement();</span><br><span class="line"></span><br><span class="line">4.执行sql语句</span><br><span class="line">int i = stat.executeUpdate(&quot;insert into user values(1,&#x27;tom&#x27;, 18)&quot;);</span><br><span class="line">System.out.println(i);</span><br><span class="line"></span><br><span class="line">5.释放资源</span><br><span class="line">stat.close();</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>
+<h4 id="步骤详解"><a href="#步骤详解" class="headerlink" title="步骤详解"></a>步骤详解</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">0.导入jar包</span><br><span class="line">	为什么要jar包？</span><br><span class="line">		因为我们用java语句操作数据库，具体的实现类和方法都在jar里呢，JDBC只是提供一些接口</span><br><span class="line">		</span><br><span class="line">1.注册驱动</span><br><span class="line">	Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">	解释：将com.mysql.jdbc.Driver.class文件加载进内存方法区中，形成字节码文件对象</span><br><span class="line">	</span><br><span class="line">	为什么要注册驱动？</span><br><span class="line">		告诉程序要操作的数据库是哪一个数据库</span><br><span class="line">	</span><br><span class="line">	注册驱动的原始代码：DriverManager.registerDrvier(new Driver());</span><br><span class="line">	按照原始写法有两点不好的地方：</span><br><span class="line">		1.太过依赖于jar包，如果jar不存在，编译的时候就报错了</span><br><span class="line">		2.会造成2次注册</span><br><span class="line">		</span><br><span class="line">2.获取数据库连接对象</span><br><span class="line">	Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/db6&quot;, &quot;root&quot;, &quot;123&quot;);</span><br><span class="line">		三个参数：</span><br><span class="line">			1.第一个参数：jdbc:mysql://localhost:3306/db6</span><br><span class="line">							协议         IP地址  端口 数据库名</span><br><span class="line">			2.第二个参数：root 用户名</span><br><span class="line">			3.第三个参数：123  密码</span><br><span class="line">			</span><br><span class="line">		有几个重载的方法：</span><br><span class="line">			public static Connection getConnection(String url,String user, String password)</span><br><span class="line">			public static Connection getConnection(String url)</span><br><span class="line">			public static Connection getConnection(String url,java.util.Properties info)</span><br><span class="line">			</span><br><span class="line">		注意：如果ip是localhost，端口是3306的话，第一个参数可以简写为：jdbc:mysql:///db6</span><br><span class="line"></span><br><span class="line">3.获取执行sql语句的对象</span><br><span class="line">	Statement stat = conn.createStatement();</span><br><span class="line">	</span><br><span class="line">	后面要修改写法，因为上面的写法是有弊端的，有什么弊端呢？不知道</span><br><span class="line">	</span><br><span class="line">	PreparedStatement ps = conn.prepareStatement(&quot;sql语句&quot;);</span><br><span class="line">	使用PreparedStatement能够解决sql注入问题，因为它采用的是预处理模式，里面使用的是占位符？</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">4.执行sql语句</span><br><span class="line">	int i = stat.executeUpdate(&quot;insert into user values(1,&#x27;tom&#x27;, 18)&quot;);</span><br><span class="line">	System.out.println(i);</span><br><span class="line">	</span><br><span class="line">	int executeUpdate()：增删改</span><br><span class="line">		返回值：实际影响的行数</span><br><span class="line">		</span><br><span class="line">	ResultSet executeQuery()：查询</span><br><span class="line">		返回值：结果集对象</span><br><span class="line">			ResultSet：</span><br><span class="line">				boolean next()：判断结果集里有没有数据</span><br><span class="line">				int getInt(int i)：根据第几个字段获取对应的字段的数据</span><br><span class="line">				int getInt(String name)：根据指定的字段名获取对应的字段数据</span><br><span class="line">				String getString(int i)：根据第几个字段获取对应的字段的数据</span><br><span class="line">				String getString(String name)：根据指定的字段名获取对应的字段数据</span><br><span class="line">		</span><br><span class="line">	boolean execute()：增删改查，底层使用的，我们自己用的很少</span><br><span class="line">		返回值：</span><br><span class="line">			增删改 返回false</span><br><span class="line">			查询   返回true</span><br><span class="line"></span><br><span class="line">5.释放资源</span><br><span class="line">	rs.close();</span><br><span class="line">	stat.close();</span><br><span class="line">	conn.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDBC工具类"><a href="#JDBC工具类" class="headerlink" title="JDBC工具类"></a>JDBC工具类</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">public class JdbcUtils &#123;</span><br><span class="line">	private static String driver;</span><br><span class="line">	private static String url;</span><br><span class="line">	private static String username;</span><br><span class="line">	private static String password;</span><br><span class="line">	</span><br><span class="line">	static &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Properties p = new Properties();</span><br><span class="line">			p.load(JdbcUtils.class.getClassLoader().getResourceAsStream(&quot;jdbc.properties&quot;));</span><br><span class="line">			</span><br><span class="line">			driver = p.getProperty(&quot;driver&quot;);</span><br><span class="line">			url = p.getProperty(&quot;url&quot;);</span><br><span class="line">			username = p.getProperty(&quot;username&quot;);</span><br><span class="line">			password = p.getProperty(&quot;password&quot;);</span><br><span class="line">			</span><br><span class="line">			//注册驱动</span><br><span class="line">			Class.forName(driver);</span><br><span class="line">		&#125; catch(Exception e) &#123;</span><br><span class="line">			System.out.println(&quot;初始化失败&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Connection getConnection() throws SQLException &#123;</span><br><span class="line">		//获取数据连接对象</span><br><span class="line">		Connection conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">		return conn;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void close(Connection conn, PreparedStatement ps) &#123;</span><br><span class="line">		close(conn, ps, null);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void close(Connection conn, PreparedStatement ps, ResultSet rs) &#123;</span><br><span class="line">		if(rs != null) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				rs.close();</span><br><span class="line">			&#125; catch (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		if(ps != null) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				ps.close();</span><br><span class="line">			&#125; catch (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		if(conn != null) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				conn.close();</span><br><span class="line">			&#125; catch (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">案例：转账</span><br><span class="line">	//获取数据库连接对象</span><br><span class="line">	Connection conn = JdbcUtils.getConnection();</span><br><span class="line">	</span><br><span class="line">	//开启事务</span><br><span class="line">	conn.setAutoCommit(false);</span><br><span class="line">	</span><br><span class="line">	//获取执行sql语句对象</span><br><span class="line">	PreparedStatement ps = conn.prepareStatement(&quot;update user set money = money + ? where name = ?&quot;);</span><br><span class="line">	</span><br><span class="line">	//tom减去100元钱</span><br><span class="line">	ps.setInt(1, -100);</span><br><span class="line">	ps.setString(2, &quot;tom&quot;);</span><br><span class="line">	ps.executeUpdate();</span><br><span class="line">	</span><br><span class="line">	System.out.println(1/0);</span><br><span class="line">	</span><br><span class="line">	//jerry加100元钱</span><br><span class="line">	ps.setInt(1, 100);</span><br><span class="line">	ps.setString(2, &quot;jerry&quot;);</span><br><span class="line">	ps.executeUpdate();</span><br><span class="line">	</span><br><span class="line">	//提交事务</span><br><span class="line">	conn.commit();</span><br><span class="line">	</span><br><span class="line">	//释放资源</span><br><span class="line">	JdbcUtils.close(conn, ps);</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/javaEE/">#javaEE</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/JDBC/">#JDBC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/05/15/springboot%E9%9B%86%E6%88%90nacos/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">springboot集成nacos</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/11/java%E6%9E%9A%E4%B8%BE%E7%B1%BB/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">java枚举类</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">JDBC介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">步骤详解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">JDBC工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">JDBC事务处理</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

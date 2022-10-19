@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            rancher入门 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">rancher入门</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-30 06:48:26</span>
+        <span class="mobile">2022-03-30 06:48</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/centos-linux/">centos/linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/centos-linux/rancher/">rancher</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/centos/">centos</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/docker/">docker</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/rancher/">rancher</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="第一章-什么是rancher"><a href="#第一章-什么是rancher" class="headerlink" title="第一章  什么是rancher"></a>第一章  什么是rancher</h3><p>Rancher是一个开源的企业级全栈化容器部署及管理平台。随着Kubernetes在市场上的崛起，Rancher 专门部署和管理在任何提供商的任何地方运行的Kubernetes集群。通过Rancher，企业再也不必自己使用一系列的开源软件去从头搭建容器服务平台。Rancher提供了在生产环境中使用的管理Docker和Kubernetes的全栈化容器部署与管理平台。</p>
+<p>rancher又以下四部分组成</p>
+<h5 id="基础设施编排"><a href="#基础设施编排" class="headerlink" title="基础设施编排"></a>基础设施编排</h5><p>Rancher可以使用任何公有云或者私有云的Linux主机资源。Linux主机可以是虚拟机，也可以是物理机。Rancher仅需要主机有CPU，内存，本地磁盘和网络资源。从Rancher的角度来说，一台云厂商提供的云主机和一台自己的物理机是一样的。</p>
+<p>Rancher为运行容器化的应用实现了一层灵活的基础设施服务。Rancher的基础设施服务包括网络， 存储， 负载均衡， DNS和安全模块。Rancher的基础设施服务也是通过容器部署的，所以同样Rancher的基础设施服务可以运行在任何Linux主机上。</p>
+<h5 id="容器编排与调度"><a href="#容器编排与调度" class="headerlink" title="容器编排与调度"></a>容器编排与调度</h5><p>很多用户都会选择使用容器编排调度框架来运行容器化应用。Rancher包含了当前全部主流的编排调度引擎，例如Docker Swarm， Kubernetes， 和Mesos。同一个用户可以创建Swarm或者Kubernetes集群。并且可以使用原生的Swarm或者Kubernetes工具管理应用。</p>
+<p>除了Swarm，Kubernetes和Mesos之外，Rancher还支持自己的Cattle容器编排调度引擎。Cattle被广泛用于编排Rancher自己的基础设施服务以及用于Swarm集群，Kubernetes集群和Mesos集群的配置，管理与升级。</p>
+<h5 id="应用商店"><a href="#应用商店" class="headerlink" title="应用商店"></a>应用商店</h5><p>Rancher的用户可以在应用商店里一键部署由多个容器组成的应用。用户可以管理这个部署的应用，并且可以在这个应用有新的可用版本时进行自动化的升级。Rancher提供了一个由Rancher社区维护的应用商店，其中包括了一系列的流行应用。Rancher的用户也可以创建自己的私有应用商店。</p>
+<h5 id="企业级权限管理"><a href="#企业级权限管理" class="headerlink" title="企业级权限管理"></a>企业级权限管理</h5><p>Rancher支持灵活的插件式的用户认证。支持Active Directory，LDAP， Github等 认证方式。 Rancher支持在环境级别的基于角色的访问控制 (RBAC)，可以通过角色来配置某个用户或者用户组对开发环境或者生产环境的访问权限。</p>
+<p>下图展示了Rancher的主要组件和功能：<br><img src="/2022/03/30/rancher%E5%85%A5%E9%97%A8/1.png"></p>
+<h3 id="第二章-rancher安装和介绍"><a href="#第二章-rancher安装和介绍" class="headerlink" title="第二章  rancher安装和介绍"></a>第二章  rancher安装和介绍</h3><p><strong>快速部署 Rancher 和 Kubernetes 集群的方式共有三种：</strong></p>
+<ul>
+<li>一种是在 Amazon EKS 上部署 Rancher</li>
+<li>另一种是在虚拟机上部署 Rancher，支持的虚拟机厂商包括：AWS、DigitalOcean、Azure、Google Cloud Platform 和 Vagrant。</li>
+<li>采用在已有虚拟机上手动部署（也是本文采用的方式）</li>
+</ul>
+<h4 id="相关名词介绍"><a href="#相关名词介绍" class="headerlink" title="相关名词介绍"></a>相关名词介绍</h4><p><strong>Rancher Server</strong>： 是用于管理和配置 Kubernetes 集群。你可以通过 Rancher Server 的 UI 与下游 Kubernetes 集群进行交互。</p>
+<p>**RKE（Rancher Kubernetes Engine)**：是经过认证的 Kubernetes 发行版，它拥有对应的 CLI 工具可用于创建和管理 Kubernetes 集群。在 Rancher UI 中创建集群时，它将调用 RKE 来配置 Rancher 启动的 Kubernetes 集群。</p>
+<p>**K3s (轻量级 Kubernetes)**： 和 RKE 类似，也是经过认证的 Kubernetes 发行版。它比 RKE 更新，更易用且更轻量化，全部组件都在一个小于 100 MB 的二进制文件中。从 Rancher v2.4 开始，Rancher 可以安装在 K3s 集群上。</p>
+<p><strong>RKE2</strong>是一个完全合规的 Kubernetes 发行版，专注于安全和合规性。</p>
+<p><strong>RancherD</strong>是安装 Rancher 的新工具，从 Rancher v2.5.4 开始支持。它是一个实验性功能。RancherD 是一个二进制文件，它首先启动一个 RKE2 Kubernetes 集群，然后在集群上安装 Rancher Server Helm chart。</p>
+<h4 id="常规pull-rancher镜像"><a href="#常规pull-rancher镜像" class="headerlink" title="常规pull rancher镜像"></a>常规pull rancher镜像</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rancher/server</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/03/30/rancher%E5%85%A5%E9%97%A8/2.png"></p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --restart=unless-stopped -p 8080:8080 rancher/server</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="第三章-如何通过ui界面管理"><a href="#第三章-如何通过ui界面管理" class="headerlink" title="第三章  如何通过ui界面管理"></a>第三章  如何通过ui界面管理</h3><p>(暂时使用1.6版本，以后会更新)</p>
+<h4 id="点击添加主机"><a href="#点击添加主机" class="headerlink" title="点击添加主机"></a>点击添加主机</h4><p><img src="/2022/03/30/rancher%E5%85%A5%E9%97%A8/3.png"></p>
+<h4 id="根据步骤操作"><a href="#根据步骤操作" class="headerlink" title="根据步骤操作"></a>根据步骤操作</h4><p><img src="/2022/03/30/rancher%E5%85%A5%E9%97%A8/4.png"></p>
+<p><strong>1</strong> <a class="link" target="_blank" rel="noopener" href="http://pangtouyu777.fun/2022/03/28/docker%E5%85%A5%E9%97%A8/">安装docker<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>2</strong> UDP端口测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#先确定是否装有nc服务</span><br><span class="line">which nc</span><br><span class="line"></span><br><span class="line">#用法:</span><br><span class="line">nc -vuz &lt;目标服务器 IP&gt; &lt;待测试端口&gt;</span><br><span class="line"># 参数说明：</span><br><span class="line">-v 详细输出（用两个-v可得到更详细的内容）</span><br><span class="line">-u 使用UDP传输协议</span><br><span class="line">-z 让nc只扫描端口，不发送任何的数据</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/03/30/rancher%E5%85%A5%E9%97%A8/5.png"></p>
+<p><strong>3</strong> 在主机上增加标签，起个名字</p>
+<p><strong>4</strong> 设置此台主机ip</p>
+<p><strong>5</strong> cv到另一台主机上运行rancher</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://rancher.com/docs/rancher/v2.6/en/">rancher文档<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://rancher.com/">rancher官网<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/centos/">#centos</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/docker/">#docker</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/rancher/">#rancher</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/30/centos%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">centos关闭防火墙</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/29/root%E7%94%A8%E6%88%B7%E5%90%AF%E5%8A%A8firefox%E6%8A%A5%E9%94%99/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">root用户启动firefox报错</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BB%80%E4%B9%88%E6%98%AFrancher"><span class="nav-number">1.</span> <span class="nav-text">第一章  什么是rancher</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%BC%96%E6%8E%92"><span class="nav-number">1.0.1.</span> <span class="nav-text">基础设施编排</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B8%8E%E8%B0%83%E5%BA%A6"><span class="nav-number">1.0.2.</span> <span class="nav-text">容器编排与调度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97"><span class="nav-number">1.0.3.</span> <span class="nav-text">应用商店</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">1.0.4.</span> <span class="nav-text">企业级权限管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-rancher%E5%AE%89%E8%A3%85%E5%92%8C%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">第二章  rancher安装和介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">相关名词介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84pull-rancher%E9%95%9C%E5%83%8F"><span class="nav-number">2.2.</span> <span class="nav-text">常规pull rancher镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">2.3.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87ui%E7%95%8C%E9%9D%A2%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">第三章  如何通过ui界面管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%82%B9%E5%87%BB%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">点击添加主机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%AD%A5%E9%AA%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">根据步骤操作</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

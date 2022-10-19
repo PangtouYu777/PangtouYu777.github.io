@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            Spring事务 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Spring事务</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-07-01 20:42:48</span>
+        <span class="mobile">2022-07-01 20:42</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/spring/">spring</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BA%8B%E5%8A%A1/">事务</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="事务属性"><a href="#事务属性" class="headerlink" title="事务属性"></a>事务属性</h2><h3 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h3><ul>
+<li>原子性（Atomicity）：事务是一个原子操作，由一系列动作组成。事务的原子性确保动作要么全部完成，要么完全不起作用。</li>
+<li>一致性（Consistency）：一旦事务完成（不管成功还是失败），系统必须确保它所建模的业务处于一致的状态，而不会是部分完成部分失败。在现实中的数据不应该被破坏。</li>
+<li>隔离性（Isolation）：可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。</li>
+<li>持久性（Durability）：一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能从任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。</li>
+</ul>
+<h3 id="Spring事务的配置方式"><a href="#Spring事务的配置方式" class="headerlink" title="Spring事务的配置方式"></a>Spring事务的配置方式</h3><p>Spring支持编程式事务管理以及声明式事务管理两种方式。</p>
+<h4 id="1-编程式事务管理"><a href="#1-编程式事务管理" class="headerlink" title="1. 编程式事务管理"></a>1. 编程式事务管理</h4><p>编程式事务管理是侵入性事务管理，使用TransactionTemplate或者直接使用PlatformTransactionManager，对于编程式事务管理，Spring推荐使用TransactionTemplate。</p>
+<h4 id="2-声明式事务管理"><a href="#2-声明式事务管理" class="headerlink" title="2. 声明式事务管理"></a>2. 声明式事务管理</h4><p>声明式事务管理建立在AOP之上，其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，执行完目标方法之后根据执行的情况提交或者回滚。<br>编程式事务每次实现都要单独实现，但业务量大功能复杂时，使用编程式事务无疑是痛苦的，而声明式事务不同，声明式事务属于无侵入式，不会影响业务逻辑的实现，只需要在配置文件中做相关的事务规则声明或者通过注解的方式，便可以将事务规则应用到业务逻辑中。<br>显然声明式事务管理要优于编程式事务管理，这正是Spring倡导的非侵入式的编程方式。唯一不足的地方就是声明式事务管理的粒度是方法级别，而编程式事务管理是可以到代码块的，但是可以通过提取方法的方式完成声明式事务管理的配置。</p>
+<h3 id="事务的传播机制"><a href="#事务的传播机制" class="headerlink" title="事务的传播机制"></a>事务的传播机制</h3><p>事务的传播性一般用在事务嵌套的场景，比如一个事务方法里面调用了另外一个事务方法，那么两个方法是各自作为独立的方法提交还是内层的事务合并到外层的事务一起提交，这就是需要事务传播机制的配置来确定怎么样执行。<br>常用的事务传播机制如下：</p>
+<ul>
+<li>PROPAGATION_REQUIRED<br>Spring默认的传播机制，能满足绝大部分业务需求，如果外层有事务，则当前事务加入到外层事务，一块提交，一块回滚。如果外层没有事务，新建一个事务执行</li>
+<li>PROPAGATION_REQUES_NEW<br>该事务传播机制是每次都会新开启一个事务，同时把外层事务挂起，当当前事务执行完毕，恢复上层事务的执行。如果外层没有事务，执行当前新开启的事务即可</li>
+<li>PROPAGATION_SUPPORT<br>如果外层有事务，则加入外层事务，如果外层没有事务，则直接使用非事务方式执行。完全依赖外层的事务</li>
+<li>PROPAGATION_NOT_SUPPORT<br>该传播机制不支持事务，如果外层存在事务则挂起，执行完当前代码，则恢复外层事务，无论是否异常都不会回滚当前的代码</li>
+<li>PROPAGATION_NEVER<br>该传播机制不支持外层事务，即如果外层有事务就抛出异常</li>
+<li>PROPAGATION_MANDATORY<br>与NEVER相反，如果外层没有事务，则抛出异常</li>
+<li>PROPAGATION_NESTED<br>该传播机制的特点是可以保存状态保存点，当前事务回滚到某一个点，从而避免所有的嵌套事务都回滚，即各自回滚各自的，如果子事务没有把异常吃掉，基本还是会引起全部回滚的。</li>
+</ul>
+<blockquote>
+<p>传播规则回答了这样一个问题：一个新的事务应该被启动还是被挂起，或者是一个方法是否应该在事务性上下文中运行。</p>
+</blockquote>
+<h3 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h3><p>事务的隔离级别定义一个事务可能受其他并发务活动活动影响的程度，可以把事务的隔离级别想象为这个事务对于事务处理数据的自私程度。</p>
+<p>在一个典型的应用程序中，多个事务同时运行，经常会为了完成他们的工作而操作同一个数据。并发虽然是必需的，但是会导致以下问题：</p>
+<ol>
+<li>脏读（Dirty read）<br>脏读发生在一个事务读取了被另一个事务改写但尚未提交的数据时。如果这些改变在稍后被回滚了，那么第一个事务读取的数据就会是无效的。</li>
+<li>不可重复读（Nonrepeatable read）<br>不可重复读发生在一个事务执行相同的查询两次或两次以上，但每次查询结果都不相同时。这通常是由于另一个并发事务在两次查询之间更新了数据。</li>
+</ol>
+<blockquote>
+<p>不可重复读重点在修改。</p>
+</blockquote>
+<pre><code>3. 幻读（Phantom reads）
+</code></pre>
+<p>幻读和不可重复读相似。当一个事务（T1）读取几行记录后，另一个并发事务（T2）插入了一些记录时，幻读就发生了。在后来的查询中，第一个事务（T1）就会发现一些原来没有的额外记录。</p>
+<blockquote>
+<p>幻读重点在新增或删除。</p>
+</blockquote>
+<p>在理想状态下，事务之间将完全隔离，从而可以防止这些问题发生。然而，完全隔离会影响性能，因为隔离经常涉及到锁定在数据库中的记录（甚至有时是锁表）。完全隔离要求事务相互等待来完成工作，会阻碍并发。因此，可以根据业务场景选择不同的隔离级别。</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISOLATION_DEFAULT</td>
+<td>使用后端数据库默认的隔离级别</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_UNCOMMITTED</td>
+<td>允许读取尚未提交的更改。可能导致脏读、幻读或不可重复读。</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_COMMITTED</td>
+<td>（Oracle 默认级别）允许从已经提交的并发事务读取。可防止脏读，但幻读和不可重复读仍可能会发生。</td>
+</tr>
+<tr>
+<td>ISOLATION_REPEATABLE_READ</td>
+<td>（MYSQL默认级别）对相同字段的多次读取的结果是一致的，除非数据被当前事务本身改变。可防止脏读和不可重复读，但幻读仍可能发生。</td>
+</tr>
+<tr>
+<td>ISOLATION_SERIALIZABLE</td>
+<td>完全服从ACID的隔离级别，确保不发生脏读、不可重复读和幻影读。这在所有隔离级别中也是最慢的，因为它通常是通过完全锁定当前事务所涉及的数据表来完成的。</td>
+</tr>
+</tbody></table>
+<h3 id="只读"><a href="#只读" class="headerlink" title="只读"></a>只读</h3><p>如果一个事务只对数据库执行读操作，那么该数据库就可能利用那个事务的只读特性，采取某些优化措施。通过把一个事务声明为只读，可以给后端数据库一个机会来应用那些它认为合适的优化措施。由于只读的优化措施是在一个事务启动时由后端数据库实施的， 因此，只有对于那些具有可能启动一个新事务的传播行为（PROPAGATION_REQUIRES_NEW、PROPAGATION_REQUIRED、 ROPAGATION_NESTED）的方法来说，将事务声明为只读才有意义。</p>
+<h3 id="事务超时"><a href="#事务超时" class="headerlink" title="事务超时"></a>事务超时</h3><p>为了使一个应用程序很好地执行，它的事务不能运行太长时间。因此，声明式事务的下一个特性就是它的超时。</p>
+<p>假设事务的运行时间变得格外的长，由于事务可能涉及对数据库的锁定，所以长时间运行的事务会不必要地占用数据库资源。这时就可以声明一个事务在特定秒数后自动回滚，不必等它自己结束。</p>
+<p>由于超时时钟在一个事务启动的时候开始的，因此，只有对于那些具有可能启动一个新事务的传播行为（PROPAGATION_REQUIRES_NEW、PROPAGATION_REQUIRED、ROPAGATION_NESTED）的方法来说，声明事务超时才有意义。</p>
+<h3 id="回滚规则"><a href="#回滚规则" class="headerlink" title="回滚规则"></a>回滚规则</h3><p>在默认设置下，事务只在出现运行时异常（runtime exception）时回滚，而在出现受检查异常（checked exception）时不回滚（这一行为和EJB中的回滚行为是一致的）。<br>不过，可以声明在出现特定受检查异常时像运行时异常一样回滚。同样，也可以声明一个事务在出现特定的异常时不回滚，即使特定的异常是运行时异常。</p>
+<h2 id="声明式事务配置"><a href="#声明式事务配置" class="headerlink" title="声明式事务配置"></a>声明式事务配置</h2><p>Spring的配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">&quot;http://www.springframework.org/schema/tx&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/tx</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.woniu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        数据源</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/demo?characterEncoding=utf8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;woniu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">       SqlSessionFactory</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        扫描dao</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mapperScanner&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.woniu.dao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        配置事务管理器</span></span><br><span class="line"><span class="comment">        DataSourceTransactionManager提供了事务管理的代码</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        配置事务的信息</span></span><br><span class="line"><span class="comment">        配置传播机制、隔离级别、是否只读、回滚条件</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">&quot;advice&quot;</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;transactionManager&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;save&quot;</span> <span class="attr">propagation</span>=<span class="string">&quot;REQUIRED&quot;</span> <span class="attr">isolation</span>=<span class="string">&quot;DEFAULT&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;false&quot;</span> <span class="attr">rollback-for</span>=<span class="string">&quot;java.lang.RuntimeException&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        配置AOP</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pc&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.woniu.service..*.*(..))&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;advice&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;pc&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="注解的方式配置声明式事务"><a href="#注解的方式配置声明式事务" class="headerlink" title="注解的方式配置声明式事务"></a>注解的方式配置声明式事务</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">&quot;http://www.springframework.org/schema/tx&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/tx</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.woniu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        数据源</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/demo?characterEncoding=utf8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;woniu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">       SqlSessionFactory</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        扫描dao</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mapperScanner&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.woniu.dao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        配置事务管理器</span></span><br><span class="line"><span class="comment">        DataSourceTransactionManager提供了事务管理的代码</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;transactionManager&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">tx:annotation-driven</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Transactional</span>  <span class="comment">//将DataSourceTransactionManager切入到当前类的所有的方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptServiceImpl</span> <span class="keyword">implements</span> <span class="title">DeptService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DeptDao deptDao;</span><br><span class="line">    <span class="meta">@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,readOnly = false,rollbackFor = java.lang.RuntimeException.class )</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(Dept dept)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        deptDao.insert(dept);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;异常出现，事务回滚！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/spring/">#spring</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">#蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%BA%8B%E5%8A%A1/">#事务</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/07/01/Aop%E6%A6%82%E6%8B%AC/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Aop概括</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/26/bert%E4%B8%AD%E6%96%87%E6%A8%A1%E5%9E%8B-cnn/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">bert中文模型-cnn</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">事务属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">事务的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">Spring事务的配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 编程式事务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 声明式事务管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.3.</span> <span class="nav-text">事务的传播机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">事务的隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E8%AF%BB"><span class="nav-number">1.5.</span> <span class="nav-text">只读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E8%B6%85%E6%97%B6"><span class="nav-number">1.6.</span> <span class="nav-text">事务超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E8%A7%84%E5%88%99"><span class="nav-number">1.7.</span> <span class="nav-text">回滚规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">声明式事务配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E9%85%8D%E7%BD%AE%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">注解的方式配置声明式事务</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

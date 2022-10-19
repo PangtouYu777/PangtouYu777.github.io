@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            redis主从复制以及集群 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">redis主从复制以及集群</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-25 11:15:51</span>
+        <span class="mobile">2022-09-25 11:15</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis6/">redis6</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">主从复制</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis%E9%9B%86%E7%BE%A4/">redis集群</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><p>主机数据更新后根据配置和策略， 自动同步到备机的master/slaver机制，Master以写为主，Slave以读为主。</p>
+<p>特点：</p>
+<ul>
+<li><p>读写分离，性能扩展</p>
+</li>
+<li><p>容灾快速恢复</p>
+</li>
+</ul>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cimage-20220925184219514.png" alt="image-20220925184219514"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h4 id="拷贝多个redis-conf文件"><a href="#拷贝多个redis-conf文件" class="headerlink" title="拷贝多个redis.conf文件"></a>拷贝多个redis.conf文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 新建redis6379.conf文件</span><br><span class="line">include /myredis/redis.conf</span><br><span class="line">pidfile /var/run/redis_6379.pid</span><br><span class="line">port 6379</span><br><span class="line">dbfilename dump6379.rdb</span><br><span class="line"></span><br><span class="line">// 新建redis6380.conf文件</span><br><span class="line">include /myredis/redis.conf</span><br><span class="line">pidfile /var/run/redis_6380.pid</span><br><span class="line">port 6380</span><br><span class="line">dbfilename dump6380.rdb</span><br><span class="line"></span><br><span class="line">// 新建redis6381.conf文件</span><br><span class="line">include /myredis/redis.conf</span><br><span class="line">pidfile /var/run/redis_6381.pid</span><br><span class="line">port 6381</span><br><span class="line">dbfilename dump6381.rdb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后分别启动  </p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cimage-20220925184541505.png" alt="image-20220925184541505"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info replication</span><br><span class="line">//打印主从复制的相关信息</span><br></pre></td></tr></table></figure>
+
+<h4 id="配从库"><a href="#配从库" class="headerlink" title="配从库"></a>配从库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slaveof  &lt;ip&gt;&lt;port&gt;</span><br><span class="line">//成为某个实例的从服务器,在80  81上执行</span><br></pre></td></tr></table></figure>
+
+<p>在主机上写，在从机上可以读取数据，此时在从机上写将报错</p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cimage-20220925184832449.png" alt="image-20220925184832449"></p>
+<h4 id="如果挂掉"><a href="#如果挂掉" class="headerlink" title="如果挂掉"></a>如果挂掉</h4><ul>
+<li><p>主机挂掉，重启就行，一切如初</p>
+</li>
+<li><p>从机重启需重设：slaveof 127.0.0.1 6379</p>
+</li>
+<li><p>可以将配置增加到文件中。永久生效。</p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cimage-20220925184931837.png" alt="image-20220925184931837"></p>
+</li>
+</ul>
+<h2 id="常用三点以及复制原理"><a href="#常用三点以及复制原理" class="headerlink" title="常用三点以及复制原理"></a>常用三点以及复制原理</h2><h4 id="一主二仆"><a href="#一主二仆" class="headerlink" title="一主二仆"></a>一主二仆</h4><p>切入点问题？slave1、slave2是从头开始复制还是从切入点开始复制?比如从k4进来，那之前的k1,k2,k3是否也可以复制？</p>
+<p>从机是否可以写？set可否？ </p>
+<p>主机shutdown后情况如何？从机是上位还是原地待命？</p>
+<p>主机又回来了后，主机新增记录，从机还能否顺利复制？ </p>
+<p>其中一台从机down后情况如何？依照原有它能跟上大部队吗？</p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cwps42.png" alt="img"> </p>
+<h4 id="薪火相传"><a href="#薪火相传" class="headerlink" title="薪火相传"></a>薪火相传</h4><p>上一个Slave可以是下一个slave的Master，Slave同样可以接收其他 slaves的连接和同步请求，那么该slave作为了链条中下一个的master, 可以有效减轻master的写压力,去中心化降低风险。</p>
+<p>用 slaveof  <ip><port></port></ip></p>
+<p>中途变更转向:会清除之前的数据，重新建立拷贝最新的</p>
+<p>风险是一旦某个slave宕机，后面的slave都没法备份</p>
+<p>主机挂了，从机还是从机，无法写数据了</p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cwps43.png" alt="img"> </p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cwps44.png" alt="img"> </p>
+<h4 id="反客为主"><a href="#反客为主" class="headerlink" title="反客为主"></a>反客为主</h4><p>当一个master宕机后，后面的slave可以立刻升为master，其后面的slave不用做任何修改。</p>
+<p>用 slaveof  no one  将从机变为主机。</p>
+<p><img src="/2022/09/25/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BB%A5%E5%8F%8A%E9%9B%86%E7%BE%A4%5Cwps45.png" alt="img"> </p>
+<h4 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h4><ul>
+<li><p>Slave启动成功连接到master后会发送一个sync命令</p>
+</li>
+<li><p>Master接到命令启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令， 在后台进程执行完毕之后，master将传送整个数据文件到slave,以完成一次完全同步</p>
+</li>
+<li><p>全量复制：而slave服务在接收到数据库文件数据后，将其存盘并加载到内存中。</p>
+</li>
+<li><p>增量复制：Master继续将新的所有收集到的修改命令依次传给slave,完成同步</p>
+</li>
+<li><p>但是只要是重新连接master,一次完全同步（全量复制)将被自动执行</p>
+</li>
+</ul>
+<p><img src alt="img"> </p>
+<h1 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h1><h3 id="概括-1"><a href="#概括-1" class="headerlink" title="概括"></a>概括</h3><p>****反客为主的自动版****，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h3 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h3><h3 id="主从复制-1"><a href="#主从复制-1" class="headerlink" title="主从复制"></a>主从复制</h3><h1 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h1><h3 id="概括-2"><a href="#概括-2" class="headerlink" title="概括"></a>概括</h3><h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><h3 id="故障恢复-1"><a href="#故障恢复-1" class="headerlink" title="故障恢复"></a>故障恢复</h3><h3 id="主从复制-2"><a href="#主从复制-2" class="headerlink" title="主从复制"></a>主从复制</h3>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">#蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/redis6/">#redis6</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">#主从复制</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/redis%E9%9B%86%E7%BE%A4/">#redis集群</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/09/25/redis6%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E6%96%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">redis6配置以及新数据类型</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/25/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">redis分布式锁</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E6%8B%AC"><span class="nav-number">1.1.</span> <span class="nav-text">概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E5%A4%9A%E4%B8%AAredis-conf%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">拷贝多个redis.conf文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E4%BB%8E%E5%BA%93"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">配从库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%8C%82%E6%8E%89"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">如果挂掉</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E4%B8%89%E7%82%B9%E4%BB%A5%E5%8F%8A%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">常用三点以及复制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%86"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">一主二仆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%96%AA%E7%81%AB%E7%9B%B8%E4%BC%A0"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">薪火相传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%AE%A2%E4%B8%BA%E4%B8%BB"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">反客为主</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">复制原理</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">哨兵模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E6%8B%AC-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">概括</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">2.0.2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="nav-number">2.0.3.</span> <span class="nav-text">故障恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6-1"><span class="nav-number">2.0.4.</span> <span class="nav-text">主从复制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis%E9%9B%86%E7%BE%A4"><span class="nav-number">3.</span> <span class="nav-text">redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E6%8B%AC-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">概括</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D-1"><span class="nav-number">3.0.3.</span> <span class="nav-text">故障恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6-2"><span class="nav-number">3.0.4.</span> <span class="nav-text">主从复制</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

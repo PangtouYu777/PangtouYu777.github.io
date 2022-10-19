@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            servlet概括 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">servlet概括</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-07-08 08:09:29</span>
+        <span class="mobile">2022-07-08 08:09</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/servlet/">servlet</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="servlet的生命周期？"><a href="#servlet的生命周期？" class="headerlink" title="servlet的生命周期？"></a>servlet的生命周期？</h3><h4 id="三个生命周期方法："><a href="#三个生命周期方法：" class="headerlink" title="三个生命周期方法："></a>三个生命周期方法：</h4><p>init()：初始化方法<br>service()：执行方法<br>destroy()：销毁方法</p>
+<p>1.当我们通过浏览器第一次访问一个servlet的时候，servlet对象会被创建，<br>    随后会执行init方法，随后会执行service方法</p>
+<p>2.当我们通过浏览器重复的访问同一个servlet的时候，servlet对象不会再创建，也不会再执行in法，<br>    但是会执行service方法</p>
+<p>3.当我们正常的关闭服务器，就会执行destroy方法</p>
+<h4 id="如何将Servlet对象的创建提前呢？"><a href="#如何将Servlet对象的创建提前呢？" class="headerlink" title="如何将Servlet对象的创建提前呢？"></a>如何将Servlet对象的创建提前呢？</h4><p>需要配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">	&lt;servlet-name&gt;servletDemo02&lt;/servlet-name&gt;</span><br><span class="line">	&lt;servlet-class&gt;com.servlet.ServletDemo02&lt;/servlet-class&gt;</span><br><span class="line">	&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>注意：load-on-startup的默认值为-1，也就说当我们第一次访问servlet的时候才会创建对象，调用init方法<br>      数字用来给多个servlet的创建时机排序的</p>
+<h3 id="servlet的参数配置？"><a href="#servlet的参数配置？" class="headerlink" title="servlet的参数配置？"></a>servlet的参数配置？</h3><p>等第三阶段学习三大框架整合的时候会用上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">	&lt;servlet-name&gt;servletDemo04&lt;/servlet-name&gt;</span><br><span class="line">	&lt;servlet-class&gt;com.servlet.ServletDemo04&lt;/servlet-class&gt;</span><br><span class="line">	&lt;init-param&gt;</span><br><span class="line">		&lt;param-name&gt;name&lt;/param-name&gt;</span><br><span class="line">		&lt;param-value&gt;tom&lt;/param-value&gt;</span><br><span class="line">	&lt;/init-param&gt;</span><br><span class="line">	&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void init(ServletConfig config) throws ServletException &#123;</span><br><span class="line">	//获取到xml中配置的参数的数据</span><br><span class="line">			</span><br><span class="line">	String value = config.getInitParameter(&quot;name&quot;);</span><br><span class="line">	System.out.println(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="servlet的注解配置"><a href="#servlet的注解配置" class="headerlink" title="servlet的注解配置"></a>servlet的注解配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//@WebServlet(urlPatterns= &#123;&quot;/servletDemo05&quot;&#125;)</span><br><span class="line">//@WebServlet(urlPatterns = &quot;/servletDemo05&quot;)</span><br><span class="line">//@WebServlet(value = &quot;/servletDemo05&quot;)</span><br><span class="line">@WebServlet(&quot;/servletDemo05&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="servlet的体系结构"><a href="#servlet的体系结构" class="headerlink" title="servlet的体系结构"></a>servlet的体系结构</h3><h4 id="通用接口"><a href="#通用接口" class="headerlink" title="通用接口"></a>通用接口</h4><p>javax.servlet.Servlet 接口    通用的servlet接口<br>    – javax.servlet.GenericServlet 抽象类    通用的servlet实现类<br>        – javax.servlet.http.HttpServlet 抽象类    具体的实现类(针对http协议的servlet实现类)        –javax.servlet.ftp.FtpServlet<br>        – javax.servlet.ppp.PPPServlet</p>
+<h4 id="适配器设计模式"><a href="#适配器设计模式" class="headerlink" title="适配器设计模式"></a>适配器设计模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">interface A&#123;</span><br><span class="line">    public void aaaa();</span><br><span class="line">    public void bbbb();</span><br><span class="line">    public void cccc();</span><br><span class="line">    public void dddd();</span><br><span class="line">    public void eeee();                                                           </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//类B充当了适配器</span><br><span class="line">abstract class B interface A&#123;</span><br><span class="line">//抽象类中不一定有抽象方法，有抽象方法的一定是抽象类</span><br><span class="line">    @Override</span><br><span class="line">    public void aaa()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    @Override</span><br><span class="line">    public void eeee()&#123;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C extends B&#123;</span><br><span class="line">	//这样方法C就不用重写A中的所有方法</span><br><span class="line">	public void bbb()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="IO流底层的设计模式"><a href="#IO流底层的设计模式" class="headerlink" title="IO流底层的设计模式"></a>IO流底层的设计模式</h4><pre><code>装饰设计模式
+适配器设计模式
+</code></pre>
+<h3 id="servlet的实现方式？"><a href="#servlet的实现方式？" class="headerlink" title="servlet的实现方式？"></a>servlet的实现方式？</h3><h4 id="方式一：实现Servlet接口"><a href="#方式一：实现Servlet接口" class="headerlink" title="方式一：实现Servlet接口"></a>方式一：实现Servlet接口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class ServletDemo1 implements Servlet &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方式二：继承GenericServlet"><a href="#方式二：继承GenericServlet" class="headerlink" title="方式二：继承GenericServlet"></a>方式二：继承GenericServlet</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class ServletDemo02 extends GenericServlet &#123;</span><br><span class="line">			</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方式三：继承HttpServlet"><a href="#方式三：继承HttpServlet" class="headerlink" title="方式三：继承HttpServlet"></a>方式三：继承HttpServlet</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class ServletDemo03 extends HttpServlet &#123;</span><br><span class="line">			</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">注意：重写doGet()和doPost()</span><br></pre></td></tr></table></figure>
+
+<h3 id="servlet的url-pattern的配置？"><a href="#servlet的url-pattern的配置？" class="headerlink" title="servlet的url-pattern的配置？"></a>servlet的url-pattern的配置？</h3><pre><code>    @WebServlet(&quot;路径&quot;)
+
+    路径的写法有哪些？
+        1. /XXX
+            @WebServlet(&quot;/servletDemo1&quot;)
+            @WebServlet(&quot;/aaa&quot;)
+            
+        2. /XXX/OOO
+            @WebServlet(&quot;/aaa/servletDemo08&quot;)
+            @WebServlet(&quot;/aaa/bbb&quot;)
+            @WebServlet(&quot;/aaa/bbb/*&quot;)
+            
+        3. *.do
+            @WebServlet(&quot;*.do&quot;)
+            @WebServlet(&quot;*.aaa&quot;)
+            
+    注意：
+        1. /*.do
+            /和*.do是不能写在一起的
+            
+        2. /*/servletDemo08
+            此时的*不是通配符
+        
+        3. /
+</code></pre>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/servlet/">#servlet</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/07/11/springboot%E6%A6%82%E6%8B%AC/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">springboot概括</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/07/02/springmvc%E6%A6%82%E6%8B%AC/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">springmvc概括</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">servlet的生命周期？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">三个生命周期方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Servlet%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%8F%90%E5%89%8D%E5%91%A2%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">如何将Servlet对象的创建提前呢？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">servlet的参数配置？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">servlet的注解配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">servlet的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.1.</span> <span class="nav-text">通用接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">适配器设计模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IO%E6%B5%81%E5%BA%95%E5%B1%82%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">IO流底层的设计模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">servlet的实现方式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3"><span class="nav-number">5.1.</span> <span class="nav-text">方式一：实现Servlet接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E7%BB%A7%E6%89%BFGenericServlet"><span class="nav-number">5.2.</span> <span class="nav-text">方式二：继承GenericServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E7%BB%A7%E6%89%BFHttpServlet"><span class="nav-number">5.3.</span> <span class="nav-text">方式三：继承HttpServlet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet%E7%9A%84url-pattern%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">servlet的url-pattern的配置？</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

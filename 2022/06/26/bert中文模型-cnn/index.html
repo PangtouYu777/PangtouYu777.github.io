@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            bert中文模型-cnn |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">bert中文模型-cnn</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-26 15:44:13</span>
+        <span class="mobile">2022-06-26 15:44</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/bert-base-chinese/">bert-base-chinese</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86CBLUE/">医疗信息处理评测基准CBLUE</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%A0%87%E9%A2%98%E7%9B%B8%E5%85%B3%E6%80%A7/">页面标题相关性</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/nlp/">nlp</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="任务介绍"><a href="#任务介绍" class="headerlink" title="任务介绍"></a>任务介绍</h2><p>本次课程设计任务选择的是中文医疗信息处理挑战榜CBLUE(Chinese Biomedical Language Understanding<br>Evaluation)中的医疗搜索查询词-页面标题相关性（KUAKE-QTR）。在医疗搜索中，评估搜索词(Query)表述主题和落地页标题(Title)表述主题的匹配程度，将Query和Title的相关度共分为4档（0-3），0分为最<br>差，3分为匹配最好。Query的主题是指query的专注点,用户在输入query是希望找到与query主题相关的网页<br>。该任务需要判断Query主题和Title主题是否一致及达到多大程度上的一致</p>
+<p><img src="https://tianchi.aliyun.com/dataset/dataDetail?spm=5176.22060218.J_2657303350.1.70e81343Rizg2Z&dataId=95414" alt="官网地址"></p>
+<h2 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h2><p>Query和Title的相关度共分为3档（0-2），0分为相关性最差，2分表示相关性最好。<br>2分：表示A与B等价，表述完全一致。<br>1分： B为A的语义子集，B指代范围小于A。<br>0分：B为A的语义父集，B指代范围大于A； 或者A与B语义毫无关联。</p>
+<p>评测数据：<br>本评测开放训练集数据24174条，验证集数据2913条，测试集数据5465条。<br>数据集名称为：KUAKE-QTR(KUAKE - Query Title Relevance dataset)。<br>数据集下载文件为：KUAKE-QTR.zip, 包括：</p>
+<p>KUAKE-QTR_train.json: 训练集<br>KUAKE-QTR_dev.json: 验证集<br>KUAKE-QTR_test.json: 测试集，选手提交的时候需要为每条记录增加“label”字段<br>example_gold.json: 标准答案示例<br>example_pred.json: 提交结果示例<br>README.txt: 说明文件</p>
+<h2 id="知识点介绍"><a href="#知识点介绍" class="headerlink" title="知识点介绍"></a>知识点介绍</h2><h3 id="Hamingface"><a href="#Hamingface" class="headerlink" title="Hamingface"></a>Hamingface</h3><p><img src="https://huggingface.co/" alt="官网链接"><br>Hugging Face起初是一家总部位于纽约的聊天机器人初创服务商，经过不断发展成为了专注<br>于NLP技术的大型开源社区。尤其是在github上开源的自然语言处理，预训练模型库 Transformers，已被下载超过百万次。我们此次使用的bert预训练模型也在其中。</p>
+<h3 id="bert中文模型"><a href="#bert中文模型" class="headerlink" title="bert中文模型"></a>bert中文模型</h3><p>bert是谷歌公司发布的预训练模型，在机器阅读理解顶级水平测试SQuAD1.1中表现出惊人的成绩，<br>后来又延伸出许多变种，其中bert中文模型就是其中一种。</p>
+<h2 id="模型构建"><a href="#模型构建" class="headerlink" title="模型构建"></a>模型构建</h2><p>预训练模型基于transformers库使用，<br>通过Models - Hugging Face 下载bert-base-chinese的预训练模型，将模型下载至本地。通过be<br>rt-base-chinese自带的分词工具包训练词向量。后来使用pytorch深度学习框架构建神经网络，经<br>过尝试发现两层卷积配合三层全连接层效果最好</p>
+<h3 id="huggingface中下载"><a href="#huggingface中下载" class="headerlink" title="huggingface中下载"></a>huggingface中下载</h3><p><img src="https://huggingface.co/bert-base-chinese/tree/main" alt="网站里面">下这三个<img src="/2022/06/26/bert%E4%B8%AD%E6%96%87%E6%A8%A1%E5%9E%8B-cnn/1.png"></p>
+<h3 id="定义数据集"><a href="#定义数据集" class="headerlink" title="定义数据集"></a>定义数据集</h3><p>因为要使用torch的数据加载器，所以需要定义数据集，及把数据定义在类中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#定义数据集</span><br><span class="line">class Dataset(torch.utils.data.Dataset):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        path=&#x27;KUAKE-QTR/KUAKE-QTR_train.json&#x27;</span><br><span class="line">        f=open(path,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line">        dataset=json.load(f)</span><br><span class="line">        </span><br><span class="line">        self.dataset = dataset</span><br><span class="line">        </span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.dataset)</span><br><span class="line"></span><br><span class="line">    def __getitem__(self, i):</span><br><span class="line">        query = self.dataset[i][&#x27;query&#x27;]</span><br><span class="line">        title = self.dataset[i][&#x27;title&#x27;]</span><br><span class="line">        label = int(self.dataset[i][&#x27;label&#x27;])</span><br><span class="line"></span><br><span class="line">        return query, title, label</span><br><span class="line">dataset = Dataset()</span><br><span class="line">sentence1, sentence2, label = dataset[0]     </span><br><span class="line">len(dataset), sentence1, sentence2, label</span><br></pre></td></tr></table></figure>
+<h3 id="加载分词工具"><a href="#加载分词工具" class="headerlink" title="加载分词工具"></a>加载分词工具</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#加载分词工具</span><br><span class="line">token = BertTokenizer.from_pretrained(&#x27;bert-base-chinese/vocab.txt&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="模型试算"><a href="#模型试算" class="headerlink" title="模型试算"></a>模型试算</h3><p>试算查看维度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#加载预训练模型</span><br><span class="line">pretrained = BertModel.from_pretrained(&#x27;bert-base-chinese&#x27;)</span><br><span class="line"># print(pretrained)</span><br><span class="line"></span><br><span class="line">#不训练,不需要计算梯度</span><br><span class="line">for param in pretrained.parameters():</span><br><span class="line">    param.requires_grad_(False)</span><br><span class="line"></span><br><span class="line">#模型试算</span><br><span class="line">last_hidden_state, pooler_output, all_hidden_states = pretrained(</span><br><span class="line">           input_ids=input_ids,</span><br><span class="line">           attention_mask=attention_mask,</span><br><span class="line">           token_type_ids=token_type_ids,</span><br><span class="line">           output_hidden_states= True)</span><br></pre></td></tr></table></figure>
+<h3 id="定义下游任务模型"><a href="#定义下游任务模型" class="headerlink" title="定义下游任务模型"></a>定义下游任务模型</h3><p>下游定义两个卷积层，三个线性层</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Model(torch.nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super().__init__()</span><br><span class="line">        layer1 = nn.Sequential()       #input 16,  768,40    batchsize:16,词向量：768  每句话字数：40</span><br><span class="line">        layer1.add_module(&#x27;conv1&#x27;,nn.Conv1d(768,128,4,2,padding=1))#16,128,20</span><br><span class="line">        layer1.add_module(&#x27;relu1&#x27;,nn.ReLU())</span><br><span class="line">        layer1.add_module(&#x27;pool1&#x27;,nn.MaxPool1d(2,1)) #16,128,19</span><br><span class="line">        self.layer1 = layer1</span><br><span class="line">        </span><br><span class="line">        layer2 = nn.Sequential()       #input 16,128,19</span><br><span class="line">        layer2.add_module(&#x27;conv2&#x27;,nn.Conv1d(128,32,4,1,padding=0))#16,32,16</span><br><span class="line">        layer2.add_module(&#x27;relu2&#x27;,nn.ReLU())</span><br><span class="line">        layer2.add_module(&#x27;pool2&#x27;,nn.MaxPool1d(2,1)) #16,32,15</span><br><span class="line">        self.layer2=layer2</span><br><span class="line">        </span><br><span class="line">        layer4=nn.Sequential()</span><br><span class="line">        layer4.add_module(&#x27;fc1&#x27;,nn.Linear(480,160))   #7680  1920</span><br><span class="line">        layer4.add_module(&#x27;fc_relu1&#x27;,nn.ReLU())</span><br><span class="line">        layer4.add_module(&#x27;fc2&#x27;,nn.Linear(160,40))</span><br><span class="line">        layer4.add_module(&#x27;fc_relu2&#x27;,nn.ReLU())</span><br><span class="line">        layer4.add_module(&#x27;fc3&#x27;,nn.Linear(40,4))</span><br><span class="line">        self.layer4 = layer4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def forward(self, input_ids, attention_mask, token_type_ids):</span><br><span class="line">        with torch.no_grad():</span><br><span class="line">            last_hidden_state, pooler_output, all_hidden_states = pretrained(input_ids=input_ids,</span><br><span class="line">                             attention_mask=attention_mask,</span><br><span class="line">                             token_type_ids=token_type_ids,</span><br><span class="line">                             output_hidden_states= True)</span><br><span class="line">        conv1 = self.layer1(last_hidden_state.permute(0,2,1))</span><br><span class="line">        conv2 = self.layer2(conv1)</span><br><span class="line">        fc_input = conv2.view(conv2.size()[0],-1)       #转为一维向量形式</span><br><span class="line">        fc_out = self.layer4(fc_input)</span><br><span class="line">        fc_out=fc_out.softmax(dim=1)      #归一化函数</span><br><span class="line">        return fc_out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = Model()</span><br></pre></td></tr></table></figure>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><h3 id="训练代码"><a href="#训练代码" class="headerlink" title="训练代码"></a>训练代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import json</span><br><span class="line">from transformers import BertTokenizer      #字典和分词工具</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">#定义数据集</span><br><span class="line">class Dataset(torch.utils.data.Dataset):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        path=&#x27;KUAKE-QTR/KUAKE-QTR_train.json&#x27;</span><br><span class="line">        f=open(path,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line">        dataset=json.load(f)</span><br><span class="line">        </span><br><span class="line">        self.dataset = dataset</span><br><span class="line">        </span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.dataset)</span><br><span class="line"></span><br><span class="line">    def __getitem__(self, i):</span><br><span class="line">        query = self.dataset[i][&#x27;query&#x27;]</span><br><span class="line">        title = self.dataset[i][&#x27;title&#x27;]</span><br><span class="line">        label = int(self.dataset[i][&#x27;label&#x27;])</span><br><span class="line"></span><br><span class="line">        return query, title, label</span><br><span class="line">dataset = Dataset()</span><br><span class="line">sentence1, sentence2, label = dataset[0]   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#加载分词工具</span><br><span class="line">token = BertTokenizer.from_pretrained(&#x27;bert-base-chinese/vocab.txt&#x27;)</span><br><span class="line"></span><br><span class="line">def collate_fn(data):</span><br><span class="line">    sents=[i[:2] for i in data]                #两句话</span><br><span class="line">    labels=[i[2] for i in data]                #编码</span><br><span class="line">    </span><br><span class="line">    #编码</span><br><span class="line">    data=token.batch_encode_plus(batch_text_or_text_pairs=sents,</span><br><span class="line">                            truncation=True,</span><br><span class="line">                            padding=&#x27;max_length&#x27;,</span><br><span class="line">                            max_length=40,</span><br><span class="line">                            return_tensors=&#x27;pt&#x27;,</span><br><span class="line">                            return_length=True,</span><br><span class="line">                            add_special_tokens=True)</span><br><span class="line">    </span><br><span class="line">    #input_ids:编码之后的数字</span><br><span class="line">    #attention_mask:是补零的位置是0,其他位置是1</span><br><span class="line">    #token_type_ids:第一个句子和特殊符号的位置是0,第二个句子的位置是1</span><br><span class="line">    </span><br><span class="line">    input_ids=data[&#x27;input_ids&#x27;]</span><br><span class="line">    attention_mask=data[&#x27;attention_mask&#x27;]</span><br><span class="line">    token_type_ids=data[&#x27;token_type_ids&#x27;]</span><br><span class="line">    labels=torch.LongTensor(labels)</span><br><span class="line">    </span><br><span class="line">    return input_ids, attention_mask, token_type_ids, labels</span><br><span class="line">    </span><br><span class="line">#数据加载器</span><br><span class="line">loader=torch.utils.data.DataLoader(dataset=dataset,</span><br><span class="line">                                  batch_size=16,</span><br><span class="line">                                  collate_fn=collate_fn,</span><br><span class="line">                                  shuffle=True,</span><br><span class="line">                                  drop_last=True)</span><br><span class="line"></span><br><span class="line">for i, (input_ids,attention_mask,token_type_ids,</span><br><span class="line">        labels) in enumerate(loader):</span><br><span class="line">    break</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">from transformers import BertModel</span><br><span class="line"></span><br><span class="line">#加载预训练模型</span><br><span class="line">pretrained = BertModel.from_pretrained(&#x27;bert-base-chinese&#x27;)</span><br><span class="line"># print(pretrained)</span><br><span class="line"></span><br><span class="line">#不训练,不需要计算梯度</span><br><span class="line">for param in pretrained.parameters():</span><br><span class="line">    param.requires_grad_(False)</span><br><span class="line"></span><br><span class="line">#模型试算</span><br><span class="line">last_hidden_state, pooler_output, all_hidden_states = pretrained(</span><br><span class="line">           input_ids=input_ids,</span><br><span class="line">           attention_mask=attention_mask,</span><br><span class="line">           token_type_ids=token_type_ids,</span><br><span class="line">           output_hidden_states= True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(last_hidden_state.shape)            #batch_size:16   最大句子长度：40  词向量：768</span><br><span class="line"></span><br><span class="line">out=last_hidden_state[:, 0].reshape(16,768,1)    #调换维度进入tensor中</span><br><span class="line">print(out.shape)                #tensor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#定义下游任务模型</span><br><span class="line">class Model(torch.nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super().__init__()</span><br><span class="line">        layer1 = nn.Sequential()       #input 16,  768,40</span><br><span class="line">        layer1.add_module(&#x27;conv1&#x27;,nn.Conv1d(768,128,4,2,padding=1))#16,128,20</span><br><span class="line">        layer1.add_module(&#x27;relu1&#x27;,nn.ReLU())</span><br><span class="line">        layer1.add_module(&#x27;pool1&#x27;,nn.MaxPool1d(2,1)) #16,128,19</span><br><span class="line">        self.layer1 = layer1</span><br><span class="line">        </span><br><span class="line">        layer2 = nn.Sequential()       #input 16,128,19</span><br><span class="line">        layer2.add_module(&#x27;conv2&#x27;,nn.Conv1d(128,32,4,1,padding=0))#16,32,16</span><br><span class="line">        layer2.add_module(&#x27;relu2&#x27;,nn.ReLU())</span><br><span class="line">        layer2.add_module(&#x27;pool2&#x27;,nn.MaxPool1d(2,1)) #16,32,15</span><br><span class="line">        self.layer2=layer2</span><br><span class="line">        </span><br><span class="line">        layer4=nn.Sequential()</span><br><span class="line">        layer4.add_module(&#x27;fc1&#x27;,nn.Linear(480,160))   #7680  1920</span><br><span class="line">        layer4.add_module(&#x27;fc_relu1&#x27;,nn.ReLU())</span><br><span class="line">        layer4.add_module(&#x27;fc2&#x27;,nn.Linear(160,40))</span><br><span class="line">        layer4.add_module(&#x27;fc_relu2&#x27;,nn.ReLU())</span><br><span class="line">        layer4.add_module(&#x27;fc3&#x27;,nn.Linear(40,4))</span><br><span class="line">        self.layer4 = layer4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#         self.fc = torch.nn.Linear(768, 4)</span><br><span class="line"></span><br><span class="line">    def forward(self, input_ids, attention_mask, token_type_ids):</span><br><span class="line">        with torch.no_grad():</span><br><span class="line">            last_hidden_state, pooler_output, all_hidden_states = pretrained(input_ids=input_ids,</span><br><span class="line">                             attention_mask=attention_mask,</span><br><span class="line">                             token_type_ids=token_type_ids,</span><br><span class="line">                             output_hidden_states= True)</span><br><span class="line">#         last_hidden_state= (last_hidden_state[:, 0]).reshape(16,768,1)</span><br><span class="line">        conv1 = self.layer1(last_hidden_state.permute(0,2,1))</span><br><span class="line">#         out = out.softmax(dim=1) </span><br><span class="line">#         conv1 = self.layer1(last_hidden_state.permute(0,2,1))</span><br><span class="line">        conv2 = self.layer2(conv1)</span><br><span class="line">#         fc_input = conv2.view(-1)</span><br><span class="line">#         fc_input = conv2.view(1,7680)</span><br><span class="line">#conv2.size()[0]</span><br><span class="line">        fc_input = conv2.view(conv2.size()[0],-1)       #转为一维向量形式</span><br><span class="line">#         fc_input = conv2.view(-1，7680)</span><br><span class="line">        fc_out = self.layer4(fc_input)</span><br><span class="line">        fc_out=fc_out.softmax(dim=1)      #归一化函数</span><br><span class="line">        return fc_out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = Model()</span><br><span class="line"></span><br><span class="line">model(input_ids=input_ids,</span><br><span class="line">      attention_mask=attention_mask,</span><br><span class="line">      token_type_ids=token_type_ids).shape</span><br><span class="line">print(model)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">from transformers import AdamW</span><br><span class="line"></span><br><span class="line">#训练</span><br><span class="line">optimizer = AdamW(model.parameters(), lr=5e-4)        #自适应梯度方法</span><br><span class="line">criterion = torch.nn.CrossEntropyLoss()       #</span><br><span class="line"></span><br><span class="line">model.train()</span><br><span class="line">for epoch in range(5):</span><br><span class="line">    for i, (input_ids, attention_mask, token_type_ids,</span><br><span class="line">        labels) in enumerate(loader):</span><br><span class="line">        out = model(input_ids=input_ids,</span><br><span class="line">                    attention_mask=attention_mask,</span><br><span class="line">                    token_type_ids=token_type_ids)</span><br><span class="line"></span><br><span class="line">        loss = criterion(out, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">        if i % 100 == 0:</span><br><span class="line">            out = out.argmax(dim=1)</span><br><span class="line">            accuracy = (out == labels).sum().item() / len(labels)</span><br><span class="line">            print(i, loss.item(), accuracy)</span><br><span class="line"></span><br><span class="line">        if i == 1510:</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">class DatasetTest(torch.utils.data.Dataset):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        path=&#x27;KUAKE-QTR/KUAKE-QTR_dev.json&#x27;</span><br><span class="line">        f=open(path,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line">        dataset=json.load(f)</span><br><span class="line">        </span><br><span class="line">        self.dataset = dataset</span><br><span class="line">        </span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.dataset)</span><br><span class="line"></span><br><span class="line">    def __getitem__(self, i):</span><br><span class="line">        query = self.dataset[i][&#x27;query&#x27;]</span><br><span class="line">        title = self.dataset[i][&#x27;title&#x27;]</span><br><span class="line">        label = int(self.dataset[i][&#x27;label&#x27;])</span><br><span class="line"></span><br><span class="line">        return query, title, label</span><br><span class="line">#测试</span><br><span class="line">def test():</span><br><span class="line">    model.eval()</span><br><span class="line">    correct = 0</span><br><span class="line">    total = 0</span><br><span class="line"></span><br><span class="line">    loader_test = torch.utils.data.DataLoader(dataset=DatasetTest(),</span><br><span class="line">                                              batch_size=16,</span><br><span class="line">                                              collate_fn=collate_fn,</span><br><span class="line">                                              shuffle=True,</span><br><span class="line">                                              drop_last=True)</span><br><span class="line"></span><br><span class="line">    for i, (input_ids, attention_mask, token_type_ids,</span><br><span class="line">            labels) in enumerate(loader_test):</span><br><span class="line"></span><br><span class="line">        if i == 182:      #2913/16==182</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        with torch.no_grad():</span><br><span class="line">            out = model(input_ids=input_ids,</span><br><span class="line">                        attention_mask=attention_mask,</span><br><span class="line">                        token_type_ids=token_type_ids)</span><br><span class="line"></span><br><span class="line">        pred = out.argmax(dim=1)</span><br><span class="line"></span><br><span class="line">        correct += (pred == labels).sum().item()</span><br><span class="line">        total += len(labels)</span><br><span class="line"></span><br><span class="line">    print(correct / total)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">test()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 保存模型</span><br><span class="line">torch.save(model.state_dict(), &#x27;models/cnn21.pth&#x27;)</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/bert-base-chinese/">#bert-base-chinese</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86CBLUE/">#医疗信息处理评测基准CBLUE</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%A0%87%E9%A2%98%E7%9B%B8%E5%85%B3%E6%80%A7/">#页面标题相关性</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/nlp/">#nlp</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/07/01/Spring%E4%BA%8B%E5%8A%A1/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Spring事务</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/15/mybaits%E5%92%8Cspring%E9%9B%86%E6%88%90/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mybaits和spring集成</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">任务介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">知识点介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamingface"><span class="nav-number">3.1.</span> <span class="nav-text">Hamingface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bert%E4%B8%AD%E6%96%87%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">bert中文模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA"><span class="nav-number">4.</span> <span class="nav-text">模型构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#huggingface%E4%B8%AD%E4%B8%8B%E8%BD%BD"><span class="nav-number">4.1.</span> <span class="nav-text">huggingface中下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">4.2.</span> <span class="nav-text">定义数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%88%86%E8%AF%8D%E5%B7%A5%E5%85%B7"><span class="nav-number">4.3.</span> <span class="nav-text">加载分词工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%95%E7%AE%97"><span class="nav-number">4.4.</span> <span class="nav-text">模型试算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.5.</span> <span class="nav-text">定义下游任务模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">完整代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E4%BB%A3%E7%A0%81"><span class="nav-number">5.1.</span> <span class="nav-text">训练代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-number">5.2.</span> <span class="nav-text">测试代码</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            springboot日志配置 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">springboot日志配置</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-07-11 11:09:19</span>
+        <span class="mobile">2022-07-11 11:09</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/springboot/">springboot</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%97%A5%E5%BF%97/">日志</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="SpringBoot日志配置"><a href="#SpringBoot日志配置" class="headerlink" title="SpringBoot日志配置"></a>SpringBoot日志配置</h2><blockquote>
+<p>记录应用系统曰志主要有三个原因 记录操作轨迹、监控系统运行状况、回溯系统故障。<br>​当系统发生线上问题时，完整的现场日志有助于工程师快速定位问题。</p>
+</blockquote>
+<h3 id="日志规范"><a href="#日志规范" class="headerlink" title="日志规范"></a>日志规范</h3><blockquote>
+<p>推荐的日志文件命名方式为appName_logType_logName.log 其中 logType为日志类型，推荐分类有 stats monitor visit等， logName 为日志描述。这种命名的好处是通过文件名就可以知道曰志文件属于什么应用，什么类型 ，什么目的，也有利于归类查找。例如， mppserver 应用中单独监控时区转换异常的日志文件名定义为mppserver__monitor_timeZoneConvert.log</p>
+</blockquote>
+<h3 id="避免无效日志打印"><a href="#避免无效日志打印" class="headerlink" title="避免无效日志打印"></a>避免无效日志打印</h3><blockquote>
+<p>生产环境禁止输出 DEBUG 曰志且有选择地输出 INFO日志。使用 INFO、WARN 级别来记录业务行为信息时，一定要控制日志输出量，以免磁盘空间不足。同时要为曰志文件设置合理的生命周期及时清理过期的日志。避免重复打印，务必在日志配置文件中设置 <strong>additivity=false</strong></p>
+</blockquote>
+<h3 id="日志框架分类与选择"><a href="#日志框架分类与选择" class="headerlink" title="日志框架分类与选择"></a>日志框架分类与选择</h3><table>
+<thead>
+<tr>
+<th align="left">日志门面(日志的抽象层)</th>
+<th align="left">日志实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">JCL(Jakarta Commons Logging)（2014年后不再维护） jboss-logging （不适合企业项目开发使用） SLF4J(Simple Logging Facade for java)</td>
+<td align="left">Log4j JUL(java.util.logging)（java.util.logging)(担心被抢市场,推出的) Log4j2( apache开发的很强大,借了log4j的名,但很多框架未适配上) Logback(<strong>Log4j</strong>同一个人开发的新框架,做了重大升级)</td>
+</tr>
+</tbody></table>
+<p>[<img src="/2022/07/11/springboot%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/springboot%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%5C20210430101041.png" alt="UfczRg.png"></p>
+<h3 id="日志门面"><a href="#日志门面" class="headerlink" title="日志门面"></a>日志门面</h3><blockquote>
+<p> 门面设计模式是面向对象设计模式中的一种，日志框架采用的就是这种模式，类似JDBC 的设计理念。它只提供一套接口规范，自身不负责日志功能的实现。目的是让使用者不需要关注底层具体是哪个日志库来负责日志打印及具体的使用细节等。目前用得最为广泛的曰志门面有两种 slf4j和commons -logging</p>
+</blockquote>
+<h3 id="日志库"><a href="#日志库" class="headerlink" title="日志库"></a>日志库</h3><blockquote>
+<p> 负责实现日志相关功能，主流日志库有三个，分别为：log4j、log-jdk（java.util.logging.Logger）、logback。logback是最晚出现的，与log4j同一个作者，是log4j的升级版且本身实现了slf4j的接口。</p>
+</blockquote>
+<h3 id="日志适配器"><a href="#日志适配器" class="headerlink" title="日志适配器"></a>日志适配器</h3><blockquote>
+<p> 分为：日志门面适配器（日志库适配slf4j），日志库适配器（slf4j适配日志库）。</p>
+</blockquote>
+<ul>
+<li><p>日志门面适配器</p>
+<blockquote>
+<p>老工程用的日志库没有实现slf4j接口，如log4j；这时候工程里想使用slf4j+log4j的模式，就额外需要一个适配器（slf4j+log4j12）来解决接口不兼容问题</p>
+</blockquote>
+</li>
+<li><p>日志库适配器</p>
+<blockquote>
+<p>老工程直接使用日志库API完成日志打印，要改成业界标准的门面模式（如slf4j+logback），但是老工程代码打印日志地方太多难以改动，这是就需要一个适配器来完成从旧日志库的API到slf4j的路由，这样在不改动原有代码的情况下也能使用slf4j来统一管理日志（如：log4j-over-slf4j），后续自由替换具体日志库也不成问题。</p>
+</blockquote>
+<blockquote>
+<p>Spring Boot 采用了 <strong>slf4j+logback</strong> 的组合形式，Spring Boot也提供对JUL、log4j2、Logback提供了默认配置</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="SpringBoot默认日志配置"><a href="#SpringBoot默认日志配置" class="headerlink" title="SpringBoot默认日志配置"></a>SpringBoot默认日志配置</h3><p>新建springboot项目，引入web启动项，其他默认即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package com.woniu.logdemo.controller;</span><br><span class="line"></span><br><span class="line">import org.slf4j.Logger;</span><br><span class="line">import org.slf4j.LoggerFactory;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Author: Panda</span><br><span class="line"> * @Date: 2020-07-17 10:16</span><br><span class="line"> * @Description:</span><br><span class="line"> */</span><br><span class="line">@RequestMapping</span><br><span class="line">@RestController</span><br><span class="line">public class LogController &#123;</span><br><span class="line">    </span><br><span class="line">    private static final Logger logger  = LoggerFactory.getLogger(LogController.class);</span><br><span class="line">    </span><br><span class="line">    @GetMapping(&quot;/log&quot;)</span><br><span class="line">    public String logTest1(String name) &#123;</span><br><span class="line">       // 由低到高：trace &lt; debug &lt; info &lt; warn &lt; error </span><br><span class="line">       //2. Spring Boot默认设定的是 info 级别日志，(日志默认级别也称为root级别)。可修改默认级别日志：logging.level.root=级别名 </span><br><span class="line">       //3. 可以进行调整日志级别，设定某个级别后，就只打印设定的这个级别及后面高级别的日志信息。没有指定级别的就用SpringBoot默认规定的级别：root级别 </span><br><span class="line">       //4. 可修改指定包的日志级别：指定某个包下面的所有日志级别：logging.level.包名=级别名</span><br><span class="line">        logger.info(&quot;------------info--------------&#123;&#125;&quot;,name);</span><br><span class="line">        logger.error(&quot;------------error--------------&#123;&#125;&quot;,name);</span><br><span class="line">        logger.debug(&quot;------------debug--------------&#123;&#125;&quot;,name);</span><br><span class="line">        logger.trace(&quot;------------trace--------------&#123;&#125;&quot;,name);</span><br><span class="line">        logger.warn(&quot;------------warn--------------&#123;&#125;&quot;,name);</span><br><span class="line">        return &quot;log test...&quot;+name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改日志默认配置"><a href="#修改日志默认配置" class="headerlink" title="修改日志默认配置"></a>修改日志默认配置</h3><table>
+<thead>
+<tr>
+<th align="left">logging.file.name</th>
+<th align="left">logging.file.path</th>
+<th align="left"><strong>示例</strong></th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>(none)</em></td>
+<td align="left"><em>(none)</em></td>
+<td align="left"></td>
+<td align="left">只在控制台输出</td>
+</tr>
+<tr>
+<td align="left">指定文件名</td>
+<td align="left"><em>(none)</em></td>
+<td align="left">demo.log</td>
+<td align="left">输出到当前项目根路径下的 demo.log 文件中</td>
+</tr>
+<tr>
+<td align="left"><em>(none)</em></td>
+<td align="left">指定目录</td>
+<td align="left">logs/log_woniu</td>
+<td align="left">输出到当前项目所在磁盘根路径下的/logs/log_woniu目录中的 <strong>spring.log</strong> 文件中</td>
+</tr>
+<tr>
+<td align="left">指定文件名</td>
+<td align="left">指定目录</td>
+<td align="left"></td>
+<td align="left">当两个同时指定时,采用的是logging.file.name 指定。推荐使用logging.file.name 设置即可，因为它可自定义文件名</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  file:</span><br><span class="line">    name: demo.log</span><br><span class="line">#    path: logs/log_woniu</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改日志输出格式"><a href="#修改日志输出格式" class="headerlink" title="修改日志输出格式"></a>修改日志输出格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  file:</span><br><span class="line">    name: demo.log</span><br><span class="line">  pattern:</span><br><span class="line">    console: &#x27;%clr(%d&#123;yyyy-MM-dd&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n)&#x27;</span><br><span class="line">    file: &#x27;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; &gt;&gt;&gt; [%thread] &gt;&gt;&gt; %-5level &gt;&gt;&gt; %logger&#123;50&#125; &gt;&gt;&gt; %msg%n&#x27;</span><br><span class="line">#    path: logs/log_woniu</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：如上，yml文件中首尾加上单引号可解决识别不了%的问题，properties不需要加</p>
+</blockquote>
+<h3 id="分析日志底层实现"><a href="#分析日志底层实现" class="headerlink" title="分析日志底层实现"></a>分析日志底层实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    &lt;dependency&gt; </span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; </span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; </span><br><span class="line">    &lt;/dependency&gt; </span><br><span class="line"></span><br><span class="line">spring-boot-starter-web 中引入了 spring-boot-starter 启动器 </span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.3.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">spring-boot-starter 中引入了 spring-boot-starter-logging 日志启动器 </span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;2.3.1.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">spring-boot-starter-logging 日志启动器 采用的是 logback 日志框架 </span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结：SpringBoot中默认日志启动器为 spring-boot-starter-logging ，默认采用的是 logback 日志框架</p>
+</blockquote>
+<blockquote>
+<p><strong>在</strong> <strong>spring-boot-2.3.1.RELEASE.jar! \org\springframework\boot\logging\logback\base.xml</strong> </p>
+</blockquote>
+<h3 id="自定义日志配置"><a href="#自定义日志配置" class="headerlink" title="自定义日志配置"></a>自定义日志配置</h3><p>自定义Logback日志配置</p>
+<blockquote>
+<p>在类路径下，存放对应日志框架的自定义配置文件即可；SpringBoot就不会使用它默认的日志配置文件了</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Logging System</strong></th>
+<th align="left"><strong>Customization</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Logback</td>
+<td align="left"><code>logback-spring.xml</code>, <code>logback-spring.groovy</code>, <code>logback.xml</code>, or <code>logback.groovy</code></td>
+</tr>
+<tr>
+<td align="left">Log4j2</td>
+<td align="left"><code>log4j2-spring.xml</code> or <code>log4j2.xml</code></td>
+</tr>
+<tr>
+<td align="left">JDK (Java Util Logging)</td>
+<td align="left"><code>logging.properties</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>logback.xml</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration debug=&quot;false&quot; scan=&quot;false&quot; scanPeriod=&quot;60 seconds&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;LOG_HOME&quot; value=&quot;./logs/logback&quot;/&gt;</span><br><span class="line">    &lt;property name=&quot;appName&quot; value=&quot;woniu-logDemo&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 定义控制台输出 --&gt;</span><br><span class="line">    &lt;appender name=&quot;stdout&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;</span><br><span class="line">        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;</span><br><span class="line">            &lt;pattern&gt;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; - [%thread] - %-5level - %logger&#123;50&#125; - %msg%n&lt;/pattern&gt;</span><br><span class="line">        &lt;/layout&gt;</span><br><span class="line">    &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appender name=&quot;appLogAppender&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">        &lt;!-- 指定日志文件的名称 --&gt;</span><br><span class="line">        &lt;file&gt;$&#123;LOG_HOME&#125;/$&#123;appName&#125;.log&lt;/file&gt;</span><br><span class="line"></span><br><span class="line">        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">            &lt;fileNamePattern&gt;$&#123;LOG_HOME&#125;/$&#123;appName&#125;-%d&#123;yyyy-MM-dd&#125;-%i.log&lt;/fileNamePattern&gt;</span><br><span class="line">            &lt;MaxHistory&gt;30&lt;/MaxHistory&gt;</span><br><span class="line">            &lt;timeBasedFileNamingAndTriggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&quot;&gt;</span><br><span class="line">                &lt;MaxFileSize&gt;10MB&lt;/MaxFileSize&gt;</span><br><span class="line">            &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;</span><br><span class="line">        &lt;/rollingPolicy&gt;</span><br><span class="line"></span><br><span class="line">        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;</span><br><span class="line">            &lt;pattern&gt;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [ %thread ] - [ %-5level ] [ %logger&#123;50&#125; : %line ] - %msg%n&lt;/pattern&gt;</span><br><span class="line">        &lt;/layout&gt;</span><br><span class="line">    &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;!-- 日志输出级别 --&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework&quot; level=&quot;debug&quot;  additivity=&quot;false&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.woniu.logdemo&quot; level=&quot;debug&quot;/&gt;</span><br><span class="line">    &lt;root level=&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref=&quot;stdout&quot;/&gt;</span><br><span class="line">        &lt;appender-ref ref=&quot;appLogAppender&quot;/&gt;</span><br><span class="line">    &lt;/root&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更换为log4j2日志实现"><a href="#更换为log4j2日志实现" class="headerlink" title="更换为log4j2日志实现"></a>更换为log4j2日志实现</h3><p>修改pom依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;exclusions&gt;&lt;!-- 去掉springboot默认配置 --&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">    &lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt; &lt;!-- 引入log4j2依赖 --&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-log4j2&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出--&gt;</span><br><span class="line">&lt;!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数--&gt;</span><br><span class="line">&lt;configuration monitorInterval=&quot;5&quot;&gt;</span><br><span class="line">    &lt;!--日志级别以及优先级排序: OFF &gt; FATAL &gt; ERROR &gt; WARN &gt; INFO &gt; DEBUG &gt; TRACE &gt; ALL --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--变量配置--&gt;</span><br><span class="line">    &lt;Properties&gt;</span><br><span class="line">        &lt;!-- 格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符--&gt;</span><br><span class="line">        &lt;!-- %logger&#123;36&#125; 表示 Logger 名字最长36个字符 --&gt;</span><br><span class="line">        &lt;property name=&quot;LOG_PATTERN&quot; value=&quot;%date&#123;HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;36&#125; - %msg%n&quot; /&gt;</span><br><span class="line">        &lt;!-- 定义日志存储的路径 --&gt;</span><br><span class="line">        &lt;property name=&quot;FILE_PATH&quot; value=&quot;./logs/log4j2&quot; /&gt;</span><br><span class="line">        &lt;property name=&quot;FILE_NAME&quot; value=&quot;woniu-log4j2-demo&quot; /&gt;</span><br><span class="line">    &lt;/Properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appenders&gt;</span><br><span class="line"></span><br><span class="line">        &lt;console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;</span><br><span class="line">            &lt;!--输出日志的格式--&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;$&#123;LOG_PATTERN&#125;&quot;/&gt;</span><br><span class="line">            &lt;!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span><br><span class="line">            &lt;ThresholdFilter level=&quot;info&quot; onMatch=&quot;ACCEPT&quot; onMismatch=&quot;DENY&quot;/&gt;</span><br><span class="line">        &lt;/console&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，适合临时测试用--&gt;</span><br><span class="line">        &lt;File name=&quot;Filelog&quot; fileName=&quot;$&#123;FILE_PATH&#125;/test.log&quot; append=&quot;false&quot;&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;$&#123;LOG_PATTERN&#125;&quot;/&gt;</span><br><span class="line">        &lt;/File&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档--&gt;</span><br><span class="line">        &lt;RollingFile name=&quot;RollingFileInfo&quot; fileName=&quot;$&#123;FILE_PATH&#125;/info.log&quot; filePattern=&quot;$&#123;FILE_PATH&#125;/$&#123;FILE_NAME&#125;-INFO-%d&#123;yyyy-MM-dd&#125;_%i.log.gz&quot;&gt;</span><br><span class="line">            &lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span><br><span class="line">            &lt;ThresholdFilter level=&quot;info&quot; onMatch=&quot;ACCEPT&quot; onMismatch=&quot;DENY&quot;/&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;$&#123;LOG_PATTERN&#125;&quot;/&gt;</span><br><span class="line">            &lt;Policies&gt;</span><br><span class="line">                &lt;!--interval属性用来指定多久滚动一次，默认是1 hour--&gt;</span><br><span class="line">                &lt;TimeBasedTriggeringPolicy interval=&quot;1&quot;/&gt;</span><br><span class="line">                &lt;SizeBasedTriggeringPolicy size=&quot;10MB&quot;/&gt;</span><br><span class="line">            &lt;/Policies&gt;</span><br><span class="line">            &lt;!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖--&gt;</span><br><span class="line">            &lt;DefaultRolloverStrategy max=&quot;15&quot;/&gt;</span><br><span class="line">        &lt;/RollingFile&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 这个会打印出所有的warn及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档--&gt;</span><br><span class="line">        &lt;RollingFile name=&quot;RollingFileWarn&quot; fileName=&quot;$&#123;FILE_PATH&#125;/warn.log&quot; filePattern=&quot;$&#123;FILE_PATH&#125;/$&#123;FILE_NAME&#125;-WARN-%d&#123;yyyy-MM-dd&#125;_%i.log.gz&quot;&gt;</span><br><span class="line">            &lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span><br><span class="line">            &lt;ThresholdFilter level=&quot;warn&quot; onMatch=&quot;ACCEPT&quot; onMismatch=&quot;DENY&quot;/&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;$&#123;LOG_PATTERN&#125;&quot;/&gt;</span><br><span class="line">            &lt;Policies&gt;</span><br><span class="line">                &lt;!--interval属性用来指定多久滚动一次，默认是1 hour--&gt;</span><br><span class="line">                &lt;TimeBasedTriggeringPolicy interval=&quot;1&quot;/&gt;</span><br><span class="line">                &lt;SizeBasedTriggeringPolicy size=&quot;10MB&quot;/&gt;</span><br><span class="line">            &lt;/Policies&gt;</span><br><span class="line">            &lt;!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖--&gt;</span><br><span class="line">            &lt;DefaultRolloverStrategy max=&quot;15&quot;/&gt;</span><br><span class="line">        &lt;/RollingFile&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 这个会打印出所有的error及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档--&gt;</span><br><span class="line">        &lt;RollingFile name=&quot;RollingFileError&quot; fileName=&quot;$&#123;FILE_PATH&#125;/error.log&quot; filePattern=&quot;$&#123;FILE_PATH&#125;/$&#123;FILE_NAME&#125;-ERROR-%d&#123;yyyy-MM-dd&#125;_%i.log.gz&quot;&gt;</span><br><span class="line">            &lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span><br><span class="line">            &lt;ThresholdFilter level=&quot;error&quot; onMatch=&quot;ACCEPT&quot; onMismatch=&quot;DENY&quot;/&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;$&#123;LOG_PATTERN&#125;&quot;/&gt;</span><br><span class="line">            &lt;Policies&gt;</span><br><span class="line">                &lt;!--interval属性用来指定多久滚动一次，默认是1 hour--&gt;</span><br><span class="line">                &lt;TimeBasedTriggeringPolicy interval=&quot;1&quot;/&gt;</span><br><span class="line">                &lt;SizeBasedTriggeringPolicy size=&quot;10MB&quot;/&gt;</span><br><span class="line">            &lt;/Policies&gt;</span><br><span class="line">            &lt;!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖--&gt;</span><br><span class="line">            &lt;DefaultRolloverStrategy max=&quot;15&quot;/&gt;</span><br><span class="line">        &lt;/RollingFile&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/appenders&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。--&gt;</span><br><span class="line">    &lt;!--然后定义loggers，只有定义了logger并引入的appender，appender才会生效--&gt;</span><br><span class="line">    &lt;loggers&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--过滤掉spring和mybatis的一些无用的DEBUG信息--&gt;</span><br><span class="line">        &lt;logger name=&quot;org.mybatis&quot; level=&quot;info&quot; additivity=&quot;false&quot;&gt;</span><br><span class="line">            &lt;AppenderRef ref=&quot;Console&quot;/&gt;</span><br><span class="line">        &lt;/logger&gt;</span><br><span class="line">        &lt;!--监控系统信息--&gt;</span><br><span class="line">        &lt;!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。--&gt;</span><br><span class="line">        &lt;Logger name=&quot;org.springframework&quot; level=&quot;info&quot; additivity=&quot;false&quot;&gt;</span><br><span class="line">            &lt;AppenderRef ref=&quot;Console&quot;/&gt;</span><br><span class="line">        &lt;/Logger&gt;</span><br><span class="line"></span><br><span class="line">        &lt;root level=&quot;info&quot;&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;Console&quot;/&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;Filelog&quot;/&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;RollingFileInfo&quot;/&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;RollingFileWarn&quot;/&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;RollingFileError&quot;/&gt;</span><br><span class="line">        &lt;/root&gt;</span><br><span class="line">    &lt;/loggers&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><blockquote>
+<p>若日志配置文件名字随意取得，需要在springboot配置文件yml中指明：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  file:</span><br><span class="line">    name: demo.log</span><br><span class="line">  pattern:</span><br><span class="line">    console: &#x27;%clr(%d&#123;yyyy-MM-dd&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n)&#x27;</span><br><span class="line">    file: &#x27;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; &gt;&gt;&gt; [%thread] &gt;&gt;&gt; %-5level &gt;&gt;&gt; %logger&#123;50&#125; &gt;&gt;&gt; %msg%n&#x27;</span><br><span class="line">#    path: logs/log_woniu</span><br><span class="line">  config: classpath:logconfig.xml</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">#蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/springboot/">#springboot</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%97%A5%E5%BF%97/">#日志</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/07/11/Thymeleaf%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Thymeleaf模板引擎</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/07/11/springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">springboot多环境配置</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot日志配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.</span> <span class="nav-text">日志规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%97%A0%E6%95%88%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0"><span class="nav-number">1.2.</span> <span class="nav-text">避免无效日志打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6%E5%88%86%E7%B1%BB%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">1.3.</span> <span class="nav-text">日志框架分类与选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">日志门面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%BA%93"><span class="nav-number">1.5.</span> <span class="nav-text">日志库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E9%80%82%E9%85%8D%E5%99%A8"><span class="nav-number">1.6.</span> <span class="nav-text">日志适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot%E9%BB%98%E8%AE%A4%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-number">1.7.</span> <span class="nav-text">SpringBoot默认日志配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE"><span class="nav-number">1.8.</span> <span class="nav-text">修改日志默认配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.9.</span> <span class="nav-text">修改日志输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%97%A5%E5%BF%97%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.10.</span> <span class="nav-text">分析日志底层实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-number">1.11.</span> <span class="nav-text">自定义日志配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BAlog4j2%E6%97%A5%E5%BF%97%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.12.</span> <span class="nav-text">更换为log4j2日志实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">1.13.</span> <span class="nav-text">补充</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            对bert模型的新认知 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">对bert模型的新认知</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-05 20:56:18</span>
+        <span class="mobile">2022-09-05 20:56</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/NLP/">NLP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/bert/">bert</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="bert结构"><a href="#bert结构" class="headerlink" title="bert结构"></a>bert结构</h3><h4 id="输入表示"><a href="#输入表示" class="headerlink" title="输入表示"></a>输入表示</h4><p>当输入为单个文本时，Bert输入的第一个序列是特殊类别次元“<cls>”(classfication)、不同语句连接时使用分隔词元“<sep>”（separate）。</sep></cls></p>
+<h4 id="三个embding层"><a href="#三个embding层" class="headerlink" title="三个embding层"></a>三个embding层</h4><p><img src="/2022/09/05/%E5%AF%B9bert%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B0%E8%AE%A4%E7%9F%A5/20210709191935205.png"></p>
+<h5 id="Token-Embeddings"><a href="#Token-Embeddings" class="headerlink" title="Token Embeddings"></a>Token Embeddings</h5><p>token embedding 层是要将各个词转换成固定维度的向量。在BERT中，每个词会被转换成768维的向量表示。输入文本在送入token embeddings 层之前要先进行tokenization处理。此外，两个特殊的token会被插入到tokenization的结果的开头 ([CLS])和结尾 ([SEP]) 。它们视为后面的分类任务和划分句子对服务的。</p>
+<h5 id="Segment-Embeddings"><a href="#Segment-Embeddings" class="headerlink" title="Segment Embeddings"></a>Segment Embeddings</h5><p>segment embeddings用于区分一个句子对中的两个句子，使bert可以判断两端文本是否相似。他只有两种向量表示，前一个向量是把0赋给第一个句子中的各个token, 后一个向量是把1赋给第二个句子中的各个token。如果输入仅仅只有一个句子，那么它的segment embedding就是全0。</p>
+<h5 id="Position-Embeddings"><a href="#Position-Embeddings" class="headerlink" title="Position Embeddings"></a>Position Embeddings</h5><p>bert模型无法编码文本的顺序性，所以需要位置编码。</p>
+<h5 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h5><p>合成基本是相加起来，bert本质是transform模型的一个变种，只不过修改了Encoder层。与<code>TransformerEncoder</code>不同，<code>BERTEncoder</code>使用片段嵌入和可学习的位置嵌入。</p>
+<p><img src="/2022/09/05/%E5%AF%B9bert%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B0%E8%AE%A4%E7%9F%A5/bert-input.svg"></p>
+<p>如图，BERT选择Transformer编码器作为其双向架构。在Transformer编码器中常见是，位置嵌入被加入到输入序列的每个位置。然而，与原始的Transformer编码器不同，BERT使用<em>可学习的</em>位置嵌入。BERT输入序列的嵌入是词元嵌入、片段嵌入和位置嵌入的和。</p>
+<p>但也有其他许多方式。如苏神这篇文章里的![<a class="link" target="_blank" rel="noopener" href="https://kexue.fm/archives/8130]%E3%80%82">https://kexue.fm/archives/8130]。<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="掩蔽语言模型（Masked-Language-Modeling）"><a href="#掩蔽语言模型（Masked-Language-Modeling）" class="headerlink" title="掩蔽语言模型（Masked Language Modeling）"></a>掩蔽语言模型（Masked Language Modeling）</h4><p>语言模型使用左侧的上下文预测词元。为了双向编码上下文以表示每个词元，BERT随机掩蔽词元并使用来自双向上下文的词元以自监督的方式预测掩蔽词元。此任务称为<em>掩蔽语言模型</em>。</p>
+<p>在这个预训练任务中，将随机选择15%的词元作为预测的掩蔽词元。要预测一个掩蔽词元而不使用标签作弊，一个简单的方法是总是用一个特殊的“<mask>”替换输入序列中的词元。然而，人造特殊词元“<mask>”不会出现在微调中。为了避免预训练和微调之间的这种不匹配，如果为预测而屏蔽词元（例如，在“this movie is great”中选择掩蔽和预测“great”），则在输入中将其替换为：</mask></mask></p>
+<ul>
+<li>80%时间为特殊的“<mask>“词元（例如，“this movie is great”变为“this movie is<mask>”；</mask></mask></li>
+<li>10%时间为随机词元（例如，“this movie is great”变为“this movie is drink”）；</li>
+<li>10%时间内为不变的标签词元（例如，“this movie is great”变为“this movie is great”）。</li>
+</ul>
+<h3 id="下一句预测（Next-Sentence-Prediction）"><a href="#下一句预测（Next-Sentence-Prediction）" class="headerlink" title="下一句预测（Next Sentence Prediction）"></a>下一句预测（Next Sentence Prediction）</h3><p>尽管掩蔽语言建模能够编码双向上下文来表示单词，但它不能显式地建模文本对之间的逻辑关系。为了帮助理解两个文本序列之间的关系，BERT在预训练中考虑了一个二元分类任务——<em>下一句预测</em>。在为预训练生成句子对时，有一半的时间它们确实是标签为“真”的连续句子；在另一半的时间里，第二个句子是从语料库中随机抽取的，标记为“假”。</p>
+<h3 id="Bert的代码实现"><a href="#Bert的代码实现" class="headerlink" title="Bert的代码实现"></a>Bert的代码实现</h3><h4 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">#@save</span><br><span class="line">class BERTEncoder(nn.Module):</span><br><span class="line">    &quot;&quot;&quot;BERT编码器&quot;&quot;&quot;</span><br><span class="line">    def __init__(self, vocab_size, num_hiddens, norm_shape, ffn_num_input,</span><br><span class="line">                 ffn_num_hiddens, num_heads, num_layers, dropout,</span><br><span class="line">                 max_len=1000, key_size=768, query_size=768, value_size=768,</span><br><span class="line">                 **kwargs):</span><br><span class="line">        super(BERTEncoder, self).__init__(**kwargs)</span><br><span class="line">        self.token_embedding = nn.Embedding(vocab_size, num_hiddens)</span><br><span class="line">        self.segment_embedding = nn.Embedding(2, num_hiddens)</span><br><span class="line">        self.blks = nn.Sequential()</span><br><span class="line">        for i in range(num_layers):</span><br><span class="line">            self.blks.add_module(f&quot;&#123;i&#125;&quot;, d2l.EncoderBlock(</span><br><span class="line">                key_size, query_size, value_size, num_hiddens, norm_shape,</span><br><span class="line">                ffn_num_input, ffn_num_hiddens, num_heads, dropout, True))</span><br><span class="line">        # 在BERT中，位置嵌入是可学习的，因此我们创建一个足够长的位置嵌入参数</span><br><span class="line">        self.pos_embedding = nn.Parameter(torch.randn(1, max_len,</span><br><span class="line">                                                      num_hiddens))</span><br><span class="line"></span><br><span class="line">    def forward(self, tokens, segments, valid_lens):</span><br><span class="line">        # 在以下代码段中，X的形状保持不变：（批量大小，最大序列长度，num_hiddens）</span><br><span class="line">        X = self.token_embedding(tokens) + self.segment_embedding(segments)</span><br><span class="line">        X = X + self.pos_embedding.data[:, :X.shape[1], :]</span><br><span class="line">        for blk in self.blks:</span><br><span class="line">            X = blk(X, valid_lens)</span><br><span class="line">        return X</span><br><span class="line"></span><br><span class="line">vocab_size, num_hiddens, ffn_num_hiddens, num_heads = 10000, 768, 1024, 4</span><br><span class="line">norm_shape, ffn_num_input, num_layers, dropout = [768], 768, 2, 0.2</span><br><span class="line">encoder = BERTEncoder(vocab_size, num_hiddens, norm_shape, ffn_num_input,</span><br><span class="line">                      ffn_num_hiddens, num_heads, num_layers, dropout)</span><br><span class="line">     </span><br><span class="line">  </span><br><span class="line">#@save</span><br><span class="line">class MaskLM(nn.Module):</span><br><span class="line">    &quot;&quot;&quot;BERT的掩蔽语言模型任务&quot;&quot;&quot;</span><br><span class="line">    def __init__(self, vocab_size, num_hiddens, num_inputs=768, **kwargs):</span><br><span class="line">        super(MaskLM, self).__init__(**kwargs)</span><br><span class="line">        self.mlp = nn.Sequential(nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">                                 nn.ReLU(),</span><br><span class="line">                                 nn.LayerNorm(num_hiddens),</span><br><span class="line">                                 nn.Linear(num_hiddens, vocab_size))</span><br><span class="line"></span><br><span class="line">    def forward(self, X, pred_positions):</span><br><span class="line">        num_pred_positions = pred_positions.shape[1]</span><br><span class="line">        pred_positions = pred_positions.reshape(-1)</span><br><span class="line">        batch_size = X.shape[0]</span><br><span class="line">        batch_idx = torch.arange(0, batch_size)</span><br><span class="line">        # 假设batch_size=2，num_pred_positions=3</span><br><span class="line">        # 那么batch_idx是np.array（[0,0,0,1,1,1]）</span><br><span class="line">        batch_idx = torch.repeat_interleave(batch_idx, num_pred_positions)</span><br><span class="line">        masked_X = X[batch_idx, pred_positions]</span><br><span class="line">        masked_X = masked_X.reshape((batch_size, num_pred_positions, -1))</span><br><span class="line">        mlm_Y_hat = self.mlp(masked_X)</span><br><span class="line">        return mlm_Y_hat</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">class NextSentencePred(nn.Module):</span><br><span class="line">    &quot;&quot;&quot;BERT的下一句预测任务&quot;&quot;&quot;</span><br><span class="line">    def __init__(self, num_inputs, **kwargs):</span><br><span class="line">        super(NextSentencePred, self).__init__(**kwargs)</span><br><span class="line">        self.output = nn.Linear(num_inputs, 2)</span><br><span class="line"></span><br><span class="line">    def forward(self, X):</span><br><span class="line">        # X的形状：(batchsize,num_hiddens)</span><br><span class="line">        return self.output(X)</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line"># 整合代码</span><br><span class="line">class BERTModel(nn.Module):</span><br><span class="line">    &quot;&quot;&quot;BERT模型&quot;&quot;&quot;</span><br><span class="line">    def __init__(self, vocab_size, num_hiddens, norm_shape, ffn_num_input,</span><br><span class="line">                 ffn_num_hiddens, num_heads, num_layers, dropout,</span><br><span class="line">                 max_len=1000, key_size=768, query_size=768, value_size=768,</span><br><span class="line">                 hid_in_features=768, mlm_in_features=768,</span><br><span class="line">                 nsp_in_features=768):</span><br><span class="line">        super(BERTModel, self).__init__()</span><br><span class="line">        self.encoder = BERTEncoder(vocab_size, num_hiddens, norm_shape,</span><br><span class="line">                    ffn_num_input, ffn_num_hiddens, num_heads, num_layers,</span><br><span class="line">                    dropout, max_len=max_len, key_size=key_size,</span><br><span class="line">                    query_size=query_size, value_size=value_size)</span><br><span class="line">        self.hidden = nn.Sequential(nn.Linear(hid_in_features, num_hiddens),</span><br><span class="line">                                    nn.Tanh())</span><br><span class="line">        self.mlm = MaskLM(vocab_size, num_hiddens, mlm_in_features)</span><br><span class="line">        self.nsp = NextSentencePred(nsp_in_features)</span><br><span class="line"></span><br><span class="line">    def forward(self, tokens, segments, valid_lens=None,</span><br><span class="line">                pred_positions=None):</span><br><span class="line">        encoded_X = self.encoder(tokens, segments, valid_lens)</span><br><span class="line">        if pred_positions is not None:</span><br><span class="line">            mlm_Y_hat = self.mlm(encoded_X, pred_positions)</span><br><span class="line">        else:</span><br><span class="line">            mlm_Y_hat = None</span><br><span class="line">        # 用于下一句预测的多层感知机分类器的隐藏层，0是“&lt;cls&gt;”标记的索引</span><br><span class="line">        nsp_Y_hat = self.nsp(self.hidden(encoded_X[:, 0, :]))</span><br><span class="line">        return encoded_X, mlm_Y_hat, nsp_Y_hat</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="bert预训练"><a href="#bert预训练" class="headerlink" title="bert预训练"></a>bert预训练</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn</span><br><span class="line">from d2l import torch as d2l</span><br><span class="line"></span><br><span class="line">batch_size, max_len = 512, 64</span><br><span class="line">train_iter, vocab = d2l.load_data_wiki(batch_size, max_len)</span><br><span class="line"></span><br><span class="line">net = d2l.BERTModel(len(vocab), num_hiddens=128, norm_shape=[128],</span><br><span class="line">                    ffn_num_input=128, ffn_num_hiddens=256, num_heads=2,</span><br><span class="line">                    num_layers=2, dropout=0.2, key_size=128, query_size=128,</span><br><span class="line">                    value_size=128, hid_in_features=128, mlm_in_features=128,</span><br><span class="line">                    nsp_in_features=128)</span><br><span class="line">devices = d2l.try_all_gpus()</span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">#@save</span><br><span class="line">def _get_batch_loss_bert(net, loss, vocab_size, tokens_X,</span><br><span class="line">                         segments_X, valid_lens_x,</span><br><span class="line">                         pred_positions_X, mlm_weights_X,</span><br><span class="line">                         mlm_Y, nsp_y):</span><br><span class="line">    # 前向传播</span><br><span class="line">    _, mlm_Y_hat, nsp_Y_hat = net(tokens_X, segments_X,</span><br><span class="line">                                  valid_lens_x.reshape(-1),</span><br><span class="line">                                  pred_positions_X)</span><br><span class="line">    # 计算遮蔽语言模型损失</span><br><span class="line">    mlm_l = loss(mlm_Y_hat.reshape(-1, vocab_size), mlm_Y.reshape(-1)) *\</span><br><span class="line">    mlm_weights_X.reshape(-1, 1)</span><br><span class="line">    mlm_l = mlm_l.sum() / (mlm_weights_X.sum() + 1e-8)</span><br><span class="line">    # 计算下一句子预测任务的损失</span><br><span class="line">    nsp_l = loss(nsp_Y_hat, nsp_y)</span><br><span class="line">    l = mlm_l + nsp_l</span><br><span class="line">    return mlm_l, nsp_l, l</span><br><span class="line">    </span><br><span class="line">def train_bert(train_iter, net, loss, vocab_size, devices, num_steps):</span><br><span class="line">    net = nn.DataParallel(net, device_ids=devices).to(devices[0])</span><br><span class="line">    trainer = torch.optim.Adam(net.parameters(), lr=0.01)</span><br><span class="line">    step, timer = 0, d2l.Timer()</span><br><span class="line">    animator = d2l.Animator(xlabel=&#x27;step&#x27;, ylabel=&#x27;loss&#x27;,</span><br><span class="line">                            xlim=[1, num_steps], legend=[&#x27;mlm&#x27;, &#x27;nsp&#x27;])</span><br><span class="line">    # 遮蔽语言模型损失的和，下一句预测任务损失的和，句子对的数量，计数</span><br><span class="line">    metric = d2l.Accumulator(4)</span><br><span class="line">    num_steps_reached = False</span><br><span class="line">    while step &lt; num_steps and not num_steps_reached:</span><br><span class="line">        for tokens_X, segments_X, valid_lens_x, pred_positions_X,\</span><br><span class="line">            mlm_weights_X, mlm_Y, nsp_y in train_iter:</span><br><span class="line">            tokens_X = tokens_X.to(devices[0])</span><br><span class="line">            segments_X = segments_X.to(devices[0])</span><br><span class="line">            valid_lens_x = valid_lens_x.to(devices[0])</span><br><span class="line">            pred_positions_X = pred_positions_X.to(devices[0])</span><br><span class="line">            mlm_weights_X = mlm_weights_X.to(devices[0])</span><br><span class="line">            mlm_Y, nsp_y = mlm_Y.to(devices[0]), nsp_y.to(devices[0])</span><br><span class="line">            trainer.zero_grad()</span><br><span class="line">            timer.start()</span><br><span class="line">            mlm_l, nsp_l, l = _get_batch_loss_bert(</span><br><span class="line">                net, loss, vocab_size, tokens_X, segments_X, valid_lens_x,</span><br><span class="line">                pred_positions_X, mlm_weights_X, mlm_Y, nsp_y)</span><br><span class="line">            l.backward()</span><br><span class="line">            trainer.step()</span><br><span class="line">            metric.add(mlm_l, nsp_l, tokens_X.shape[0], 1)</span><br><span class="line">            timer.stop()</span><br><span class="line">            animator.add(step + 1,</span><br><span class="line">                         (metric[0] / metric[3], metric[1] / metric[3]))</span><br><span class="line">            step += 1</span><br><span class="line">            if step == num_steps:</span><br><span class="line">                num_steps_reached = True</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">    print(f&#x27;MLM loss &#123;metric[0] / metric[3]:.3f&#125;, &#x27;</span><br><span class="line">          f&#x27;NSP loss &#123;metric[1] / metric[3]:.3f&#125;&#x27;)</span><br><span class="line">    print(f&#x27;&#123;metric[2] / timer.sum():.1f&#125; sentence pairs/sec on &#x27;</span><br><span class="line">          f&#x27;&#123;str(devices)&#125;&#x27;)</span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">def get_bert_encoding(net, tokens_a, tokens_b=None):</span><br><span class="line">    tokens, segments = d2l.get_tokens_and_segments(tokens_a, tokens_b)</span><br><span class="line">    token_ids = torch.tensor(vocab[tokens], device=devices[0]).unsqueeze(0)</span><br><span class="line">    segments = torch.tensor(segments, device=devices[0]).unsqueeze(0)</span><br><span class="line">    valid_len = torch.tensor(len(tokens), device=devices[0]).unsqueeze(0)</span><br><span class="line">    encoded_X, _, _ = net(token_ids, segments, valid_len)</span><br><span class="line">    return encoded_X</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tokens_a = [&#x27;a&#x27;, &#x27;crane&#x27;, &#x27;is&#x27;, &#x27;flying&#x27;]</span><br><span class="line">encoded_text = get_bert_encoding(net, tokens_a)</span><br><span class="line"># 词元：&#x27;&lt;cls&gt;&#x27;,&#x27;a&#x27;,&#x27;crane&#x27;,&#x27;is&#x27;,&#x27;flying&#x27;,&#x27;&lt;sep&gt;&#x27;</span><br><span class="line">encoded_text_cls = encoded_text[:, 0, :]</span><br><span class="line">encoded_text_crane = encoded_text[:, 2, :]</span><br><span class="line">encoded_text.shape, encoded_text_cls.shape, encoded_text_crane[0][:3]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tokens_a, tokens_b = [&#x27;a&#x27;, &#x27;crane&#x27;, &#x27;driver&#x27;, &#x27;came&#x27;], [&#x27;he&#x27;, &#x27;just&#x27;, &#x27;left&#x27;]</span><br><span class="line">encoded_pair = get_bert_encoding(net, tokens_a, tokens_b)</span><br><span class="line"># 词元：&#x27;&lt;cls&gt;&#x27;,&#x27;a&#x27;,&#x27;crane&#x27;,&#x27;driver&#x27;,&#x27;came&#x27;,&#x27;&lt;sep&gt;&#x27;,&#x27;he&#x27;,&#x27;just&#x27;,</span><br><span class="line"># &#x27;left&#x27;,&#x27;&lt;sep&gt;&#x27;</span><br><span class="line">encoded_pair_cls = encoded_pair[:, 0, :]</span><br><span class="line">encoded_pair_crane = encoded_pair[:, 2, :]</span><br><span class="line">encoded_pair.shape, encoded_pair_cls.shape, encoded_pair_crane[0][:3]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="bert微调实现不同功能"><a href="#bert微调实现不同功能" class="headerlink" title="bert微调实现不同功能"></a>bert微调实现不同功能</h4><h3 id="几类不同的Chinese-bert"><a href="#几类不同的Chinese-bert" class="headerlink" title="几类不同的Chinese-bert"></a>几类不同的Chinese-bert</h3><h4 id="Google的bert-base-chinese"><a href="#Google的bert-base-chinese" class="headerlink" title="Google的bert-base-chinese"></a>Google的bert-base-chinese</h4><p>![<a class="link" target="_blank" rel="noopener" href="https://github.com/google-research/bert]">https://github.com/google-research/bert]<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="讯飞的新全词系列bert"><a href="#讯飞的新全词系列bert" class="headerlink" title="讯飞的新全词系列bert"></a>讯飞的新全词系列bert</h4><p>![<a class="link" target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-BERT-wwm]">https://github.com/ymcui/Chinese-BERT-wwm]<i class="fas fa-external-link-alt"></i></a></p>
+<p>谷歌官方发布的<code>BERT-base-Chinese</code>中文是以<strong>字</strong>为粒度进行切分，没有考虑到传统NLP中的中文分词（CWS）。 我们将全词Mask的方法应用在了中文中，使用了中文维基百科（包括简体和繁体）进行训练，并且使用了<a class="link" target="_blank" rel="noopener" href="http://ltp.ai/">哈工大LTP<i class="fas fa-external-link-alt"></i></a>作为分词工具，即对组成同一个<strong>词</strong>的汉字全部进行Mask。</p>
+<p>参考：![<a class="link" target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_natural-language-processing-pretraining/bert-pretraining.html">14.10. 预训练BERT — 动手学深度学习 2.0.0-beta1 documentation (d2l.ai)<i class="fas fa-external-link-alt"></i></a>]</p>
+<p>![<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15L4y1v7ts?p=1&vd_source=baa06fbf62c3de66984599c475808252">BERT微调_哔哩哔哩_bilibili<i class="fas fa-external-link-alt"></i></a>]</p>
+<p>![<a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/510738704/answer/2305000399]">https://www.zhihu.com/question/510738704/answer/2305000399]<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/NLP/">#NLP</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/bert/">#bert</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/09/06/pytorch%E7%9A%84loss-backward/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">pytorch的loss.backward</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/01/softmax-%E4%BA%A4%E5%8F%89%E7%86%B5%E5%BA%94%E7%94%A8%E4%B8%8E%E5%A4%9A%E6%A0%87%E7%AD%BE%E9%97%AE%E9%A2%98/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">softmax+交叉熵应用与多标签问题</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#bert%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">bert结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.1.</span> <span class="nav-text">输入表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AAembding%E5%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">三个embding层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Token-Embeddings"><span class="nav-number">1.2.1.</span> <span class="nav-text">Token Embeddings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Segment-Embeddings"><span class="nav-number">1.2.2.</span> <span class="nav-text">Segment Embeddings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Position-Embeddings"><span class="nav-number">1.2.3.</span> <span class="nav-text">Position Embeddings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%88%E6%88%90"><span class="nav-number">1.2.4.</span> <span class="nav-text">合成</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A9%E8%94%BD%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88Masked-Language-Modeling%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">掩蔽语言模型（Masked Language Modeling）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E5%8F%A5%E9%A2%84%E6%B5%8B%EF%BC%88Next-Sentence-Prediction%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">下一句预测（Next Sentence Prediction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">Bert的代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bert%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="nav-number">3.2.</span> <span class="nav-text">bert预训练</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bert%E5%BE%AE%E8%B0%83%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%90%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">3.3.</span> <span class="nav-text">bert微调实现不同功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E7%B1%BB%E4%B8%8D%E5%90%8C%E7%9A%84Chinese-bert"><span class="nav-number">4.</span> <span class="nav-text">几类不同的Chinese-bert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Google%E7%9A%84bert-base-chinese"><span class="nav-number">4.1.</span> <span class="nav-text">Google的bert-base-chinese</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AF%E9%A3%9E%E7%9A%84%E6%96%B0%E5%85%A8%E8%AF%8D%E7%B3%BB%E5%88%97bert"><span class="nav-number">4.2.</span> <span class="nav-text">讯飞的新全词系列bert</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

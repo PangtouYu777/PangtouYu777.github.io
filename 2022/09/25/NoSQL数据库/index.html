@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            NoSQL数据库 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">NoSQL数据库</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-25 10:31:12</span>
+        <span class="mobile">2022-09-25 10:31</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/nosql/">nosql</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%B0%9A%E7%A1%85%E8%B0%B7redis6%E7%AC%94%E8%AE%B0/">尚硅谷redis6笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-NoSQL数据库简介"><a href="#1-NoSQL数据库简介" class="headerlink" title="1.NoSQL数据库简介"></a>1.NoSQL数据库简介</h2><h3 id="1-1-技术发展"><a href="#1-1-技术发展" class="headerlink" title="1.1. 技术发展"></a>1.1. 技术发展</h3><p>技术的分类</p>
+<p>1、解决功能性的问题：Java、Jsp、RDBMS、Tomcat、HTML、Linux、JDBC、SVN</p>
+<p>2、解决扩展性的问题：Struts、Spring、SpringMVC、Hibernate、Mybatis</p>
+<p>3、解决性能的问题：NoSQL、Java线程、Hadoop、Nginx、MQ、ElasticSearch</p>
+<h4 id="1-1-1-Web1-0时代"><a href="#1-1-1-Web1-0时代" class="headerlink" title="1.1.1 Web1.0时代"></a>1.1.1 Web1.0时代</h4><p>数据访问量很有限，用一夫当关的高性能的单点服务器可以解决大部分问题。</p>
+<p><img src="/2022/09/25/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%5Cimage-20220925103409381.png" alt="image-20220925103409381"></p>
+<h4 id="1-1-2-Web2-0时代"><a href="#1-1-2-Web2-0时代" class="headerlink" title="1.1.2 Web2.0时代"></a>1.1.2 Web2.0时代</h4><p>随着Web2.0的时代的到来，用户访问量大幅度提升，同时产生了大量的用户数据。加上后来的智能移动设备的普及，所有的互联网平台都面临了巨大的性能挑战。</p>
+<p><img src="/2022/09/25/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%5Cwps1.jpg" alt="img"></p>
+<h4 id="1-1-3-解决CPU及内存压力"><a href="#1-1-3-解决CPU及内存压力" class="headerlink" title="1.1.3  解决CPU及内存压力"></a>1.1.3  解决CPU及内存压力</h4><p><img src="/2022/09/25/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%5Cimage-20220925103637208.png" alt="image-20220925103637208"></p>
+<h4 id="1-1-4-解决IO压力"><a href="#1-1-4-解决IO压力" class="headerlink" title="1.1.4  解决IO压力"></a>1.1.4  解决IO压力</h4><p><img src="/2022/09/25/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%5Cimage-20220925104647041.png" alt="image-20220925104647041"></p>
+<h3 id="1-2-NoSQL数据库"><a href="#1-2-NoSQL数据库" class="headerlink" title="1.2 NoSQL数据库"></a>1.2 NoSQL数据库</h3><h4 id="1-2-1-NoSQL数据库概述"><a href="#1-2-1-NoSQL数据库概述" class="headerlink" title="1.2.1  NoSQL数据库概述"></a>1.2.1  NoSQL数据库概述</h4><p>NoSQL(NoSQL = <em><strong>*Not Only SQL*</strong></em> )，意即“不仅仅是SQL”，泛指****非关系型的数据库****。 </p>
+<p>NoSQL 不依赖业务逻辑方式存储，而以简单的key-value模式存储。因此大大的增加了数据库的扩展能力。</p>
+<ul>
+<li><p>不遵循SQL标准。</p>
+</li>
+<li><p>不支持ACID。</p>
+</li>
+<li><p>远超于SQL的性能。</p>
+</li>
+</ul>
+<h4 id="1-2-2-NoSQL适用场景"><a href="#1-2-2-NoSQL适用场景" class="headerlink" title="1.2.2 NoSQL适用场景"></a>1.2.2 NoSQL适用场景</h4><ul>
+<li><p>对数据高并发的读写</p>
+</li>
+<li><p>海量数据的读写</p>
+</li>
+<li><p>对数据高可扩展性的</p>
+</li>
+</ul>
+<h4 id="1-2-3-NoSQL不适用场景"><a href="#1-2-3-NoSQL不适用场景" class="headerlink" title="1.2.3 NoSQL不适用场景"></a>1.2.3 NoSQL不适用场景</h4><ul>
+<li><p>需要事务支持</p>
+</li>
+<li><p>基于sql的结构化查询存储，处理复杂的关系,需要即席查询。</p>
+</li>
+<li><p>用不着sql的和用了sql也不行的情况，请考虑用NoSql</p>
+</li>
+</ul>
+<h4 id="1-2-4-数据库"><a href="#1-2-4-数据库" class="headerlink" title="1.2.4 数据库"></a>1.2.4 数据库</h4><ul>
+<li><p>Memcahe</p>
+<ul>
+<li><p>很早出现的NoSql数据库</p>
+</li>
+<li><p>数据都在内存中，一般不持久化</p>
+</li>
+<li><p>支持简单的key-value模式，支持类型单一</p>
+</li>
+<li><p>一般是作为缓存数据库辅助持久化的数据库</p>
+</li>
+</ul>
+</li>
+<li><p>Redis</p>
+<ul>
+<li><p>几乎覆盖了Memcached的绝大部分功能</p>
+</li>
+<li><p>数据都在内存中，支持持久化，主要用作备份恢复</p>
+</li>
+<li><p>除了支持简单的key-value模式，还支持多种数据结构的存储，比如 list、set、hash、zset等。</p>
+</li>
+<li><p>一般是作为缓存数据库辅助持久化的数据库</p>
+</li>
+</ul>
+</li>
+<li><p>MongoDB</p>
+<ul>
+<li>高性能、开源、模式自由(schema  free)的<em><strong>*文档型数据库*</strong></em></li>
+<li>数据都在内存中， 如果内存不足，把不常用的数据保存到硬盘</li>
+<li>虽然是key-value模式，但是对value（尤其是****json****）提供了丰富的查询功能</li>
+<li>支持二进制数据及大型对象</li>
+<li>可以根据数据的特点<em><strong>*替代RDBMS*</strong></em> ，成为独立的数据库。或者配合RDBMS，存储特定的数据。</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/nosql/">#nosql</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%B0%9A%E7%A1%85%E8%B0%B7redis6%E7%AC%94%E8%AE%B0/">#尚硅谷redis6笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/09/25/redis6%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">redis6基础操作</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/19/redis%E6%A6%82%E6%8B%AC/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">redis概括</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1.NoSQL数据库简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 技术发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-Web1-0%E6%97%B6%E4%BB%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 Web1.0时代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-Web2-0%E6%97%B6%E4%BB%A3"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Web2.0时代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-%E8%A7%A3%E5%86%B3CPU%E5%8F%8A%E5%86%85%E5%AD%98%E5%8E%8B%E5%8A%9B"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3  解决CPU及内存压力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-4-%E8%A7%A3%E5%86%B3IO%E5%8E%8B%E5%8A%9B"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.1.4  解决IO压力</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 NoSQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1  NoSQL数据库概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-NoSQL%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 NoSQL适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-NoSQL%E4%B8%8D%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 NoSQL不适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 数据库</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

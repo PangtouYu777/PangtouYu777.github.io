@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="一条正在奔跑的咸鱼">
+    <meta name="author" content="pangtouyu777">
+    
+    <title>
+        
+            redis概括 |
+        
+        Mr.Zhang&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.pangtouyu77.fun","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/元气满满.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/preview.png","description":"遇见你甚是开心"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="能遇见你甚是开心" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mr.Zhang&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">redis概括</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%85%83%E6%B0%94%E6%BB%A1%E6%BB%A1.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">pangtouyu777</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-19 19:14:13</span>
+        <span class="mobile">2022-09-19 19:14</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><p>Redis（==Re==mote ==Di==ctionary ==S==erver），即远程字典服务。</p>
+<p>Redis是用C语言编写的完全开源的、遵守BSD协议的、高性能的key-value数据库</p>
+<p>BSD是”Berkeley Software Distribution”的缩写，意思是“伯克利软件发行版”。</p>
+<p>BSD开源协议是一个给予使用者很大自由的协议。可以自由地使用，修改源代码，也可以将修改后的代码作为开源或者专有软件再发布。BSD鼓励代码共享，但需要尊重代码作者的著作权。BSD由于允许使用者修改和重新发布代码，也允许使用者在BSD代码上开发商业软件，因此BSD是对商业集成很友好的协议。</p>
+<p>我们先通过一个电商业务场景来对redis有一个整体的认识</p>
+<ol>
+<li><p>商品基本信息（名称、价格、厂商），存放于MySQL</p>
+</li>
+<li><p>商品附加信息（描述、详情、评论），存放于MongoDB</p>
+</li>
+<li><p>图片信息，存放于分布式文件系统 </p>
+</li>
+<li><p>搜索关键字，ES、Lucene、solr</p>
+</li>
+<li><p>热点信息，高频，波段性存放于redis</p>
+</li>
+</ol>
+<p>(1) 比如2020年初，“口罩”就是热点信息</p>
+<p>(2) 比如情人节前后，“玫瑰花”、“巧克力”就是热点信息</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li><p>单线程，Redis是单线程的，所以Redis的所有单个操作都是原子性的。多个操作也能由事务来保证原子性（通过MULTI和EXEC这两个指令），因此在redis层面无需考虑并发所带来的影响</p>
+</li>
+<li><p>性能极高，读110000/s，写81000/s</p>
+</li>
+<li><p>丰富的数据类型：String、List、Hash，Set及Ordered Set</p>
+</li>
+<li><p>支持持久化</p>
+</li>
+<li><p>支持横向扩展</p>
+</li>
+<li><p>丰富的特性，redis还支持publish/subscribe，通知，key过期等等特性</p>
+</li>
+<li><p>redis的单个key和value的最大大小都是512M</p>
+</li>
+</ol>
+<p>当redis接收到多个并发请求的时候，redis会把这多个并发请求存入一个队列中，然后按照队列的先后顺序，一个一个地执行命令。也就是redis同一时刻只执行一条命令，只有一条命令执行完了，才会继续执行下一条命令。 所以redis中的incr和decr是绝对的原子操作，绝对的线程安全。尽管redis是单线程模型的，但性能还是很高。</p>
+<img src="/2022/09/19/redis%E6%A6%82%E6%8B%AC/20210415140249.png" style="zoom:150%;">
+
+ 
+
+
+
+<p>redis作为单线程模型为什么性能还很高？</p>
+<ol>
+<li><p>纯内存访问：数据存放在内存中，内存的响应时间是极高的！</p>
+</li>
+<li><p>非阻塞式的I/O操作：redis采用epoll作为I/O多路复用技术的实现</p>
+</li>
+<li><p>采用单线程自然也就避免了线程的上下文切换和锁带来的开销</p>
+</li>
+</ol>
+<p>关于epoll和I/O多路复用，是另外一个方向的讨论了，这里就不再深入探讨了。</p>
+<p>举个例子尽量解释一下吧。有一道算法题，一个班30个学生每人都在做这道题，做完的需要检查。检查方式有：1. 派30个老师，各自站在1个学生的旁边，时刻关注着学生的答题进度，一旦学生作答完毕，就进行检查，检查完毕后，对应的老师就撤了。这就是阻塞IO2. 派1个老师，哪个学生做完了就举手，就让这个老师检查答案，检查完一个学生的答案后，还继续等待下一个学生的答案。这基本上就是多路复用的体现了。 也就是一个线程可以同时监听多个套接字，哪个套接字准备好数据了，就读取哪个套接字的数据，然后发送到目的地，然后继续监听多个套接字。如下图所示，\在同一个线程里面， 通过拨开关的方式，来同时传输多个I/O流</p>
+<img src="https://woniumd.oss-cn-hangzhou.aliyuncs.com/java/panfeng/20210415140249.png" style="zoom:150%;">
+
+
+
+
+
+<h2 id="Redis基本配置及通用命令"><a href="#Redis基本配置及通用命令" class="headerlink" title="Redis基本配置及通用命令"></a>Redis基本配置及通用命令</h2><h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><p>拷贝redis.conf到安装目录</p>
+<ol>
+<li><p>redis默认不是后台运行的，可以通过修改该配置项为yes，让redis在后台运行<br>daemonize no</p>
+</li>
+<li><p>2.当redis以守护进程方式运行时，redis会把pid写入/var/run/redis_6379.pid文件中，也可以自己指定写入的位置<br>pidfile /var/run/redis_6379.pid</p>
+</li>
+<li><p>redis监听的端口<br>port 6379</p>
+</li>
+<li><p>设置redis连接密码，如果配置了连接密码，则客户端在连接redis时需要通过AUTH <passowrd> 命令来提供密码<br>requirepass foobared</passowrd></p>
+</li>
+<li><p>绑定的主机地址，目前这样的配置这意味着只有当前机器才能连接redis服务<br>bind 127.0.0.1<br>如果设置bind为0.0.0.0则表示运行任何远程机器访问当前redis服务</p>
+<p>修改redis.conf配置文件，开启后台运行，将bind设置为0.0.0.0，然后再次启动redis服务，这次启动redis服务的时候，要指定redis配置文件的位置</p>
+<blockquote>
+<p>注意：在运行redis-server时，需要指定配置文件</p>
+<p>./redis-server ./redis.conf</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><h4 id="在linux中的命令"><a href="#在linux中的命令" class="headerlink" title="在linux中的命令"></a>在linux中的命令</h4><h5 id="redis-server-启动redis服务"><a href="#redis-server-启动redis服务" class="headerlink" title="redis-server:启动redis服务"></a>redis-server:启动redis服务</h5><h5 id="redis-cli：启动客户端"><a href="#redis-cli：启动客户端" class="headerlink" title="redis-cli：启动客户端"></a>redis-cli：启动客户端</h5><p>通过配置文件进行连接。</p>
+<h5 id="redis-benchmark：模拟数据读写的测试。"><a href="#redis-benchmark：模拟数据读写的测试。" class="headerlink" title="redis-benchmark：模拟数据读写的测试。"></a>redis-benchmark：模拟数据读写的测试。</h5><h4 id="在redis里运行的命令"><a href="#在redis里运行的命令" class="headerlink" title="在redis里运行的命令"></a>在redis里运行的命令</h4><p>ping：测试是否连接成功</p>
+<p>select 0-15：选择数据库（总共是16个数据库，默认是第0个）</p>
+<ol>
+<li>keys 查看所有键</li>
+<li>set key value设置键值对，如果键已存在，会覆盖</li>
+<li>get key根据key获取value，如果key不存在就返回nil</li>
+<li>del key返回删除的个数</li>
+<li>dbsize查看当前库中键值对的数量</li>
+<li>keys * 查看当前库中所有键值对的内容</li>
+<li>keys u查看当前库中所有key为u的键值对内容</li>
+<li>keys u?查看当前库中所有以u开头，且后面只跟一列的键值对内容</li>
+<li>exists <key>判断某个键值是否存在</key></li>
+<li>move <key> <db>移动键值对到指定的数据库</db></key></li>
+<li>ttl <key>显示指定的key还要过多久就过期（-1表示永不过期，-2表示已经过期）</key></li>
+<li>expire <key> 10设置指定的key，还能存活10秒</key></li>
+<li>persist key移除key的过期时间，key将持久保持</li>
+<li>flushdb清空当前库中的所有键值对 </li>
+<li>flushall清空所有库中的所有键值对 </li>
+<li>type <key>查看指定key的类型</key></li>
+</ol>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><ol>
+<li><p>strlen <key>查看指定key对应的值的长度</key></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 abcfsdfsadf</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;abcfsdfsadf&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; strlen k1</span><br><span class="line">(<span class="built_in">integer</span>) 11</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>getrange <key> <start> <end>截取字符串</end></start></key></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;abcfsdfsadf&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; getrange k1 3 5</span><br><span class="line"><span class="string">&quot;fsd&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; getrange k1 2 4</span><br><span class="line"><span class="string">&quot;cfs&quot;</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>setrange <key> <start> <replaceVal>覆盖字符串的某一部分</replaceVal></start></key></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;abcfsdfsadf&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; setrange k1 0 xyz</span><br><span class="line">(<span class="built_in">integer</span>) 11</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;xyzfsdfsadf&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>setex <key> <second> <value>设置键值对的同时，指定过期时间</value></second></key></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setex k2 10 xyz</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl k2</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br><span class="line">127.0.0.1:6379&gt; ttl k2</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; ttl k2</span><br><span class="line">(<span class="built_in">integer</span>) -2</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>setnx <key> <value>指定的键值不存在时，才能成功完成本次操作，且返回1如果键值已经存在，则返回0</value></key></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setnx k3 abc</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line"><span class="string">&quot;abc&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; setnx k3 xye</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line"><span class="string">&quot;abc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>mset k1 v1 k2 v2 k3 v3 批量设置key value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mset k5 v5 k6 v6 k7 v7</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;k3&quot;</span></span><br><span class="line">2) <span class="string">&quot;k1&quot;</span></span><br><span class="line">3) <span class="string">&quot;k5&quot;</span></span><br><span class="line">4) <span class="string">&quot;k6&quot;</span></span><br><span class="line">5) <span class="string">&quot;k7&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>mget k1 k2 k3 批量取出值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mget k5 k6 k7</span><br><span class="line">1) <span class="string">&quot;v5&quot;</span></span><br><span class="line">2) <span class="string">&quot;v6&quot;</span></span><br><span class="line">3) <span class="string">&quot;v7&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>msetnx k1 v1 k2 v2 k3 v3注意在mset时，如果一部分键存在，一部分键不存在，则整个操作都是失败的！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; msetnx k1 v1 k2 v2 k3 v3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; mget k1 k2 k3</span><br><span class="line">1) <span class="string">&quot;v1&quot;</span></span><br><span class="line">2) <span class="string">&quot;v2&quot;</span></span><br><span class="line">3) <span class="string">&quot;v3&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; msetnx k1 v1 k2 v2 k3 v3</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; msetnx k1 v11 k2 v21 k3 v31</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; mget k1 k2 k3</span><br><span class="line">1) <span class="string">&quot;v1&quot;</span></span><br><span class="line">2) <span class="string">&quot;v2&quot;</span></span><br><span class="line">3) <span class="string">&quot;v3&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; msetnx k11 v11 k12 v21 k3 v31</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; mget k11</span><br><span class="line">1) (nil)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>getset key value先获取该key对应的值，然后再设置该key对应的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; getset k1 v11</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v11&quot;</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>incr key将指定key的value原子性地递增1，如果key不存在，其初始值为0，再incr之后其值为1。如果value的值不能转型成整型，如“hello”，该操作将执行失败并返回相应的信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> num 1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get num</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; incr num</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; get num</span><br><span class="line"><span class="string">&quot;2&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>decr key将指定key的value原子性地递减1，如果key不存在，其初始值为0，再decr之后其值为-1。如果value的值不能转型成整型，如“hello”，该操作将执行失败并返回相应的信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; decr num2</span><br><span class="line">(<span class="built_in">integer</span>) -1</span><br><span class="line">127.0.0.1:6379&gt; get num2</span><br><span class="line"><span class="string">&quot;-1&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>append key value拼凑字符串，如果该key存在，则在原有的value后追加该值如果该key不存在，则重新创建一个key/value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; append k1 123</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v11123&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>incrby key increment</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; incrby num3 10</span><br><span class="line">(<span class="built_in">integer</span>) 10</span><br><span class="line">127.0.0.1:6379&gt; get num3</span><br><span class="line"><span class="string">&quot;10&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>decrby key decrement </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; decrby num3 3</span><br><span class="line">(<span class="built_in">integer</span>) 17</span><br><span class="line">127.0.0.1:6379&gt; get num3</span><br><span class="line"><span class="string">&quot;17&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h2><p>list类型底层采取双向链表存储结果实现</p>
+<ol>
+<li><p>创建</p>
+<p>lpush list1 a b c d 在链表头加入元素 –&gt; d c b a</p>
+<p>rpush list2 a b c d 在链表尾加入元素 –&gt; a b c d</p>
+<p>注意，不同元素之间要用空格隔开，而不是逗号!</p>
+<p>linsert list before|after foo bar </p>
+<p>在list中foo元素之前|之后插入bar元素</p>
+<p><img src="/2022/09/19/redis%E6%A6%82%E6%8B%AC/Users\Panda\Desktop\Redis\Redis.assets\wps10.jpg" alt="img"> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush list2 1 2 3 4</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; lrange list2 0 -1  <span class="comment">#-1代表最后一个值</span></span><br><span class="line">1) <span class="string">&quot;4&quot;</span></span><br><span class="line">2) <span class="string">&quot;3&quot;</span></span><br><span class="line">3) <span class="string">&quot;2&quot;</span></span><br><span class="line">4) <span class="string">&quot;1&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>查询lrange list1 start end其中start从0开始，查询结果包含start和end其中start和end也可以写成负数，-1表示倒数第1个元素，-2 表示倒数第2个元素llen list 获取列表中元素的个数lindex list 0 获取列表中指定下标的元素 </p>
+</li>
+<li><p>修改lset list 2 foo 将list中，下标为2的元素内容替换成foorpop</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lset list1 2 foo</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) <span class="string">&quot;d&quot;</span></span><br><span class="line">2) <span class="string">&quot;c&quot;</span></span><br><span class="line">3) <span class="string">&quot;foo&quot;</span></span><br><span class="line">4) <span class="string">&quot;a&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>ltrim list <start> <end> 截取指定范围的值后，再把截取出的值赋给list</end></start></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) <span class="string">&quot;list2&quot;</span></span><br><span class="line">2) <span class="string">&quot;d&quot;</span></span><br><span class="line">3) <span class="string">&quot;c&quot;</span></span><br><span class="line">4) <span class="string">&quot;foo&quot;</span></span><br><span class="line">5) <span class="string">&quot;a&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; ltrim list1 1 2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) <span class="string">&quot;d&quot;</span></span><br><span class="line">2) <span class="string">&quot;c&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>删除lpop 删除并返回链表左侧的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpop list1</span><br><span class="line"><span class="string">&quot;d&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) <span class="string">&quot;c&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>rpop 删除并返回链表右侧的元素b</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lrange list2 0 -1</span><br><span class="line">1) <span class="string">&quot;4&quot;</span></span><br><span class="line">2) <span class="string">&quot;3&quot;</span></span><br><span class="line">3) <span class="string">&quot;2&quot;</span></span><br><span class="line">4) <span class="string">&quot;1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; rpop list2</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list2 0 -1</span><br><span class="line">1) <span class="string">&quot;4&quot;</span></span><br><span class="line">2) <span class="string">&quot;3&quot;</span></span><br><span class="line">3) <span class="string">&quot;2&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>blpop key timeout删除并返回链表左侧的元素，若列表中没有元素，阻塞等待timeout秒，如果timeout=0，则一直阻塞等待b</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; blpop list1 5</span><br><span class="line">(nil)</span><br><span class="line">(5.01s)</span><br><span class="line">127.0.0.1:6379&gt; blpop list1 0</span><br><span class="line">1) <span class="string">&quot;list1&quot;</span></span><br><span class="line">2) <span class="string">&quot;d&quot;</span></span><br><span class="line">(109.14s)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>brpop key timeout删除并返回链表右侧的元素，若列表中没有元素，阻塞等待timeout秒，如果timeout=0，则一直阻塞等待</p>
+</li>
+<li><p>lrem list 0 a  删除list中的所有a元素lrem list 1 a  从左向右，删除list中的1个a元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lrem list1 2 a</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line"> 1) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;b&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;b&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;b&quot;</span></span><br><span class="line">10) <span class="string">&quot;a&quot;</span></span><br><span class="line">11) <span class="string">&quot;d&quot;</span></span><br><span class="line">12) <span class="string">&quot;c&quot;</span></span><br><span class="line">13) <span class="string">&quot;b&quot;</span></span><br><span class="line">14) <span class="string">&quot;a&quot;</span></span><br><span class="line">15) <span class="string">&quot;d&quot;</span></span><br><span class="line">16) <span class="string">&quot;c&quot;</span></span><br><span class="line">17) <span class="string">&quot;c&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; lrem list1 -2 c</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line"> 1) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;b&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;b&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;c&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;b&quot;</span></span><br><span class="line">10) <span class="string">&quot;a&quot;</span></span><br><span class="line">11) <span class="string">&quot;d&quot;</span></span><br><span class="line">12) <span class="string">&quot;c&quot;</span></span><br><span class="line">13) <span class="string">&quot;b&quot;</span></span><br><span class="line">14) <span class="string">&quot;a&quot;</span></span><br><span class="line">15) <span class="string">&quot;d&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>lrem list -2 a 从右向左，删除list中的2个a元素 </p>
+<p> 利用list的命令，可以实现一些常用的数据结构</p>
+<p>Stack = LPUSH + LPOP –&gt; FILO</p>
+<p>Queue = LPUSH +RPOP</p>
+<p>Blocking MQ（阻塞队列）= LPUSH + BRPOP</p>
+<p>关于redis中的list数据类型要注意的地方</p>
+<ol>
+<li><p>它是一个字符串链表，可以从left或right端添加值</p>
+</li>
+<li><p>如果键不存在，则创建新的链表</p>
+</li>
+<li><p>如果键已存在，则新增内容</p>
+</li>
+<li><p>如果值全部移除，则对应的键也就消失了</p>
+</li>
+<li><p>操作链表中的头元素和尾元素效果都很高，但是如果操作的是链表中间的元素，效率就很低</p>
+</li>
+<li><p>list可以对数据进行分页操作，通常第一页的数据来自于redis的list，第2页及更多的信息是通过数据库来获取的</p>
+</li>
+</ol>
+<p>list应用场景：微信朋友圈点赞，要求按照点赞顺序显示好友信息  </p>
+</li>
+</ol>
+<h2 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h2><p>Redis中的Hash类型可以看成具有String Key和String Value的map容器。所以该类型非常适合于（但不限于）存储对象的信息。每一个Hash可以存储4294967295个键值对。</p>
+<ol>
+<li>hset key field value</li>
+<li>hmset key field value [field2 value2 …]</li>
+<li>hget key field</li>
+<li>hmget key fields</li>
+<li>hgetall key</li>
+<li>hdel key field</li>
+<li>del key 删除整个hash</li>
+<li>hlen key </li>
+<li>hincrby key field increment  （注意，没有hdecriby）</li>
+<li>hexists key field </li>
+<li>hkeys key 获取key中的所有field</li>
+<li>hvals key 获取key中的所有value </li>
+</ol>
+<p>hash应用场景：存储对象。说到存储对象，string可以存储对象，下面简单讨论一下。</p>
+<ol>
+<li><p>string存储对象，讲究整体性。要么更新整体，要么获取整体。偏向于“读为主”</p>
+</li>
+<li><p>hash存储对象，可以用field的对象的各个属性分开，所以针对于更新操作显得更加灵活。偏向于“改为主”</p>
+</li>
+</ol>
+<p>hash应用场景：电商购物车</p>
+<ol>
+<li><p>以用户id为key：cart:用户id</p>
+</li>
+<li><p>以商品id为field</p>
+</li>
+<li><p>以商品数量为value</p>
+<p>购物车操作</p>
+<p>1.添加商品：hset cart:1001 1044 1</p>
+<pre><code>  2. 增加数量：hincrby cart:1001 1044 1
+  3. 商品总数：hlen cart:1001
+  4. 删除商品：hdel cart:1001 1044
+  5. 获取所有商品：hgetall cart:1001 
+</code></pre>
+</li>
+</ol>
+<p>当前仅仅是将数据存储到了redis中，并没有起到加速的作用，商品信息还需要再查一次数据库，为了解决这个问题，可以这样重构：</p>
+<p>每条购物车中的商品记录保存成两条field:field1用于保存购买数量商品id:nums –&gt; 数量field2专用于保存购物车中显示的信息，包含文字描述，图片地址，价格等等商品id:info –&gt; json数据</p>
+<h2 id="Zset-sorted-set-有序集合"><a href="#Zset-sorted-set-有序集合" class="headerlink" title="Zset(sorted set) 有序集合"></a>Zset(sorted set) 有序集合</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Redis有序集合zset与普通集合set非常相似，是一个没有重复元素的字符串集合。</p>
+<p>不同之处是有序集合的每个成员都关联了一个<em><strong>*评分（score）*</strong></em>,这个评分（score）被用来按照从最低分到最高分的方式排序集合中的成员。集合的成员是唯一的，但是评分可以是重复了 。</p>
+<p>因为元素是有序的, 所以你也可以很快的根据评分（score）或者次序（position）来获取一个范围的元素。</p>
+<p>访问有序集合的中间元素也是非常快的,因此你能够使用有序集合作为一个没有重复成员的智能列表。</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">zadd  &lt;key&gt;&lt;score1&gt;&lt;value1&gt;&lt;score2&gt;&lt;value2&gt;…</span><br><span class="line">将一个或多个 member 元素及其 score 值加入到有序集 key 当中。</span><br><span class="line">zrange &lt;key&gt;&lt;start&gt;&lt;stop&gt;  [WITHSCORES]   </span><br><span class="line">返回有序集 key 中，下标在&lt;start&gt;&lt;stop&gt;之间的元素</span><br><span class="line">带WITHSCORES，可以让分数一起和值返回到结果集。</span><br><span class="line">zrangebyscore key minmax [withscores] [limit offset count]</span><br><span class="line">返回有序集 key 中，所有 score 值介于 min 和 max 之间(包括等于 min 或 max )的成员。有序集成员按 score 值递增(从小到大)次序排列。 </span><br><span class="line">zrevrangebyscore key maxmin [withscores] [limit offset count]               </span><br><span class="line">同上，改为从大到小排列。 </span><br><span class="line">zincrby &lt;key&gt;&lt;increment&gt;&lt;value&gt;      为元素的score加上增量</span><br><span class="line">zrem  &lt;key&gt;&lt;value&gt;删除该集合下，指定值的元素 </span><br><span class="line">zcount &lt;key&gt;&lt;min&gt;&lt;max&gt;统计该集合，分数区间内的元素个数 </span><br><span class="line">zrank &lt;key&gt;&lt;value&gt;返回该值在集合中的排名，从0开始。</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>案例：如何利用zset实现一个文章访问量的排行榜？</p>
+<p><img src alt="img"> </p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%9C%97%E7%89%9B%E5%AD%A6%E9%99%A2%E7%AC%94%E8%AE%B0/">#蜗牛学院笔记</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/redis/">#redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/09/25/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NoSQL数据库</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/19/mysql%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%94%81%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mysql的四种锁总结</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'm5Te1s3KP72MoIRVRmVTW0bN-gzGzoHsz',
+                    appKey: 'MfRMp0hK7vo5jM1qjxjvp6bk',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '尽情吐槽吧',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'pangtouyu777';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">pangtouyu777</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Redis简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Redis基本配置及通用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">通用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.1.</span> <span class="nav-text">在linux中的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#redis-server-%E5%90%AF%E5%8A%A8redis%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">redis-server:启动redis服务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redis-cli%EF%BC%9A%E5%90%AF%E5%8A%A8%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">redis-cli：启动客户端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redis-benchmark%EF%BC%9A%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99%E7%9A%84%E6%B5%8B%E8%AF%95%E3%80%82"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">redis-benchmark：模拟数据读写的测试。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8redis%E9%87%8C%E8%BF%90%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.2.</span> <span class="nav-text">在redis里运行的命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">String类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">List类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">Hash类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset-sorted-set-%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="nav-number">7.</span> <span class="nav-text">Zset(sorted set) 有序集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">7.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">7.2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-number">7.2.1.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
